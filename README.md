@@ -1,6 +1,6 @@
-#Linkit
+# Linkit
 
-##Dokumentaatio
+## Dokumentaatio
 
 [Vaatimusmäärittely](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/vaatimusmaarittely.md)
 
