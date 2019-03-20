@@ -3,6 +3,7 @@
 ## Sovelluksen tarkoitus
 Sovellus toimii käyttäjän sähköisenä taikarohtoreseptikirjana ja -hakemistona. Sovelluksen avulla luodaan, talletetaan ja muokataan rohtoja. Lisäksi voidaan generoida uusia ja uniikkeja rohtoja.
 
+
 ## Perusversion tarjoama toiminnallisuus
 ### Päävalikko
 * listaa tallennetut rohdot
