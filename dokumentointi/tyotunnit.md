@@ -1,2 +1,5 @@
-20.3. 	projektin alustus - 1h
-	määrittelydokumentin kirjoittamista ja sovelluksen yleispiirteistä suunnittelua - 1h
+#Työaikakirjanpito
+|*Päivä*|*Aika*|*Mitä tein*|
+|20.3.|1 | projektin alustaminen |
+|     |2 | määrittelydokumentin kirjoittamista ja sovelluksen suunnittelua |
+|     |1 | dokumentoinnin valmistelu ja työntäminen githubiin oikein
