@@ -32,3 +32,6 @@ Sovellus toimii käyttäjän sähköisenä taikarohtoreseptikirjana ja -hakemist
 * rohtojen etsiminen käyttötarkoituksen perusteella
 * rohdon arvioidun hinnan laskeminen
 * toiminnallisuus, jossa voi lisätä aineksia erilliselle ostoslistalle
+* sovelluksella on parempi ymmärrys siitä, että kalliimmat ja harvinaisemmat ainesosat tuottavat kalliimpia ja harvinaisempia rohtoja
+* categorising potions in the library by type
+* categorising potions in the library by property
