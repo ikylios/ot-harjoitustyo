@@ -15,4 +15,6 @@
 
 [gitlog.txt](https://github.com/ikylios/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
 
+## Viikko 2
 
+[testikattavuus](https://github.com/ikylios/ot-harjoitustyo/blob/master/laskarit/viikko2/testikattavuusScreenshot.png)
