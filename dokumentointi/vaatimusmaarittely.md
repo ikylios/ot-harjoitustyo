@@ -27,6 +27,7 @@ Alkuvaiheessa vain yksi käyttäjä, myöhemmin saatetaan lisätä enemmillä oi
 * käyttäjä voi muokata kaikkia rohdon ominaisuuksia, jotka ovat tarkastelunäkymässä
 * voidaan lisätä tai poistaa aineksia rohdosta
 * nappula josta generoida satunnaiset ainekset rohtoon
+![Muokkaus ja luonti]()
 
 ## Jatkokehitysideoita
 * rohtojen arvostelutoiminnallisuus, esim. 1-5 tähteä, kommentteja...
