@@ -16,7 +16,7 @@ Alkuvaiheessa vain yksi käyttäjä, myöhemmin saatetaan lisätä enemmillä oi
 ### Rohtohakemisto
 * listaa kaikki talletetut rohdot
 * rohtoja pääsee tarkastelemaan ja poistamaan
-![Potion Library]()
+![Potion Library](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/potionLibrary.jpeg)
 
 ## Rohdon tarkastelunäkymä
 * listaa rohdon ainekset
