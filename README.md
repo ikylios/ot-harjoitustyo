@@ -2,7 +2,7 @@
 
 ## Dokumentaatio
 
-[Käyttöohje]https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/kayttoohje.md
+[Käyttöohje](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/kayttoohje.md)
 
 [Vaatimusmäärittely](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/vaatimusmaarittely.md)
 
@@ -12,5 +12,5 @@
 ## Komentorivitoiminnot
 
 ### Testaus
-Testit suoritetaan komennolla `mvn test`
+Testit suoritetaan komennolla `mvn test`.
 Testikattavuusraportti luodaan komennolla `mvn jacoco:report`
