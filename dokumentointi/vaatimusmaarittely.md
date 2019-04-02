@@ -30,6 +30,10 @@ Alkuvaiheessa vain yksi käyttäjä, myöhemmin saatetaan lisätä enemmillä oi
 * nappula josta generoida satunnaiset ainekset rohtoon
 ![Muokkaus ja luonti](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/createApotion.jpeg)
 
+## Aineskirjasto (ingredientLibrary)
+* sisältää kaikki ainekset, joita rohtoon voidaan laittaa.
+* käyttäjä voi luoda uusia aineksia tai poistaa olemassa olevia aineksia (tämä poistaa kaikki rohdot, joissa ainesta on.)
+
 ## Jatkokehitysideoita
 * rohtojen arvostelutoiminnallisuus, esim. 1-5 tähteä, kommentteja...
 * rohtojen listaaminen hakemistossa muussa kuin luomisjärjestyksessä

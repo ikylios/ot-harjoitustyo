@@ -12,4 +12,4 @@
 |2.4.|3 | Javafx:n kanssa kamppailua Opin, että init()-metodia saa olla vain yksi kappale.)
 |    |3 | IngredientLibraryn päätoiminnallisuus toteutettu. Käyttäjä voi nyt myös lisätä uusia aineksia jo olemassa olevien default-ainesten rinnalle. Ohjelma osaa myös tarkistaa, ettei uusiksi aineksiksi huolita tyhjiä kenttiä tai duplikaatteja jo olemassa olevista aineksista.
 |    |1 | Ensimmäiset kolme testiä tehty. Tarkistaa ingredientLibraryn toimintaa. Koodia muokataan myös testausystävällisemmäksi.
-|    |1 | Mavenin konfiguraatiota. Jacoco-yhteensopivuus tehty.
+|    |1 | Mavenin konfiguraatiota. Jacoco-yhteensopivuus tehty. Lisättiin ingredientLibrarysta aineksien poistotoiminnallisuus. Lisättiin testejä tälle toiminnallisuudelle.

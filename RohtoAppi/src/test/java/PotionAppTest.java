@@ -58,4 +58,21 @@ public class PotionAppTest {
         assertEquals("fields", logic.ingredientLibrary.addIngredient("", ""));
     }
     
+    @Test
+    public void deletesExistingIngredientFromLibrary() {
+        assertEquals(true, logic.ingredientLibrary.removeIngredient("fairy dust"));
+    }
+    
+    @Test
+    public void doesNotDeleteUnexistingIngredientFromLibrary() {
+        assertEquals(false, logic.ingredientLibrary.removeIngredient("troll ear"));
+    }
+    
+    @Test
+    public void addsIngredientTriesToDuplicateAndDeletesIt() {
+        assertEquals("clear", logic.ingredientLibrary.addIngredient("dragon scale", "mg"));
+        assertEquals("duplicate", logic.ingredientLibrary.addIngredient("dragon scale", "mg"));
+        assertEquals(true, logic.ingredientLibrary.removeIngredient("dragon scale"));
+    }
+    
 }
