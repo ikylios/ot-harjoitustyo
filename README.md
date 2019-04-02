@@ -2,7 +2,7 @@
 
 ## Dokumentaatio
 
-[Käyttöohje]
+[Käyttöohje]https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/kayttoohje.md
 
 [Vaatimusmäärittely](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/vaatimusmaarittely.md)
 
