@@ -42,6 +42,16 @@ public class IngredientLibrary {
         }
         return "duplicate";
     }
+    
+    public boolean removeIngredient(String name) {
+        String editedName = name.toLowerCase().trim();
+        if (ingredients.containsKey(editedName)) {
+            ingredients.remove(editedName, ingredients.get(editedName));
+            ingredientsNames.remove(name);
+            return true;
+        }
+        return false;
+    }
 
     
     public String getSingleIngredientName(int i) {

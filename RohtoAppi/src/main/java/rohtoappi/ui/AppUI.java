@@ -128,7 +128,8 @@ public class AppUI extends Application {
         Button backToPotion = new Button("Cancel");
         Button addIngredient = new Button("Add Ingredient to Potion");
         Button newIngredient = new Button("New Ingredient");
-        ingredientButtons.getChildren().addAll(backToPotion, newIngredient, addIngredient);
+        Button removeIngredient = new Button("Remove Ingredient from Library");
+        ingredientButtons.getChildren().addAll(addIngredient, backToPotion, newIngredient, removeIngredient);
         ingredientButtons.setAlignment(Pos.CENTER);
         
         backToPotion.setOnAction((event) -> {
@@ -137,6 +138,10 @@ public class AppUI extends Application {
         
         newIngredient.setOnAction((event) -> {
             newIngredient(window);
+        });
+        
+        removeIngredient.setOnAction((event) -> {
+            removeIngredient(window);
         });
         
         ingredientComponents.setCenter(listView);
@@ -186,24 +191,76 @@ public class AppUI extends Application {
         
         confirm.setOnAction((event) -> {
             String ingredientName = nameField.getText();
-            String ingredientUnit = unitField.getText();
+            String ingredientUnit = unitField.getText();            
+            String response = "Unknown error";
+            
             String retVal = logic.ingredientLibrary.addIngredient(ingredientName, ingredientUnit);
+            
             if (retVal.equals("duplicate")) {
-                status.setText("Ingredient already in library.");
+                response = "Ingredient already in library.";
             } else if (retVal.equals("fields")) {
-                status.setText("Fill fields in.");
+                response = "Fill fields in.";
             } else if (retVal.equals("clear")) {
                     nameField.clear();
                     unitField.clear();
-                    status.setText("Ingredient added.");
-            } else {
-                status.setText("Unknown error.");
-            }
+                    response = "Ingredient added.";
+            }            
+            status.setText(response);
         });    
 
         
         Scene newIngredientScene = new Scene(components);
         window.setScene(newIngredientScene);
+        
+        window.show();        
+    }
+    
+    public void removeIngredient(Stage window) {
+        
+        BorderPane components = new BorderPane();
+        
+        HBox fields = new HBox();                              
+        TextField nameField = new TextField();        
+        Label nameLabel = new Label("Name:");        
+        fields.getChildren().addAll(nameLabel, nameField);        
+        
+        components.setCenter(fields);
+        
+        HBox buttons = new HBox();        
+        Button confirm = new Button("Confirm");
+        Button cancel = new Button("Back To Ingredient Library");
+        buttons.getChildren().addAll(confirm, cancel);
+        buttons.setSpacing(20);
+        buttons.setAlignment(Pos.CENTER);
+        
+        VBox buttonsAndStatus = new VBox();
+        Label status = new Label();
+        buttonsAndStatus.setSpacing(10);
+        buttonsAndStatus.setAlignment(Pos.CENTER);        
+        buttonsAndStatus.getChildren().addAll(status, buttons);
+        
+        components.setBottom(buttonsAndStatus);
+        
+        cancel.setOnAction((event) -> {
+            ingredientLibrary(window);
+        });
+        
+        confirm.setOnAction((event) -> {
+            String ingredientName = nameField.getText();            
+            boolean retVal = logic.ingredientLibrary.removeIngredient(ingredientName);
+            String response = "";
+            if (retVal) {
+                nameField.clear();
+                response = "Ingredient deleted.";
+            } else {
+                response = "Ingredient does not exist.";
+            }            
+            status.setText(response);
+        });    
+
+        
+        Scene removeIngredientScene = new Scene(components);
+        window.setScene(removeIngredientScene);
         
         window.show();        
     }

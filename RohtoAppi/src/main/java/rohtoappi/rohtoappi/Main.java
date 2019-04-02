@@ -32,8 +32,8 @@ public class Main extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        stage.setWidth(550.0);
-        stage.setHeight(400.0);
+        stage.setWidth(700.0);
+        stage.setHeight(450.0);
         stage.setTitle("PotionApp");
         ui.giveLogic(logic);
         ui.start(stage);
