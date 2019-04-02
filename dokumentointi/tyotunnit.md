@@ -2,10 +2,14 @@
 
 | Päivä | Aika | Mitä tein |
 | --- | --- | --- |
-|20.3.|1 | projektin alustaminen |
-|     |2 | määrittelydokumentin kirjoittamista ja sovelluksen suunnittelua |
-|     |1 | dokumentoinnin kirjoittamista ja ulkoasun hiomista |
-|21.3.|4 | sovelluksen visuaalisen ilmeen ja toiminnallisuuden tarkempaa kartoittamista |
-|30.3.|3 | päävalikon ja rohdonluonnin graafinen ilme kasassa, ingredientLibraryn näkymä luotu. Näiden välinen siirtyminen tehty.
-|31.3.|2 | ingredient- ja potion-luokkien rakentamista, ingredientLibraryn käyttöliittymän ja toiminnallisuuden kirjoittamista
-|1.4.|1 | javafx:n kanssa kamppailua
+|20.3.|1 | Projektin alustaminen |
+|     |2 | Määrittelydokumentin kirjoittamista ja sovelluksen suunnittelua |
+|     |1 | Dokumentoinnin kirjoittamista ja ulkoasun hiomista |
+|21.3.|4 | Sovelluksen visuaalisen ilmeen ja toiminnallisuuden tarkempaa kartoittamista |
+|30.3.|3 | Päävalikon ja rohdonluonnin graafinen ilme kasassa, ingredientLibraryn näkymä luotu. Näiden välinen siirtyminen tehty.
+|31.3.|2 | Ingredient- ja potion-luokkien rakentamista, ingredientLibraryn käyttöliittymän ja toiminnallisuuden kirjoittamista
+|1.4.|1 | Javafx:n kanssa kamppailua. ListView ja ObservableList tutuiksi.
+|2.4.|3 | Javafx:n kanssa kamppailua Opin, että init()-metodia saa olla vain yksi kappale.)
+|    |3 | IngredientLibraryn päätoiminnallisuus toteutettu. Käyttäjä voi nyt myös lisätä uusia aineksia jo olemassa olevien default-ainesten rinnalle. Ohjelma osaa myös tarkistaa, ettei uusiksi aineksiksi huolita tyhjiä kenttiä tai duplikaatteja jo olemassa olevista aineksista.
+|    |1 | Ensimmäiset kolme testiä tehty. Tarkistaa ingredientLibraryn toimintaa. Koodia muokataan myös testausystävällisemmäksi.
+|    |1 | Mavenin konfiguraatiota. Jacoco-yhteensopivuus tehty.

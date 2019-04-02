@@ -2,19 +2,15 @@
 
 ## Dokumentaatio
 
+[Käyttöohje]
+
 [Vaatimusmäärittely](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/vaatimusmaarittely.md)
 
 [Työaikakirjanpito](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/tyotunnit.md)
 
 
-# Tehtävät
+## Komentorivitoiminnot
 
-## Viikko 1
-
-[komentorivi.txt](https://github.com/ikylios/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
-
-[gitlog.txt](https://github.com/ikylios/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
-
-## Viikko 2
-
-[testikattavuus](https://github.com/ikylios/ot-harjoitustyo/blob/master/laskarit/viikko2/testikattavuusScreenshot.png)
+### Testaus
+Testit suoritetaan komennolla `mvn test`
+Testikattavuusraportti luodaan komennolla `mvn jacoco:report`
