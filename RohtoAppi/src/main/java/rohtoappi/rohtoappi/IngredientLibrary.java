@@ -52,6 +52,10 @@ public class IngredientLibrary {
         }
         return false;
     }
+    
+    public Ingredient getIngredientByName(String name) {        
+        return ingredients.get(name.trim().toLowerCase());
+    }
 
     
     public String getSingleIngredientName(int i) {

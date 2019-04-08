@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Potion {
     
-    ArrayList ingredients;
+    ArrayList<Ingredient> ingredients;
     String name;
     String effect;
     Type type;

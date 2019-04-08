@@ -5,6 +5,7 @@
  */
 package rohtoappi.ui;
 
+import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -22,6 +23,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import rohtoappi.rohtoappi.AppLogic;
+import rohtoappi.rohtoappi.Ingredient;
 
 /**
  *
@@ -69,15 +71,17 @@ public class AppUI extends Application {
         Platform.exit();
     }
     
-    public void createPotion(Stage window) {                
+    public void createPotion(Stage window) {                       
         
         BorderPane createComponents = new BorderPane();        
         
         
-        GridPane ingredientGrid = new GridPane();
-//        for (int i = 0; i < ingredientList.size(); i++) {
-//          lisää nappuloita respectively    
-//        }
+        ArrayList<Ingredient> tempPotion = new ArrayList<>();
+        if (!logic.getTempPotion().isEmpty()) {
+            tempPotion = logic.getTempPotion();
+        }
+        GridPane ingredientGrid = createIngredientGrid(tempPotion);
+        
         
         HBox createButtons = new HBox();
         createButtons.setSpacing(10);        
@@ -103,7 +107,7 @@ public class AppUI extends Application {
         });
         
         //MISSING: REMOVE
-        addIngredient.setOnAction((event) -> {
+        addIngredient.setOnAction((event) -> {            
             ingredientLibrary(window);
         });
         
@@ -114,6 +118,26 @@ public class AppUI extends Application {
         
         
     }
+    
+    public GridPane createIngredientGrid(ArrayList<Ingredient> ingredients) {
+        GridPane ingredientGrid = new GridPane();
+        
+        int row = 0;        
+        for (Ingredient ingredient : ingredients) {
+            int column = 0;
+            ingredientGrid.add(new Label(ingredient.getName()), column, row);
+            column++;
+            ingredientGrid.add(new Label(""+ingredient.getAmount()), column, row);
+            column++;
+            ingredientGrid.add(new Button("+"), column, row);
+            column++;
+            ingredientGrid.add(new Button("-"), column, row);
+            row++;
+        }
+        
+        return ingredientGrid;
+        
+    }        
     
     public void ingredientLibrary(Stage window) {
         
@@ -142,6 +166,13 @@ public class AppUI extends Application {
         
         removeIngredient.setOnAction((event) -> {
             removeIngredient(window);
+        });                
+        
+        addIngredient.setOnAction((event) -> {
+            String selected = listView.getSelectionModel().getSelectedItem().toString();
+            if (!selected.isEmpty()) {
+                addIngredientToPotion(window, selected);
+            }                                                      
         });
         
         ingredientComponents.setCenter(listView);
@@ -153,6 +184,72 @@ public class AppUI extends Application {
         window.show();
         
     }
+    
+    public void addIngredientToPotion(Stage window, String name) {
+        BorderPane components = new BorderPane();
+        
+        GridPane fields = new GridPane();                                
+        TextField amountField = new TextField();
+        Label nameLabel = new Label("Adding ingredient " + name);
+        Label amountLabel = new Label("Amount: ");
+        fields.add(nameLabel, 0, 0);
+        fields.add(amountLabel, 0, 1);        
+        fields.add(amountField, 1, 1);
+        
+        components.setCenter(fields);
+        
+        HBox buttons = new HBox();        
+        Button confirm = new Button("Confirm");
+        Button cancel = new Button("Back To Ingredient Library");
+        buttons.getChildren().addAll(confirm, cancel);
+        buttons.setSpacing(20);
+        buttons.setAlignment(Pos.CENTER);
+        
+        VBox buttonsAndStatus = new VBox();
+        Label status = new Label();
+        buttonsAndStatus.setSpacing(10);
+        buttonsAndStatus.setAlignment(Pos.CENTER);        
+        buttonsAndStatus.getChildren().addAll(status, buttons);
+        
+        components.setBottom(buttonsAndStatus);
+        
+        cancel.setOnAction((event) -> {
+            ingredientLibrary(window);
+        });
+        
+        confirm.setOnAction((event) -> {         
+            if (!amountField.getText().isEmpty()) {
+                String retVal = logic.addToTempPotion(name, amountField.getText());
+            }            
+            
+            
+            
+//            String ingredientUnit = Integer.valueOf(name) unitField.getText();            
+//            String response = "Unknown error";
+//            
+//            String retVal = logic.ingredientLibrary.addIngredient(ingredientName, ingredientUnit);
+//            
+//            if (retVal.equals("duplicate")) {
+//                response = "Ingredient already in library.";
+//            } else if (retVal.equals("fields")) {
+//                response = "Fill fields in.";
+//            } else if (retVal.equals("clear")) {
+//                    nameField.clear();
+//                    unitField.clear();
+//                    response = "Ingredient added.";
+//            }            
+//            status.setText(response);
+        });    
+
+        
+        Scene newIngredientScene = new Scene(components);
+        window.setScene(newIngredientScene);
+        
+        window.show();        
+
+    }
+    
+    
     
     public void newIngredient(Stage window) {
         
