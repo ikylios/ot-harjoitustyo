@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rohtoappi.rohtoappi;
+package rohtoappi.domain.components;
 
 import java.util.ArrayList;
 
@@ -13,15 +13,57 @@ import java.util.ArrayList;
  */
 public class Potion {
     
-    ArrayList<Ingredient> ingredients;
-    String name;
-    String effect;
-    Type type;
+    public ArrayList<Ingredient> ingredients;    
+    public String name;
+    public String effect;
+    public Type type;
 
     public Potion() {
         this.ingredients = new ArrayList<>();
     }
     
+    public ArrayList<Ingredient> getIngredients() {
+        return ingredients;
+    }
+    
+    public Ingredient getIngredientByName(String name) {
+        for (Ingredient ingredient : ingredients) {
+            if (ingredient.getName().equals(name)) {
+                return ingredient;
+            }
+        }
+        return null;
+    }
+    
+    public String addToPotion(Ingredient ingredient) {                
+        String retVal = "ingredientPresent";
+        
+        if (!ingredients.contains(ingredient)) {            
+            ingredients.add(ingredient);            
+            retVal = "clear";            
+        }           
+        return retVal;
+    }
+    
+    public String removeFromPotion(String name) {
+        if (!name.isEmpty()) {            
+            Ingredient ingredient = getIngredientByName(name);
+            if (ingredient == null) {
+                return "notInPotion";
+            }
+            ingredients.remove(ingredient);            
+            return "clear";
+        }        
+        return "invalidValue";                
+    }
+    
+    public boolean emptyPotion() {
+        ingredients.clear();
+        if (ingredients.isEmpty()) {
+            return true;
+        }
+        return false;
+    }
     
     
 }

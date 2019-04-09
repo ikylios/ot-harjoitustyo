@@ -3,59 +3,64 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rohtoappi.rohtoappi;
+package rohtoappi.domain;
 
 
+import rohtoappi.domain.components.Ingredient;
 import java.util.ArrayList;
 import java.util.List;
+import rohtoappi.domain.components.Potion;
 
 /**
  *
  * @author xilxilx
  */
 public class AppLogic {
-    
-    public ArrayList<Ingredient> tempPotion;
+        
     public IngredientLibrary ingredientLibrary;
     public PotionLibrary potionLibrary;
+    public Potion tempPotion;
 
     public AppLogic() {
         this.ingredientLibrary = new IngredientLibrary();
         this.potionLibrary = new PotionLibrary();
-        this.tempPotion = new ArrayList<>();        
-    }    
+        this.tempPotion = new Potion();
+    }        
     
-    public boolean addPotion() {
-        return true;
-    }
-    
-    public boolean newPotion() {        
-        return true;
-    }
-    
-    public ArrayList<Ingredient> getTempPotion() {
-        return tempPotion;
-    }
-    
+//    public ArrayList<Ingredient> getTempPotion() {
+//        return tempPotion;
+//    }
+//    
+//    public Ingredient getIngredientByNameTemp(String name) {
+//        for (Ingredient ingredient : tempPotion) {
+//            if (ingredient.getName().equals(name)) {
+//                return ingredient;
+//            }
+//        }
+//        return null;
+//    }
+//    
     public String addToTempPotion(String name, String amount) {
-        String retVal = "ingredientPresent";
+        String retVal = "amountIsNotInteger";
         
         Ingredient fromLibrary = ingredientLibrary.ingredients.get(name.trim().toLowerCase());
-        Ingredient ingredient = new Ingredient(fromLibrary.getName(), fromLibrary.getMeasuringUnit());
-            
-        if (!tempPotion.contains(ingredient)) {
-            System.out.println(tempPotion.contains(ingredient));
-            amount.trim();
-            if (amount.matches("\\d+")) {                                    
+        Ingredient ingredient = new Ingredient(fromLibrary.getName(), fromLibrary.getMeasuringUnit());                                                 
+                    
+        if (amount.matches("\\d+")) {                                    
                 ingredient.setAmount(Integer.valueOf(amount));
-                tempPotion.add(ingredient);            
-                retVal = "clear";
-            } else {
-                retVal = "amountIsNotInteger";
+                retVal = tempPotion.addToPotion(ingredient);                            
             }
-        }
-           
+                 
         return retVal;
     }
+
+
+//    public boolean emptyTempPotion() {
+//        tempPotion.clear();
+//        if (tempPotion.isEmpty()) {
+//            return true;
+//        }
+//        return false;
+//    }
     
 }

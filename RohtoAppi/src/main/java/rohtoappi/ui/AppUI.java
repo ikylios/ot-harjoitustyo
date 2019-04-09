@@ -21,9 +21,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import rohtoappi.rohtoappi.AppLogic;
-import rohtoappi.rohtoappi.Ingredient;
+import rohtoappi.domain.AppLogic;
+import rohtoappi.domain.components.Ingredient;
 
 /**
  *
@@ -32,21 +34,27 @@ import rohtoappi.rohtoappi.Ingredient;
 public class AppUI extends Application {
     
     AppLogic logic;
-    Insets padding = new Insets(10, 10, 10, 10); 
+    Insets padding;
+    UIBuilder uiBuilder;
     
-    public void giveLogic(AppLogic logic) {
+    public void giveLogic(AppLogic logic) {        
         this.logic = logic;
+        padding = new Insets(20, 20, 20, 20);
+        uiBuilder = new UIBuilder();
     }
     
     @Override
     public void start(Stage window) {                                                       
         
         Button createButton = new Button("Create A Potion");
+        createButton.setMaxWidth(200.0);
         Button browseButton = new Button("Potion Library");
-        Button exitButton = new Button("Exit");
+        browseButton.setMaxWidth(200.0);
+        Button exitButton = new Button("Exit");        
                 
         VBox mainButtons = new VBox();
         mainButtons.setAlignment(Pos.CENTER);
+        mainButtons.setPrefWidth(150.0);
         mainButtons.setSpacing(20);
         mainButtons.getChildren().addAll(createButton, browseButton, exitButton);         
         
@@ -58,7 +66,7 @@ public class AppUI extends Application {
         });
         
         createButton.setOnAction((event) -> {            
-            createPotion(window);            
+            createAPotion(window);            
         });
         
                 
@@ -71,18 +79,19 @@ public class AppUI extends Application {
         Platform.exit();
     }
     
-    public void createPotion(Stage window) {                       
+    
+    
+    public void createAPotion(Stage window) {                       
         
-        BorderPane createComponents = new BorderPane();        
+        BorderPane createComponents = new BorderPane();     
         
+        Label titleLabel = uiBuilder.createSceneTitle("Create A Potion");        
         
-        ArrayList<Ingredient> tempPotion = new ArrayList<>();
-        if (!logic.getTempPotion().isEmpty()) {
-            tempPotion = logic.getTempPotion();
-        }
+        createComponents.setTop(titleLabel);
+        
+        ArrayList<Ingredient> tempPotion = logic.tempPotion.getIngredients();
         GridPane ingredientGrid = createIngredientGrid(tempPotion);
-        
-        
+                
         HBox createButtons = new HBox();
         createButtons.setSpacing(10);        
         Button confirmPotion = new Button("Confirm potion");
@@ -99,11 +108,20 @@ public class AppUI extends Application {
         
         createComponents.setCenter(ingredientGrid);
         createComponents.setBottom(createButtons);
-        createComponents.setRight(ingredientButtons);                
+        createComponents.setRight(ingredientButtons);
+        
+        createComponents.setPadding(padding);
         
         //MISSING: CONFIRM, RANDOMISE        
         backToMenu.setOnAction((event) -> {
+            //add warning: will delete the current potion
+            logic.tempPotion.emptyPotion();
             start(window);
+        });
+        
+        randomisePotion.setOnAction((event) -> {
+//            Ingredient ingredient = logic.ingredientLibrary.getRandomIngredient();
+//            logic.addToTempPotion(ingredient.getName(), ingredient.getMeasuringUnit());
         });
         
         //MISSING: REMOVE
@@ -111,96 +129,121 @@ public class AppUI extends Application {
             ingredientLibrary(window);
         });
         
-        Scene createPotion = new Scene(createComponents);
-        window.setScene(createPotion);
+        removeIngredient.setOnAction((event) -> {
+            removeFromPotion(window);
+        }
         
-        window.show();
+        Scene createAPotion = new Scene(createComponents);
+        window.setScene(createAPotion);
         
+        window.show();       
         
     }
     
     public GridPane createIngredientGrid(ArrayList<Ingredient> ingredients) {
-        GridPane ingredientGrid = new GridPane();
-        
-        int row = 0;        
-        for (Ingredient ingredient : ingredients) {
-            int column = 0;
-            ingredientGrid.add(new Label(ingredient.getName()), column, row);
-            column++;
-            ingredientGrid.add(new Label(""+ingredient.getAmount()), column, row);
-            column++;
-            ingredientGrid.add(new Button("+"), column, row);
-            column++;
-            ingredientGrid.add(new Button("-"), column, row);
-            row++;
+        GridPane ingredientGrid = new GridPane(); 
+        if (ingredients.isEmpty()) {
+            ingredientGrid.add(new Label("No ingredients. Empty. Nada."), 0, 0);
+        } else {
+            int row = 0;        
+            for (Ingredient ingredient : ingredients) {
+                int column = 0;
+    //            Label nameLabel = new Label(ingredient.getName() + "\t\t");
+    //            nameLabel.setText();
+                ingredientGrid.add(new Label(ingredient.getName() + "\t\t"), column, row);
+                column++;
+                ingredientGrid.add(new Label("" + ingredient.getAmount() + " " + ingredient.getMeasuringUnit()), column, row);
+                column++;
+                ingredientGrid.add(new Button("+"), column, row);
+                column++;
+                ingredientGrid.add(new Button(" - "), column, row);
+                row++;
+            }
         }
-        
-        return ingredientGrid;
-        
+        ingredientGrid.setAlignment(Pos.TOP_CENTER);
+        ingredientGrid.setHgap(10);
+        ingredientGrid.setVgap(10);
+        return ingredientGrid;        
     }        
-    
-    public void ingredientLibrary(Stage window) {
-        
-        BorderPane ingredientComponents = new BorderPane();                                    
-
-        ObservableList<String> ingredientList = FXCollections.observableArrayList(logic.ingredientLibrary.getIngredientsNames());
-        ListView<String> listView = new ListView();
-        listView.setItems(ingredientList);                
-        
-        HBox ingredientButtons = new HBox();
-        ingredientButtons.setSpacing(20);
-        Button backToPotion = new Button("Cancel");
-        Button addIngredient = new Button("Add Ingredient to Potion");
-        Button newIngredient = new Button("New Ingredient");
-        Button removeIngredient = new Button("Remove Ingredient from Library");
-        ingredientButtons.getChildren().addAll(addIngredient, backToPotion, newIngredient, removeIngredient);
-        ingredientButtons.setAlignment(Pos.CENTER);
-        
-        backToPotion.setOnAction((event) -> {
-            createPotion(window);
-        });
-        
-        newIngredient.setOnAction((event) -> {
-            newIngredient(window);
-        });
-        
-        removeIngredient.setOnAction((event) -> {
-            removeIngredient(window);
-        });                
-        
-        addIngredient.setOnAction((event) -> {
-            String selected = listView.getSelectionModel().getSelectedItem().toString();
-            if (!selected.isEmpty()) {
-                addIngredientToPotion(window, selected);
-            }                                                      
-        });
-        
-        ingredientComponents.setCenter(listView);
-        ingredientComponents.setBottom(ingredientButtons);        
-        
-        Scene ingredientLibrary = new Scene(ingredientComponents);
-        window.setScene(ingredientLibrary);
-        
-        window.show();
-        
-    }
     
     public void addIngredientToPotion(Stage window, String name) {
         BorderPane components = new BorderPane();
+                                             
+        TextField amountField = new TextField();        
+        Label amountLabel = new Label("Amount: ");        
         
-        GridPane fields = new GridPane();                                
-        TextField amountField = new TextField();
-        Label nameLabel = new Label("Adding ingredient " + name);
-        Label amountLabel = new Label("Amount: ");
-        fields.add(nameLabel, 0, 0);
-        fields.add(amountLabel, 0, 1);        
-        fields.add(amountField, 1, 1);
+        HBox amountFields = new HBox();
+        amountFields.getChildren().addAll(amountLabel, amountField);
+        amountFields.setSpacing(5);        
+        
+        Label addingLabel = new Label("Adding ingredient ");
+        Label nameLabel = new Label(name);
+        nameLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 13));        
+        
+        HBox nameFields = new HBox();
+        nameFields.getChildren().addAll(addingLabel, nameLabel);        
+        
+        VBox componentsNew = new VBox();
+        componentsNew.getChildren().addAll(nameFields, amountFields);
+        componentsNew.setSpacing(20);
+        
+        components.setCenter(componentsNew);
+        
+        HBox buttons = new HBox();        
+        Button confirm = new Button("Confirm");
+        Button cancel = new Button("Back To Ingredient Library");
+        buttons.getChildren().addAll(confirm, cancel);
+        buttons.setSpacing(20);
+        buttons.setAlignment(Pos.CENTER);
+        
+        VBox buttonsAndStatus = new VBox();
+        Label status = new Label();
+        buttonsAndStatus.setSpacing(10);        
+        buttonsAndStatus.getChildren().addAll(status, buttons);
+        buttonsAndStatus.setAlignment(Pos.CENTER);        
+        
+        components.setBottom(buttonsAndStatus);
+        components.setPadding(padding);
+        
+        cancel.setOnAction((event) -> {
+            ingredientLibrary(window);
+        });
+        
+        confirm.setOnAction((event) -> {         
+            if (!amountField.getText().isEmpty()) {
+                String retVal = logic.addToTempPotion(name, amountField.getText());
+                String response = "";
+                if (retVal.equals("ingredientPresent")) {
+                    response = "Ingredient is already in potion.";
+                } else if (retVal.equals("amountIsNotInteger")) {
+                    response = "Not a valid value.";
+                } else {
+                    amountField.clear();
+                    ingredientLibrary(window);
+                }
+                status.setText(response);
+            }                        
+        });    
+        
+        Scene addIngredientScene = new Scene(components);
+        window.setScene(addIngredientScene);
+        
+        window.show();        
+    }
+    
+    public void removeFromPotion(Stage window) {
+        BorderPane components = new BorderPane();
+        
+        HBox fields = new HBox();                              
+        TextField nameField = new TextField();        
+        Label nameLabel = new Label("Name:");        
+        fields.getChildren().addAll(nameLabel, nameField);        
         
         components.setCenter(fields);
         
         HBox buttons = new HBox();        
         Button confirm = new Button("Confirm");
-        Button cancel = new Button("Back To Ingredient Library");
+        Button cancel = new Button("Back To Create A Potion");
         buttons.getChildren().addAll(confirm, cancel);
         buttons.setSpacing(20);
         buttons.setAlignment(Pos.CENTER);
@@ -214,42 +257,84 @@ public class AppUI extends Application {
         components.setBottom(buttonsAndStatus);
         
         cancel.setOnAction((event) -> {
-            ingredientLibrary(window);
+            createAPotion(window);
         });
         
-        confirm.setOnAction((event) -> {         
-            if (!amountField.getText().isEmpty()) {
-                String retVal = logic.addToTempPotion(name, amountField.getText());
-            }            
+        confirm.setOnAction((event) -> {
+            String ingredientName = nameField.getText();            
+            String response = "Unknown Error.";            
+            String retVal = logic.tempPotion.removeFromPotion(ingredientName);            
+            if (retVal.equals("clear")) {
+                nameField.clear();
+                response = "Ingredient deleted.";
+            } else if (retVal.equals("notInPotion")) {
+                response = "Ingredient is not in Potion.";
+            } else if (retVal.equals("invalidValue")) {
+                response = "Not a valid value.";
+            }
             
-            
-            
-//            String ingredientUnit = Integer.valueOf(name) unitField.getText();            
-//            String response = "Unknown error";
-//            
-//            String retVal = logic.ingredientLibrary.addIngredient(ingredientName, ingredientUnit);
-//            
-//            if (retVal.equals("duplicate")) {
-//                response = "Ingredient already in library.";
-//            } else if (retVal.equals("fields")) {
-//                response = "Fill fields in.";
-//            } else if (retVal.equals("clear")) {
-//                    nameField.clear();
-//                    unitField.clear();
-//                    response = "Ingredient added.";
-//            }            
-//            status.setText(response);
+            status.setText(response);
         });    
-
         
-        Scene newIngredientScene = new Scene(components);
-        window.setScene(newIngredientScene);
+        Scene removeFromPotionScene = new Scene(components);
+        window.setScene(removeFromPotionScene);
         
         window.show();        
-
     }
     
-    
+    public void ingredientLibrary(Stage window) {
+        
+        BorderPane ingredientComponents = new BorderPane();  
+        
+        Label titleLabel = uiBuilder.createSceneTitle("Ingredient Library");
+        ingredientComponents.setTop(titleLabel);
+
+        ObservableList<String> ingredientList = FXCollections.observableArrayList(logic.ingredientLibrary.getIngredientsNames());
+        ListView<String> listView = new ListView();
+        listView.setItems(ingredientList);        
+        
+        HBox ingredientButtons = new HBox();
+        ingredientButtons.setSpacing(20);
+        Button backToPotion = new Button("Back");
+        Button addIngredient = new Button("Add to Potion");
+        Button newIngredient = new Button("New Ingredient");
+        Button removeIngredient = new Button("Remove Ingredient from Library");
+        ingredientButtons.getChildren().addAll(addIngredient, backToPotion, newIngredient, removeIngredient);
+        ingredientButtons.setAlignment(Pos.CENTER);        
+        
+        backToPotion.setOnAction((event) -> {
+            createAPotion(window);
+        });
+        
+        newIngredient.setOnAction((event) -> {
+            newIngredient(window);
+        });
+        
+        removeIngredient.setOnAction((event) -> {
+            removeIngredient(window);
+//            String selected = listView.getSelectionModel().getSelectedItem().toString();
+//            if (!selected.isEmpty()) {
+//                logic.removeFromTempPotion(selected);                
+//            }                              
+        });                
+        
+        addIngredient.setOnAction((event) -> {
+            String selected = listView.getSelectionModel().getSelectedItem().toString();
+            if (!selected.isEmpty()) {
+                addIngredientToPotion(window, selected);
+            }                                                      
+        });
+        
+        ingredientComponents.setCenter(listView);
+        ingredientComponents.setBottom(ingredientButtons);        
+        
+        ingredientComponents.setPadding(padding);
+        
+        Scene ingredientLibrary = new Scene(ingredientComponents);
+        window.setScene(ingredientLibrary);
+        
+        window.show();        
+    }
     
     public void newIngredient(Stage window) {
         
@@ -264,6 +349,8 @@ public class AppUI extends Application {
         fields.add(unitLabel, 0, 1);
         fields.add(nameField, 1, 0);
         fields.add(unitField, 1, 1);
+        fields.setHgap(10.0);
+        fields.setVgap(10.0);
         
         components.setCenter(fields);
         
@@ -303,8 +390,9 @@ public class AppUI extends Application {
                     response = "Ingredient added.";
             }            
             status.setText(response);
-        });    
-
+        });
+        
+        components.setPadding(padding);
         
         Scene newIngredientScene = new Scene(components);
         window.setScene(newIngredientScene);
@@ -354,7 +442,6 @@ public class AppUI extends Application {
             }            
             status.setText(response);
         });    
-
         
         Scene removeIngredientScene = new Scene(components);
         window.setScene(removeIngredientScene);

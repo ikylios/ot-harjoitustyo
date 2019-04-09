@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rohtoappi.rohtoappi;
+package rohtoappi.domain.components;
 
 /**
  *
@@ -49,19 +49,10 @@ public class Ingredient {
         }
         return false;        
     }
-
-    
-    
+        
     @Override
     public int hashCode() {        
         return this.name.hashCode(); 
-    }
-    
-    
-
-    
-    
-    
-    
+    }                       
     
 }

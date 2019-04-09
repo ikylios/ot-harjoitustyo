@@ -3,29 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rohtoappi.rohtoappi;
+package rohtoappi.domain;
 
+import rohtoappi.domain.components.Ingredient;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
  * @author xilxilx
  */
 public class IngredientLibrary {
-    
+        
     public HashMap<String, Ingredient> ingredients;
     public ArrayList<String> ingredientsNames;
+    private Random random;    
 
     public IngredientLibrary() {
         this.ingredients = new HashMap<>();
         this.ingredientsNames = new ArrayList<>();
+        this.random = new Random();
         
-        this.addIngredient("fairy dust", "g");
-        this.addIngredient("sparrow feather", "pieces");
-        this.addIngredient("crocodile tooth", "pieces");
-        this.addIngredient("lily petals", "g");                
+        addIngredient("fairy dust", "g");
+        addIngredient("sparrow feather", "pieces");
+        addIngredient("crocodile tooth", "pieces");
+        addIngredient("lily petals", "g");                
     }
     
     public String addIngredient(String name, String measuringUnit) {
@@ -57,13 +61,20 @@ public class IngredientLibrary {
         return ingredients.get(name.trim().toLowerCase());
     }
 
-    
-    public String getSingleIngredientName(int i) {
-        return ingredientsNames.get(i);
-    }
-
     public ArrayList getIngredientsNames() {        
         return ingredientsNames;
-    }                
+    }
+    
+    public Ingredient getRandomIngredient() {
+        int randomIndex = random.nextInt(ingredientsNames.size());
+        if (randomIndex == ingredientsNames.size()) {
+            randomIndex--;
+        }
+        
+        String ingredientName = ingredientsNames.get(randomIndex);
+        Ingredient ingredient = getIngredientByName(ingredientName);
+        
+        return ingredient;
+    }
     
 }
