@@ -17,3 +17,4 @@
 |8.4.|3 | Lisättiin toiminnallisuus, jossa aineksia voidaan lisätä rohtoon ja varautuu virhellisiin syötteisiin. Käyttöliittymä luo ruudukon, jossa rohdon ainekset näkyvät.
 |9.4.|3 | Refaktorointia, jaettiin sovelluksen luokkia paremmin pakkauksiin, eriytettiin ingredientLibraryn sekä Create A Potionin testit omiksi luokikseen, lisättiin UIBuilder-luokka UI:n boilerplaten vähentämiseksi ja kaunistettiin käyttöliittymää.
 |    |2 | Lisättiin toiminnallisuus ainesten poistamiselle rohdosta. Kirjoitettiin testit ainesten lisäämiselle ja poistamiselle.
+|    |2 | Lisää refaktorointia, muutettiin mm. Type-luokan nimeksi Magic. Lisättiin näkymä, jossa näkyy valmis rohto, generatedPotion. Tästä näkymästä päästään tulevaisuudessa tallentamaan rohto PotionLibraryyn. Näkymän toiminnallisuuteen kuuluu rohdon sattumanvaraisen nimen generointi: tämäkin toiminnallisuus lisätty.

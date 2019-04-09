@@ -16,10 +16,12 @@ public class Potion {
     public ArrayList<Ingredient> ingredients;    
     public String name;
     public String effect;
-    public Type type;
+    public String type;
+    public Magic magic;
 
     public Potion() {
         this.ingredients = new ArrayList<>();
+        magic = new Magic();
     }
     
     public ArrayList<Ingredient> getIngredients() {
@@ -65,5 +67,35 @@ public class Potion {
         return false;
     }
     
+    public void generateMagic() {
+        String[] array = magic.generate();        
+        setType(array[0]);
+        setEffect(array[1]);        
+        setName(array[2]);                
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getEffect() {
+        return effect;
+    }        
+
+    public void setName(String name) {
+        this.name = name;
+    }        
+    
+    public void setEffect(String value) {        
+        effect = value;
+    }
+    
+    public void setType(String value) {
+        type = value;
+    }
     
 }

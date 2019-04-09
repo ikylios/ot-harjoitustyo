@@ -53,6 +53,16 @@ public class Ingredient {
     @Override
     public int hashCode() {        
         return this.name.hashCode(); 
-    }                       
+    }        
+
+    @Override
+    public String toString() {
+        if (amount > 0) {            
+            return name + "\t\t" + amount + " " + this.measuringUnit;
+        }
+        return name + "\t\t" + " " + this.measuringUnit;
+    }
+    
+    
     
 }
