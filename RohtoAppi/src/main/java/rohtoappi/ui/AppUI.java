@@ -36,11 +36,13 @@ public class AppUI extends Application {
     AppLogic logic;
     Insets padding;
     UIBuilder uiBuilder;
+//    PotionUI potionUI;
     
     public void giveLogic(AppLogic logic) {        
         this.logic = logic;
         padding = new Insets(20, 20, 20, 20);
         uiBuilder = new UIBuilder();
+//        potionUI = new PotionUI();
     }
     
     @Override
@@ -48,28 +50,31 @@ public class AppUI extends Application {
         
         Button createButton = new Button("Create A Potion");
         createButton.setMaxWidth(200.0);
-        Button browseButton = new Button("Potion Library");
-        browseButton.setMaxWidth(200.0);
+        Button potionButton = new Button("Potion Library");
+        potionButton.setMaxWidth(200.0);        
         Button exitButton = new Button("Exit");        
                 
         VBox mainButtons = new VBox();
         mainButtons.setAlignment(Pos.CENTER);
         mainButtons.setPrefWidth(150.0);
         mainButtons.setSpacing(20);
-        mainButtons.getChildren().addAll(createButton, browseButton, exitButton);         
+        mainButtons.getChildren().addAll(createButton, potionButton, exitButton);         
         
         Scene main = new Scene(mainButtons);
-        
-        
+                
         exitButton.setOnAction((event) -> {
             stop();
         });
         
         createButton.setOnAction((event) -> {            
+//            potionUI.createAPotion(window);            
             createAPotion(window);            
         });
         
-                
+        potionButton.setOnAction((event) -> {
+            
+        });
+                        
         window.setScene(main);
         window.show();
         
@@ -81,12 +86,10 @@ public class AppUI extends Application {
     
     
     
-    public void createAPotion(Stage window) {                       
-        
+    public void createAPotion(Stage window) {                               
         BorderPane createComponents = new BorderPane();     
         
-        Label titleLabel = uiBuilder.createSceneTitle("Create A Potion");        
-        
+        Label titleLabel = uiBuilder.createSceneTitle("Create A Potion");                
         createComponents.setTop(titleLabel);
                 
         GridPane ingredientGrid = createIngredientGrid(logic.tempPotion.getIngredients());
@@ -108,11 +111,9 @@ public class AppUI extends Application {
         
         createComponents.setCenter(ingredientGrid);
         createComponents.setBottom(createButtons);
-        createComponents.setRight(ingredientButtons);
-        
+        createComponents.setRight(ingredientButtons);        
         createComponents.setPadding(padding);
-        
-        //MISSING: CONFIRM, RANDOMISE        
+                      
         backToMenu.setOnAction((event) -> {
             //add warning: will delete the current potion
             logic.tempPotion.emptyPotion();
@@ -125,8 +126,7 @@ public class AppUI extends Application {
         });
         
         randomisePotion.setOnAction((event) -> {
-//            Ingredient ingredient = logic.ingredientLibrary.getRandomIngredient();
-//            logic.addToTempPotion(ingredient.getName(), ingredient.getMeasuringUnit());
+
         });
                 
         addIngredient.setOnAction((event) -> {            
@@ -152,8 +152,6 @@ public class AppUI extends Application {
             int row = 0;        
             for (Ingredient ingredient : ingredients) {
                 int column = 0;
-    //            Label nameLabel = new Label(ingredient.getName() + "\t\t");
-    //            nameLabel.setText();
                 ingredientGrid.add(new Label(ingredient.getName() + "\t\t"), column, row);
                 column++;
                 ingredientGrid.add(new Label("" + ingredient.getAmount() + " " + ingredient.getMeasuringUnit()), column, row);
@@ -365,11 +363,7 @@ public class AppUI extends Application {
         });
         
         removeIngredient.setOnAction((event) -> {
-            removeIngredient(window);
-//            String selected = listView.getSelectionModel().getSelectedItem().toString();
-//            if (!selected.isEmpty()) {
-//                logic.removeFromTempPotion(selected);                
-//            }                              
+            removeIngredient(window);                              
         });                
         
         addIngredient.setOnAction((event) -> {
@@ -390,9 +384,9 @@ public class AppUI extends Application {
         window.show();        
     }
     
-    public void newIngredient(Stage window) {
-        
+    public void newIngredient(Stage window) {        
         BorderPane components = new BorderPane();
+        components.setPadding(padding);
         
         GridPane fields = new GridPane();                        
         TextField nameField = new TextField();
@@ -444,9 +438,7 @@ public class AppUI extends Application {
                     response = "Ingredient added.";
             }            
             status.setText(response);
-        });
-        
-        components.setPadding(padding);
+        });                
         
         Scene newIngredientScene = new Scene(components);
         window.setScene(newIngredientScene);
@@ -454,9 +446,9 @@ public class AppUI extends Application {
         window.show();        
     }
     
-    public void removeIngredient(Stage window) {
-        
+    public void removeIngredient(Stage window) {        
         BorderPane components = new BorderPane();
+        components.setPadding(padding);
         
         HBox fields = new HBox();                              
         TextField nameField = new TextField();        

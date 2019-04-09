@@ -25,8 +25,16 @@ public class Ingredient {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }        
+
     public String getMeasuringUnit() {
         return measuringUnit;
+    }
+
+    public void setMeasuringUnit(String measuringUnit) {
+        this.measuringUnit = measuringUnit;
     }
 
     public int getAmount() {

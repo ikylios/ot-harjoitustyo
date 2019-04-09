@@ -27,19 +27,7 @@ public class AppLogic {
         this.tempPotion = new Potion();
     }        
     
-//    public ArrayList<Ingredient> getTempPotion() {
-//        return tempPotion;
-//    }
-//    
-//    public Ingredient getIngredientByNameTemp(String name) {
-//        for (Ingredient ingredient : tempPotion) {
-//            if (ingredient.getName().equals(name)) {
-//                return ingredient;
-//            }
-//        }
-//        return null;
-//    }
-//    
+ 
     public String addToTempPotion(String name, String amount) {
         String retVal = "amountIsNotInteger";
         
@@ -53,14 +41,5 @@ public class AppLogic {
                  
         return retVal;
     }
-
-
-//    public boolean emptyTempPotion() {
-//        tempPotion.clear();
-//        if (tempPotion.isEmpty()) {
-//            return true;
-//        }
-//        return false;
-//    }
     
 }

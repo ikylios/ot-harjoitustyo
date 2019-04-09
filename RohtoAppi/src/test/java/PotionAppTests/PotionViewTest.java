@@ -48,6 +48,10 @@ public class PotionViewTest {
         Ingredient ingredient = logic.ingredientLibrary.getRandomIngredient();
         logic.addToTempPotion(ingredient.getName(), "5");
         assertEquals(true, logic.tempPotion.ingredients.contains(ingredient));
+        ingredient = logic.ingredientLibrary.getRandomIngredient();
+        logic.addToTempPotion(ingredient.getName(), "10");
+        assertEquals(true, logic.tempPotion.ingredients.contains(ingredient));
+        assertEquals(2, logic.tempPotion.ingredients.size());
     }
     
     @Test
@@ -73,6 +77,11 @@ public class PotionViewTest {
         assertEquals(true, logic.tempPotion.getIngredients().contains(ingredient));
         logic.tempPotion.removeFromPotion(ingredient.getName());
         assertEquals(false, logic.tempPotion.getIngredients().contains(ingredient));
+    }
+    
+    @Test
+    public void doesntRemoveUnexistingIngredient() {    
+        assertEquals("notInPotion", logic.tempPotion.removeFromPotion("troll ear"));        
     }
     
 }

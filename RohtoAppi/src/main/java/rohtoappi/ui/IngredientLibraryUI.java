@@ -19,7 +19,7 @@ import javafx.stage.Stage;
  *
  * @author xilxilx
  */
-public class IngredientLibUI {
+public class IngredientLibraryUI {
     
 //    
 //    
