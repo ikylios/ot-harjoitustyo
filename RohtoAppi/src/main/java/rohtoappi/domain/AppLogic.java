@@ -39,12 +39,23 @@ public class AppLogic {
             } else {
                 ingredient.setAmount(Integer.valueOf(amount));
                 if (ingredient.getAmount() > 0) {
-                retVal = tempPotion.addToPotion(ingredient);   
+                    retVal = tempPotion.addToPotion(ingredient);   
                 }  
             }
-        }
-                 
+        }                 
         return retVal;
+    }
+    
+    public boolean clearTempPotion() {
+        tempPotion = new Potion();
+        if (tempPotion.ingredients.isEmpty()) {
+            return true;
+        }
+        return false;
+    }
+    
+    public String addPotionToLibrary() {
+        return potionLibrary.addPotion(tempPotion);
     }
     
 }

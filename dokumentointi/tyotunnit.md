@@ -24,5 +24,7 @@
 |13.4.|1 | Paranneltiin tiedostoon kirjoittamista (tallentaa tiedostoihin tehdyt muutokset sovelluksen sulkemisen yhteydessä). Lisättiin toiminnallisuus, jossa ingredientLibrarysta poistetut ainekset poistetaan myös tiedostosta (pysyväismuistista).
 |     |1 | Pieniä korjauksia koodiin ja käyttöliittymään. Käyttöohjeen kirjoittamista. Muokattiin ainesten poisto ingredientLibrarysta toimivammaksi listView:n kanssa - ei erillistä sceneä, jossa kysytään aineksen nimi.
 |15.4.|2 | CreateAPotionTest-luokan korjaamista. Kirjoitettiin lisää testejä.
+|     |1 | Maven-testien kanssa sekoilua. Päivitettiin työkone java 8:aan.
+|     |2 | Lisättiin PotionLibraryn näkymä ja runkotoiminnallisuutta. Rohtoja voi nyt tallentaa rohdot potionLibraryyn, mutta ei pysyväismuistiin (vielä). Lisättiin PotionLibrarylle testejä. Lisäksi muita pienempiä fiksejä, kuten clear-nappula joka tyhjentää työn alla olevan rohdon kaikista aineksista. Rohto ei enää myöskään häviä, jos palaa päävalikkoon Create A Potionista.
 
-Summa: 30
+Summa: 33

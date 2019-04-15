@@ -34,11 +34,6 @@ public class IngredientLibrary {
         this.random = new Random();
         readIngredientFile();        
     }
-
-//    FILE JA REMOVE FROM INGREDIENTLIBRARY YHTEENSOPIVUUS (TESTIT PUUTTUU VIELÄ)
-//    TEE ERILLINEN LUOKKA FILEESEENKIRJOITTAMISELLE ????
-//    CHUCK NORRIS ON FILEESSÄ! KORJAA.
-//    POTION LIBRARY ON LISTVIEW
     
     public boolean readIngredientFile() {
         try (Scanner scanner = new Scanner(new File("ingredients.txt"))) {

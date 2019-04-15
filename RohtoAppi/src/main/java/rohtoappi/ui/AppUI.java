@@ -50,15 +50,15 @@ public class AppUI extends Application {
         
         Button createButton = new Button("Create A Potion");
         createButton.setMaxWidth(200.0);
-        Button potionButton = new Button("Potion Library");
-        potionButton.setMaxWidth(200.0);        
+        Button potionLibButton = new Button("Potion Library");
+        potionLibButton.setMaxWidth(200.0);        
         Button exitButton = new Button("Exit");        
                 
         VBox mainButtons = new VBox();
         mainButtons.setAlignment(Pos.CENTER);
         mainButtons.setPrefWidth(150.0);
         mainButtons.setSpacing(20);
-        mainButtons.getChildren().addAll(createButton, potionButton, exitButton);         
+        mainButtons.getChildren().addAll(createButton, potionLibButton, exitButton);         
         
         Scene main = new Scene(mainButtons);
                 
@@ -71,8 +71,8 @@ public class AppUI extends Application {
             createAPotion(window);            
         });
         
-        potionButton.setOnAction((event) -> {
-            
+        potionLibButton.setOnAction((event) -> {
+            potionLibrary(window);
         });
                         
         window.setScene(main);
@@ -104,11 +104,15 @@ public class AppUI extends Application {
                 
         HBox createButtons = new HBox();
         createButtons.setSpacing(10);        
-        Button confirmPotion = new Button("Confirm potion");
-        Button backToMenu = new Button("Cancel");
+        Button confirmPotion = new Button("Confirm Potion");
+        Button backToMenu = new Button("Back To Main Menu");
         Button randomisePotion = new Button("Randomize");
-        createButtons.getChildren().addAll(confirmPotion, backToMenu, randomisePotion);
+        Button clearPotion = new Button("Clear Potion");
+        createButtons.getChildren().addAll(confirmPotion, backToMenu, randomisePotion, clearPotion);
         createButtons.setAlignment(Pos.CENTER);
+        if (logic.tempPotion.getIngredients().isEmpty()) {
+            confirmPotion.setDisable(true);
+        }
         
         VBox ingredientButtons = new VBox();
         ingredientButtons.setSpacing(20);
@@ -121,9 +125,7 @@ public class AppUI extends Application {
         createComponents.setRight(ingredientButtons);        
         createComponents.setPadding(padding);
                       
-        backToMenu.setOnAction((event) -> {
-            //add warning: will delete the current potion
-            logic.tempPotion.emptyPotion();
+        backToMenu.setOnAction((event) -> {                        
             start(window);
         });
         
@@ -145,10 +147,13 @@ public class AppUI extends Application {
             removeFromPotion(window);
         });
         
-        if (logic.tempPotion.ingredients.size() > 0) {
+        clearPotion.setOnAction((event) -> {
+            logic.clearTempPotion();
+            createAPotion(window);
+        });
+        
+        if (logic.tempPotion.ingredients.isEmpty()) {
             removeIngredient.setDisable(false);
-        } else {
-            removeIngredient.setDisable(true);
         }
         
         Scene createAPotion = new Scene(createComponents);
@@ -299,10 +304,11 @@ public class AppUI extends Application {
         
         HBox buttons = new HBox();        
         Button confirm = new Button("Save Potion to Potion Library");
+        Button toLibrary = new Button("Go To Potion Library");
         Button cancel = new Button("Back To Create A Potion");
-        buttons.getChildren().addAll(confirm, cancel);
+        buttons.getChildren().addAll(confirm, toLibrary, cancel);
         buttons.setSpacing(20);
-        buttons.setAlignment(Pos.CENTER);
+        buttons.setAlignment(Pos.CENTER);        
         
         VBox buttonsAndStatus = new VBox();
         Label status = new Label();
@@ -317,14 +323,30 @@ public class AppUI extends Application {
         });
         
         confirm.setOnAction((event) -> {
-                                    
+            String retVal = logic.addPotionToLibrary();
+            if (retVal.equals("noSpace")) {
+               status.setText("No Space for new Potion.");
+            } else if (retVal.equals("sameName")) {
+                status.setText("A Potion with this name is saved in the Potion Library.");
+//                setNameForPotion(window);
+            } else {
+               status.setText("Potion saved to Potion Library.");               
+            }
         });
         
+        toLibrary.setOnAction((event) -> {
+           potionLibrary(window); 
+        });
+                        
         Scene generatedPotion = new Scene(components);        
         
         window.setScene(generatedPotion);
         window.show();
     }           
+    
+    public void setNameForPotion(Stage window) {
+        
+    }
     
     public void ingredientLibrary(Stage window) {
         
@@ -487,7 +509,40 @@ public class AppUI extends Application {
         Scene removeIngredientScene = new Scene(components);
         window.setScene(removeIngredientScene);
         
-        window.show();        
+        window.show();
+    }
+    
+    public void potionLibrary(Stage window) {
+        BorderPane potionsLibComponents = new BorderPane();  
+        
+        Label titleLabel = uiBuilder.createSceneTitle("Potion Library");
+        potionsLibComponents.setTop(titleLabel);
+
+        ObservableList<String> potionList = FXCollections.observableArrayList(logic.potionLibrary.getPotionsNames());
+        ListView<String> listView = new ListView();
+        listView.setItems(potionList);
+        
+        HBox buttons = new HBox();        
+        Button viewPotion = new Button("View potion");
+        Button cancel = new Button("Back To Main Menu");
+        buttons.getChildren().addAll(viewPotion, cancel);
+        buttons.setSpacing(20);
+        buttons.setAlignment(Pos.CENTER);
+        
+        viewPotion.setDisable(true);
+        
+        cancel.setOnAction((event) -> {
+            start(window);
+        });
+        
+        potionsLibComponents.setCenter(listView);
+        potionsLibComponents.setBottom(buttons);
+        potionsLibComponents.setPadding(padding);
+        
+        Scene potionLibScene = new Scene(potionsLibComponents);
+        window.setScene(potionLibScene);
+        
+        window.show();
     }
 
     

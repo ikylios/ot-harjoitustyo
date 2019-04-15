@@ -6,6 +6,8 @@
 package rohtoappi.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import rohtoappi.domain.components.Potion;
 
 /**
  *
@@ -13,11 +15,41 @@ import java.util.ArrayList;
  */
 public class PotionLibrary {
     
-    ArrayList potions;
+    ArrayList potionsNames;
+    HashMap<String, Potion> potions;
 
     public PotionLibrary() {
-        this.potions = new ArrayList<>();
+        this.potionsNames = new ArrayList<>();
+        potions = new HashMap<>();
+                
     }
+
+    public ArrayList getPotions() {
+        return potionsNames;
+    }
+
+    public ArrayList getPotionsNames() {
+        return potionsNames;
+    }
+    
+    public String addPotion(Potion potion) {
+        String retVal = "noSpace";
+        
+        if (potions.size() <= 50) {
+            retVal = "sameName";
+            String editedName = potion.getName().trim().toLowerCase();
+            if (!potions.keySet().contains(editedName)) {
+                potions.put(editedName, potion);
+                potionsNames.add(potion.getName());
+                retVal = "clear";
+            }
+        }
+
+        return retVal;
+    }
+        
+    
+    
     
     
     
