@@ -81,6 +81,7 @@ public class AppUI extends Application {
     }
     
     public void stop() {
+        logic.ingredientLibrary.writeToFile(logic.ingredientLibrary.getIngredients());
         Platform.exit();
     }
     
@@ -92,8 +93,14 @@ public class AppUI extends Application {
         Label titleLabel = uiBuilder.createSceneTitle("Create A Potion");                
         createComponents.setTop(titleLabel);
                 
-        GridPane ingredientGrid = createIngredientGrid(logic.tempPotion.getIngredients());
+        GridPane ingredientGrid = uiBuilder.createIngredientGrid(logic.tempPotion.getIngredients());
         ingredientGrid.setAlignment(Pos.TOP_CENTER);
+       
+        
+//        addButton.setOnAction((event) -> {
+//            logic.ingredientLibrary.getIngredientByName();            
+//            
+//        });
                 
         HBox createButtons = new HBox();
         createButtons.setSpacing(10);        
@@ -128,6 +135,7 @@ public class AppUI extends Application {
         randomisePotion.setOnAction((event) -> {
 
         });
+        randomisePotion.setDisable(true);
                 
         addIngredient.setOnAction((event) -> {            
             ingredientLibrary(window);
@@ -137,36 +145,18 @@ public class AppUI extends Application {
             removeFromPotion(window);
         });
         
+        if (logic.tempPotion.ingredients.size() > 0) {
+            removeIngredient.setDisable(false);
+        } else {
+            removeIngredient.setDisable(true);
+        }
+        
         Scene createAPotion = new Scene(createComponents);
         window.setScene(createAPotion);
         
         window.show();       
         
-    }
-    
-    public GridPane createIngredientGrid(ArrayList<Ingredient> ingredients) {
-        GridPane ingredientGrid = new GridPane(); 
-        if (ingredients.isEmpty()) {
-            ingredientGrid.add(new Label("No ingredients. Empty. Nada."), 0, 0);
-        } else {
-            int row = 0;        
-            for (Ingredient ingredient : ingredients) {
-                int column = 0;
-                ingredientGrid.add(new Label(ingredient.getName() + "\t\t"), column, row);
-                column++;
-                ingredientGrid.add(new Label("" + ingredient.getAmount() + " " + ingredient.getMeasuringUnit()), column, row);
-                column++;
-                ingredientGrid.add(new Button("+"), column, row);
-                column++;
-                ingredientGrid.add(new Button(" - "), column, row);
-                row++;
-            }
-        }
-        ingredientGrid.setAlignment(Pos.TOP_CENTER);
-        ingredientGrid.setHgap(10);
-        ingredientGrid.setVgap(10);
-        return ingredientGrid;        
-    }        
+    }       
     
     public void addIngredientToPotion(Stage window, String name) {
         BorderPane components = new BorderPane();
@@ -222,6 +212,8 @@ public class AppUI extends Application {
                     response = "Ingredient is already in potion.";
                 } else if (retVal.equals("amountIsNotInteger")) {
                     response = "Not a valid value.";
+                } else if (retVal.equals("limit")) {
+                    response = "Please limit the amount to 9 digits or less.";
                 } else {
                     amountField.clear();
                     ingredientLibrary(window);
@@ -363,12 +355,17 @@ public class AppUI extends Application {
         });
         
         removeIngredient.setOnAction((event) -> {
-            removeIngredient(window);                              
+            String selected = listView.getSelectionModel().getSelectedItem();
+            if (selected != null) {
+                logic.ingredientLibrary.removeIngredient(selected);
+                ingredientLibrary(window);
+            }
+                                          
         });                
         
         addIngredient.setOnAction((event) -> {
-            String selected = listView.getSelectionModel().getSelectedItem().toString();
-            if (!selected.isEmpty()) {
+            String selected = listView.getSelectionModel().getSelectedItem();
+            if (selected != null) {
                 addIngredientToPotion(window, selected);
             }                                                      
         });
@@ -479,13 +476,11 @@ public class AppUI extends Application {
         confirm.setOnAction((event) -> {
             String ingredientName = nameField.getText();            
             boolean retVal = logic.ingredientLibrary.removeIngredient(ingredientName);
-            String response = "";
+            String response = "Ingredient does not exist.";
             if (retVal) {
                 nameField.clear();
                 response = "Ingredient deleted.";
-            } else {
-                response = "Ingredient does not exist.";
-            }            
+            }          
             status.setText(response);
         });    
         

@@ -26,18 +26,23 @@ public class AppLogic {
         this.potionLibrary = new PotionLibrary();
         this.tempPotion = new Potion();
     }        
-    
- 
+     
     public String addToTempPotion(String name, String amount) {
         String retVal = "amountIsNotInteger";
         
         Ingredient fromLibrary = ingredientLibrary.ingredients.get(name.trim().toLowerCase());
         Ingredient ingredient = new Ingredient(fromLibrary.getName(), fromLibrary.getMeasuringUnit());                                                 
                     
-        if (amount.matches("\\d+")) {                                    
+        if (amount.matches("\\d+")) {  
+            if (amount.length() > 9) {
+                retVal = "limit";
+            } else {
                 ingredient.setAmount(Integer.valueOf(amount));
-                retVal = tempPotion.addToPotion(ingredient);                            
+                if (ingredient.getAmount() > 0) {
+                retVal = tempPotion.addToPotion(ingredient);   
+                }  
             }
+        }
                  
         return retVal;
     }

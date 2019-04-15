@@ -5,11 +5,18 @@
  */
 package rohtoappi.domain;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import rohtoappi.domain.components.Ingredient;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  *
@@ -19,17 +26,45 @@ public class IngredientLibrary {
         
     public HashMap<String, Ingredient> ingredients;
     public ArrayList<String> ingredientsNames;
-    private Random random;    
+    private Random random;
 
     public IngredientLibrary() {
         this.ingredients = new HashMap<>();
         this.ingredientsNames = new ArrayList<>();
         this.random = new Random();
-        
-        addIngredient("fairy dust", "g");
-        addIngredient("sparrow feather", "pieces");
-        addIngredient("crocodile tooth", "pieces");
-        addIngredient("lily petals", "g");                
+        readIngredientFile();        
+    }
+
+//    FILE JA REMOVE FROM INGREDIENTLIBRARY YHTEENSOPIVUUS (TESTIT PUUTTUU VIELÄ)
+//    TEE ERILLINEN LUOKKA FILEESEENKIRJOITTAMISELLE ????
+//    CHUCK NORRIS ON FILEESSÄ! KORJAA.
+//    POTION LIBRARY ON LISTVIEW
+    
+    public boolean readIngredientFile() {
+        try (Scanner scanner = new Scanner(new File("ingredients.txt"))) {
+            while (scanner.hasNextLine()) {                
+                String[] pieces = scanner.nextLine().split(";");
+                addIngredient(pieces[0], pieces[1]);
+            }
+            return true;
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+    
+    public boolean writeToFile(HashMap<String, Ingredient> ingredientsMap) {        
+        try (FileWriter writer = new FileWriter(new File("ingredients.txt"), false)) {
+            for (Ingredient ingredient : ingredientsMap.values()) {
+                String line = ingredient.getName() + ";" + ingredient.getMeasuringUnit() + "\n";                
+                writer.write(line);
+            }            
+            writer.close();
+            return true;
+        } catch (Exception e) {
+
+        }
+        return false;
     }
     
     public String addIngredient(String name, String measuringUnit) {
@@ -38,10 +73,11 @@ public class IngredientLibrary {
         }
         
         String editedName = name.toLowerCase().trim();        
-        if (!ingredients.containsKey(editedName)){
+        if (!ingredients.containsKey(editedName)) {
             Ingredient ingredient = new Ingredient(name, measuringUnit);
             ingredients.put(editedName, ingredient);
-            ingredientsNames.add(name);            
+            ingredientsNames.add(name);
+            Collections.sort(ingredientsNames);
             return "clear";
         }
         return "duplicate";
@@ -56,6 +92,10 @@ public class IngredientLibrary {
         }
         return false;
     }
+
+    public HashMap<String, Ingredient> getIngredients() {
+        return ingredients;
+    }        
     
     public Ingredient getIngredientByName(String name) {        
         return ingredients.get(name.trim().toLowerCase());
