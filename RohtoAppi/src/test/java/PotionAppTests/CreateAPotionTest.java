@@ -92,6 +92,6 @@ public class CreateAPotionTest {
     @Test
     public void doesntRemoveUnexistingIngredient() {    
         assertEquals("notInPotion", logic.tempPotion.removeFromPotion("chuck norris"));        
-    }
+    }        
     
 }

@@ -67,6 +67,11 @@ public class IngredientLibraryTest {
     }
     
     @Test
+    public void doesntAcceptTooBigAmount() {
+        assertEquals("limit", logic.addToTempPotion("fairy dust", "10000000000"));
+    }
+    
+    @Test
     public void deletesExistingIngredientFromLibrary() {
         assertEquals(true, logic.ingredientLibrary.removeIngredient(ingredient.getName()));
         logic.ingredientLibrary.addIngredient(ingredient.getName(), ingredient.getMeasuringUnit());
