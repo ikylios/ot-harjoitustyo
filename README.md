@@ -10,6 +10,8 @@
 
 [Työaikakirjanpito](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/tyotunnit.md)
 
+## Releaset
+[Viikko 5] ()
 
 ## Komentorivitoiminnot
 
@@ -17,3 +19,7 @@
 Testit suoritetaan komennolla `mvn test`.
 
 Testikattavuusraportti luodaan komennolla `mvn jacoco:report`.
+
+Checkstyleraportti tehdään komennolla `mvn jxr:jxr checkstyle:checkstyle`
+
+Suoritettavan jar-tiedoston luominen tehdään komennolla `mvn package`. Paketin nimi on RohtoAppi-1.0-SNAPSHOT.jar.

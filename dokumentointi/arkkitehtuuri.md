@@ -2,6 +2,7 @@
 
 ## Rakenne
 
+[Rakenne]()
 
 ## Käyttöliittymä
 
@@ -22,7 +23,7 @@ Jokainen näkymä on metodi, joka kokoaa Scene-olion. Metodit sijaitsevat (viel�
 AppLogic-luokalla on käytössään oliomuuttujina ingredientLibrary- ja potionLibraryluokka. Lisäksi sillä on luokka tempPotion, joka on rohto, jota käyttäjä on työstämässä. AppLogic pääsee näin käsiksi kaikkiin mahdollisiin aineksiin ja rohtoihin. IngredientLibrary hoitaa yksittäisiin aineksiin liittyviä toimintoja, ja potionLibraryyn on tallennettu aikaisempia tempPotion-olioita.
 
 Luokkakaavio:
-![arkkitehtuuri](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.jpg)
+![arkkitehtuuri]()
 
 ## Pysyväistalletus
 IngredientLibraryn ainekset ovat tallessa ingredients.txt-tiedostossa. Tiedoston lukemis- ja kirjoittamisoperaatiot sijaitsevat vielä tällä hetkellä ingredientLibraryssa, mutta potionLibraryn kasvaessa tarkoitus on eriyttää tiedosto-operaatiot omaksi luokakseen. Muutokset ainestietoihin tallennetaan tiedostoon VAIN päävalikon exit-nappulaa klikattaessa. Siis ikkunan oikean yläkulman napista sulkeminen ei tallenna muutoksia.
