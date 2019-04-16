@@ -27,5 +27,6 @@
 |     |1 | Maven-testien kanssa sekoilua. Päivitettiin työkone java 8:aan.
 |     |2 | Lisättiin PotionLibraryn näkymä ja runkotoiminnallisuutta. Rohtoja voi nyt tallentaa rohdot potionLibraryyn, mutta ei pysyväismuistiin (vielä). Lisättiin PotionLibrarylle testejä. Lisäksi muita pienempiä fiksejä, kuten clear-nappula joka tyhjentää työn alla olevan rohdon kaikista aineksista. Rohto ei enää myöskään häviä, jos palaa päävalikkoon Create A Potionista.
 |     |1 | Lisättiin rivikattavuutta nostavia testejä.
+|16.4.|2 | Arkkitehtuurikuvaus kuntoon.
 
-Summa: 34
+Summa: 36
