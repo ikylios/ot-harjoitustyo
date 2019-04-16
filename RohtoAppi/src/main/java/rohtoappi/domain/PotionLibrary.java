@@ -47,6 +47,13 @@ public class PotionLibrary {
 
         return retVal;
     }
+    
+    public Potion getPotionByName(String name) {
+        if (potionsNames.contains(name)) {
+            return this.potions.get(name.trim().toLowerCase());
+        }
+        return null;
+    }
         
     
     

@@ -381,8 +381,7 @@ public class AppUI extends Application {
             if (selected != null) {
                 logic.ingredientLibrary.removeIngredient(selected);
                 ingredientLibrary(window);
-            }
-                                          
+            }                                          
         });                
         
         addIngredient.setOnAction((event) -> {
@@ -465,52 +464,52 @@ public class AppUI extends Application {
         window.show();        
     }
     
-    public void removeIngredient(Stage window) {        
-        BorderPane components = new BorderPane();
-        components.setPadding(padding);
-        
-        HBox fields = new HBox();                              
-        TextField nameField = new TextField();        
-        Label nameLabel = new Label("Name:");        
-        fields.getChildren().addAll(nameLabel, nameField);        
-        
-        components.setCenter(fields);
-        
-        HBox buttons = new HBox();        
-        Button confirm = new Button("Confirm");
-        Button cancel = new Button("Back To Ingredient Library");
-        buttons.getChildren().addAll(confirm, cancel);
-        buttons.setSpacing(20);
-        buttons.setAlignment(Pos.CENTER);
-        
-        VBox buttonsAndStatus = new VBox();
-        Label status = new Label();
-        buttonsAndStatus.setSpacing(10);
-        buttonsAndStatus.setAlignment(Pos.CENTER);        
-        buttonsAndStatus.getChildren().addAll(status, buttons);
-        
-        components.setBottom(buttonsAndStatus);
-        
-        cancel.setOnAction((event) -> {
-            ingredientLibrary(window);
-        });
-        
-        confirm.setOnAction((event) -> {
-            String ingredientName = nameField.getText();            
-            boolean retVal = logic.ingredientLibrary.removeIngredient(ingredientName);
-            String response = "Ingredient does not exist.";
-            if (retVal) {
-                nameField.clear();
-                response = "Ingredient deleted.";
-            }          
-            status.setText(response);
-        });    
-        
-        Scene removeIngredientScene = new Scene(components);
-        window.setScene(removeIngredientScene);
-        
-        window.show();
-    }
+//    public void removeIngredient(Stage window) {        
+//        BorderPane components = new BorderPane();
+//        components.setPadding(padding);
+//        
+//        HBox fields = new HBox();                              
+//        TextField nameField = new TextField();        
+//        Label nameLabel = new Label("Name:");        
+//        fields.getChildren().addAll(nameLabel, nameField);        
+//        
+//        components.setCenter(fields);
+//        
+//        HBox buttons = new HBox();        
+//        Button confirm = new Button("Confirm");
+//        Button cancel = new Button("Back To Ingredient Library");
+//        buttons.getChildren().addAll(confirm, cancel);
+//        buttons.setSpacing(20);
+//        buttons.setAlignment(Pos.CENTER);
+//        
+//        VBox buttonsAndStatus = new VBox();
+//        Label status = new Label();
+//        buttonsAndStatus.setSpacing(10);
+//        buttonsAndStatus.setAlignment(Pos.CENTER);        
+//        buttonsAndStatus.getChildren().addAll(status, buttons);
+//        
+//        components.setBottom(buttonsAndStatus);
+//        
+//        cancel.setOnAction((event) -> {
+//            ingredientLibrary(window);
+//        });
+//        
+//        confirm.setOnAction((event) -> {
+//            String ingredientName = nameField.getText();            
+//            boolean retVal = logic.ingredientLibrary.removeIngredient(ingredientName);
+//            String response = "Ingredient does not exist.";
+//            if (retVal) {
+//                nameField.clear();
+//                response = "Ingredient deleted.";
+//            }          
+//            status.setText(response);
+//        });    
+//        
+//        Scene removeIngredientScene = new Scene(components);
+//        window.setScene(removeIngredientScene);
+//        
+//        window.show();
+//    }
     
     public void potionLibrary(Stage window) {
         BorderPane potionsLibComponents = new BorderPane();  
@@ -527,12 +526,17 @@ public class AppUI extends Application {
         Button cancel = new Button("Back To Main Menu");
         buttons.getChildren().addAll(viewPotion, cancel);
         buttons.setSpacing(20);
-        buttons.setAlignment(Pos.CENTER);
-        
-        viewPotion.setDisable(true);
+        buttons.setAlignment(Pos.CENTER);                
         
         cancel.setOnAction((event) -> {
             start(window);
+        });
+        
+        viewPotion.setOnAction((event) -> {
+            String selected = listView.getSelectionModel().getSelectedItem();
+            if (selected != null) {                
+                viewPotion(window, selected);
+            } 
         });
         
         potionsLibComponents.setCenter(listView);
@@ -543,6 +547,44 @@ public class AppUI extends Application {
         window.setScene(potionLibScene);
         
         window.show();
+    }
+    
+    public void viewPotion(Stage window, String name) {
+        BorderPane viewComponents = new BorderPane();     
+        
+        Label titleLabel = uiBuilder.createSceneTitle("View Potion");                
+        viewComponents.setTop(titleLabel);
+                                                
+        GridPane list = uiBuilder.createIngredientList(logic.potionLibrary.getPotionByName(name).getIngredients());       
+        
+        Label nameLabel = uiBuilder.createSceneTitle(logic.tempPotion.getName());
+        nameLabel.setPadding(padding);                      
+        
+        VBox nameAndList = new VBox();
+        nameAndList.getChildren().addAll(nameLabel, list);
+        nameAndList.setAlignment(Pos.CENTER);  
+        nameAndList.setPadding(padding);
+        viewComponents.setCenter(nameAndList);
+    
+        HBox createButtons = new HBox();
+        createButtons.setSpacing(10);        
+        Button backToPotionLib = new Button("Back To Potion Library");
+        createButtons.getChildren().addAll(backToPotionLib);
+        createButtons.setAlignment(Pos.CENTER);                
+                
+        viewComponents.setCenter(nameAndList);
+        viewComponents.setBottom(createButtons);
+        viewComponents.setPadding(padding);
+                      
+        backToPotionLib.setOnAction((event) -> {                        
+            potionLibrary(window);
+        });
+        
+        Scene viewPotion = new Scene(viewComponents);
+        window.setScene(viewPotion);
+        
+        window.show();       
+        
     }
 
     

@@ -9,6 +9,8 @@ package rohtoappi.domain;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.stage.Stage;
+import rohtoappi.domain.AppLogic;
+import rohtoappi.ui.AppUI;
 import rohtoappi.ui.AppUI;
 
 /**

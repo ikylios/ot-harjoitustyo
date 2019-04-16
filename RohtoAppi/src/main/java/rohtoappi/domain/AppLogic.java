@@ -46,12 +46,8 @@ public class AppLogic {
         return retVal;
     }
     
-    public boolean clearTempPotion() {
-        tempPotion = new Potion();
-        if (tempPotion.ingredients.isEmpty()) {
-            return true;
-        }
-        return false;
+    public void clearTempPotion() {
+        tempPotion = new Potion();        
     }
     
     public String addPotionToLibrary() {

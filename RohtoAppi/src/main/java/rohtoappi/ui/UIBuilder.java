@@ -62,9 +62,9 @@ public class UIBuilder {
                 ingredientGrid.add(new Label("" + ingredient.getAmount() + " " + ingredient.getMeasuringUnit()), column, row);
                 column++;
 //                Button addButton = new Button("+");
-                ingredientGrid.add(new Button("+"), column, row);
-                column++;                
-                ingredientGrid.add(new Button(" - "), column, row);
+//                ingredientGrid.add(new Button("+"), column, row);
+//                column++;                
+//                ingredientGrid.add(new Button(" - "), column, row);
                 row++;
             }
         }
