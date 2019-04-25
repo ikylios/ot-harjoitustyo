@@ -2,7 +2,7 @@
 
 ## Rakenne
 
-![Rakenne]()
+![Rakenne](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/pakkausrakenne.png)
 
 UI-paketti sisältää käyttöliittymän luokat, domain sisältää sovelluslogiikan ja muut toiminnallisuuden luokat, dao-paketti sisältää pysyväistalletuksen luokat.
 
@@ -49,7 +49,7 @@ IngredientLibraryn metodeja ovat mm.
 Ingredient-luokka kuvaa yksittäistä ainesta. Potion-luokka kuvaa yksittäistä rohtoa. Magic-luokka tarjoaa rohdolle tyypin (esimerkiksi tee, rasva, tahna) ja taianomaisen efektin (esim. kauneus, terveys, kirous).
 
 Luokkakaavio:
-![Arkkitehtuuri]()
+![Luokkakaavio](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/luokkakaavio.png)
 
 
 ## Pysyväistalletus
