@@ -1,3 +1,6 @@
+# RohtoAppi
+Sovellus taianomaisten taikarohtojen luomiseen ja tallentamiseen.
+
 # Linkit
 
 ## Dokumentaatio

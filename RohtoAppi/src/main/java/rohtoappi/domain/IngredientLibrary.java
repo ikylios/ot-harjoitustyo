@@ -1,67 +1,76 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package rohtoappi.domain;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import rohtoappi.domain.components.Ingredient;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Properties;
 import java.util.Random;
-import java.util.Scanner;
+import rohtoappi.dao.IngredientsHandler;
 
 /**
- *
- * @author xilxilx
+ * Luokka hallinnoi kaikkia aineksiin liittyviä toimintoja.
+ * 
  */
 public class IngredientLibrary {
-        
+            
     public HashMap<String, Ingredient> ingredients;
     public ArrayList<String> ingredientsNames;
     private Random random;
+    private IngredientsHandler ingredientsHandler;  
+
+    public IngredientLibrary(IngredientsHandler ingredientsHandler) {
+        this.ingredients = new HashMap<>();
+        this.ingredientsNames = new ArrayList<>();
+        this.random = new Random();
+        this.ingredientsHandler = ingredientsHandler;
+        readIngredientsFile();
+    }
 
     public IngredientLibrary() {
         this.ingredients = new HashMap<>();
         this.ingredientsNames = new ArrayList<>();
         this.random = new Random();
-        readIngredientFile();        
     }
     
-    public boolean readIngredientFile() {
-        try (Scanner scanner = new Scanner(new File("ingredients.txt"))) {
-            while (scanner.hasNextLine()) {                
-                String[] pieces = scanner.nextLine().split(";");
-                addIngredient(pieces[0], pieces[1]);
-            }
-            return true;
-        } catch (Exception e) {
-
+    /**
+     * Vastaanottaa IngredientsHandlerilta listan aineksista ja sijoittaa ne ingredients-tauluun ja nimilistaan hyödyntäen addIngredient-metodia.
+     * @return 
+     */
+    public boolean readIngredientsFile() {       
+        List<String> ingredients = ingredientsHandler.readFile();
+        for (String line : ingredients) {
+            String[] pieces = line.split(";");
+            addIngredient(pieces[0], pieces[1]);
         }
-        return false;
+        return true;
     }
     
-    public boolean writeToFile(HashMap<String, Ingredient> ingredientsMap) {        
-        try (FileWriter writer = new FileWriter(new File("ingredients.txt"), false)) {
-            for (Ingredient ingredient : ingredientsMap.values()) {
-                String line = ingredient.getName() + ";" + ingredient.getMeasuringUnit() + "\n";                
-                writer.write(line);
-            }            
-            writer.close();
-            return true;
-        } catch (Exception e) {
-
+    public boolean writeToFile() {
+        List<String> ingredientsList = new ArrayList<>();
+        for (Ingredient ingredient : ingredients.values()) {
+            String line = ingredient.getName() + ";" + ingredient.getMeasuringUnit() + "\n";
+            ingredientsList.add(line);
         }
-        return false;
+
+        ingredientsHandler.writeFile(ingredientsList);
+        return true;
     }
     
+    /**
+     * Lisää ingredientLibraryyn uuden aineksen.
+     * Uusi aines-olio luodaan nimen ja mittayksikön perusteella.
+     * Aines lisätään ingredients-hajautustauluun, jonka avaimena on aineksen nimi pienellä kirjoitettuna ja ilman välejä. Arvona on aines-olio.
+     * Aineksen nimi lisätään ingredientsNames-listaan, ja ingredientsNames järjestetään uudestaan aakkosjärjestykseen.
+     * 
+     * @param name Aineksen nimi
+     * @param measuringUnit Aineksen mittayksikkö
+     * 
+     * @return Palauttaa fields jos name tai measuringUnit on tyhjä, 
+     * duplicate jos ingredientLibraryssa on jo aines samalla nimellä 
+     * ja clear jos aines lisättiin onnistuneesti.
+     */
     public String addIngredient(String name, String measuringUnit) {
         if (measuringUnit.isEmpty() || name.isEmpty()) {
             return "fields";
@@ -78,6 +87,11 @@ public class IngredientLibrary {
         return "duplicate";
     }
     
+    /**
+     * Poistaa aineksen aineskirjastosta.
+     * @param name Poistettavan aineksen nimi
+     * @return Palauttaa onnistuneesta poistosta true, muutoin false.
+     */
     public boolean removeIngredient(String name) {
         String editedName = name.toLowerCase().trim();
         if (ingredients.containsKey(editedName)) {
@@ -100,6 +114,10 @@ public class IngredientLibrary {
         return ingredientsNames;
     }
     
+    /** 
+     * Valitsee satunnaisen aineksen aineskirjastosta.
+     * @return Palauttaa aines-olion.
+     */
     public Ingredient getRandomIngredient() {
         int randomIndex = random.nextInt(ingredientsNames.size());
         if (randomIndex == ingredientsNames.size()) {

@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package PotionAppTests;
 
-import java.util.Random;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -21,7 +16,8 @@ import rohtoappi.domain.components.Ingredient;
  * @author xilxilx
  */
 public class CreateAPotionTest {
-        
+    
+    
     AppLogic logic = new AppLogic();
     Ingredient ingredient;
     
@@ -39,8 +35,11 @@ public class CreateAPotionTest {
     
     @Before
     public void setUp() {
-        ingredient = logic.ingredientLibrary.getRandomIngredient();
-    
+        logic.ingredientLibrary.addIngredient("fairy dust", "g");
+        logic.ingredientLibrary.addIngredient("sparrow feather", "pieces");
+        logic.ingredientLibrary.addIngredient("octopus ink", "ml");
+        logic.ingredientLibrary.addIngredient("troll ear", "pieces");
+        ingredient = logic.ingredientLibrary.getRandomIngredient();    
     }
     
     @After

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package PotionAppTests;
 
 import org.junit.After;
@@ -90,17 +86,6 @@ public class ComponentTest {
         Potion potion = new Potion();
         potion.addToPotion(new Ingredient("carrot", "g"));        
         assertEquals("invalidValue", potion.removeFromPotion(""));
-    }
-    
-    @Test
-    public void potionEmpties() {
-        Potion potion = new Potion();
-        potion.addToPotion(new Ingredient("carrot", "g"));
-        potion.addToPotion(new Ingredient("umbrella handle", "pieces"));
-        potion.addToPotion(new Ingredient("wolf claw", "pieces"));
-        assertEquals(3, potion.getIngredients().size());
-        potion.emptyPotion();
-        assertEquals(true, potion.getIngredients().isEmpty());
-    }           
+    }        
     
 }

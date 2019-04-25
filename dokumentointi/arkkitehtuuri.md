@@ -2,12 +2,13 @@
 
 ## Rakenne
 
-![Rakenne](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/levels.jpg)
+![Rakenne]()
 
+UI-paketti sisältää käyttöliittymän luokat, domain sisältää sovelluslogiikan ja muut toiminnallisuuden luokat, dao-paketti sisältää pysyväistalletuksen luokat.
 
 ## Käyttöliittymä
 
-Käyttöliittymässä on 5 näkymää ja lisäksi 3 niinsanottua apunäkymää, jotka sisältävät esim. tekstikentän. Sovelluksen kehittyessä joistakin apunäkymistä voidaan luopua.
+Käyttöliittymässä on 6 näkymää ja lisäksi 3 niinsanottua apunäkymää, jotka sisältävät esim. tekstikentän. Sovelluksen kehittyessä joistakin apunäkymistä voidaan luopua.
 
 * Main Menu
 * Create A Potion
@@ -17,33 +18,65 @@ Käyttöliittymässä on 5 näkymää ja lisäksi 3 niinsanottua apunäkymää, 
 * Ingredient Library
 * New Ingredient (apunäkymä)
 * Potion Library
+* View Potion
 
-Jokainen näkymä on metodi, joka kokoaa Scene-olion. Metodit sijaitsevat (vielä) yhdessä AppUI-luokassa. Mainissa alustetaan sovellus luomalla uusi AppLogic- ja AppUI-luokka. Lisäksi mainissa sijaitseva start-metodi saa parametrinään Stage-olion, ja tämä Stage-olio annetaan eteenpäin AppUI-luokan start-metodille. AppUI-luokan Scene-metodit antavat toisilleen parametrinä tätä stage-oliota.
+Jokainen näkymä on metodi, joka kokoaa Scene-olion. Metodit sijaitsevat AppUI-luokassa, mutta joidenkin toistuvien ja hieman monimutkaisempien elementtien kokoamismetodit sijaitsevat UIBuilder-luokassa. Mainissa alustetaan sovellus luomalla uusi AppLogic- ja AppUI-luokka. Sovelluksen alustusmetodissa asetetaan sovellukselle tiedostosta lukemiseen tarvittavat oliot, jotka injektoidaan AppLogic-luokalle. Sovelluksen käynnistämishetkellä luodaan myös uusi Potion-olio tempPotionille.
+
+
+Lisäksi mainissa sijaitseva start-metodi saa parametrinään Stage-olion, ja tämä Stage-olio annetaan eteenpäin AppUI-luokan start-metodille. AppUI-luokan Scene-metodit antavat toisilleen parametrinä tätä stage-oliota.
 
 
 ## Sovelluslogiikka
 
-AppLogic-luokalla on käytössään oliomuuttujina ingredientLibrary- ja potionLibraryluokka. Lisäksi sillä on luokka tempPotion, joka on rohto, jota käyttäjä on työstämässä. AppLogic pääsee näin käsiksi kaikkiin mahdollisiin aineksiin ja rohtoihin. IngredientLibrary hoitaa yksittäisiin aineksiin liittyviä toimintoja, ja potionLibraryyn on tallennettu aikaisempia tempPotion-olioita.
+AppLogic-luokalla on käytössään oliomuuttujina ingredientLibrary- ja potionLibrary-luokka. Lisäksi sillä on oliomuuttujana instanssi luokasta Potion nimeltä tempPotion, joka on rohto, jota käyttäjä on työstämässä. AppLogic käsittelee näiden kolmen luokan sisäisiä sekä keskenäisiä toimintoja.
+
+Potionin metodeja ovat mm.
+* addToPotion(Ingredient ingredient) lisää aineksen rohtoon
+* getIngredientByName(String name)
+* removeFromPotion(String name)
+
+PotionLibraryn metodeja ovat mm.
+* addPotion(Potion potion) lisää/tallentaa tempPotion-rohdon kirjastoon
+* deletePotion(String name)
+* getPotionByName(String name)
+
+IngredientLibraryn metodeja ovat mm.
+* addIngredient(String name, String measuringUnit) luo uuden aineksen ja lisää aineksen kirjastoon
+* removeIngredient(String name) poistaa aineksen kirjastosta
+* getIngredientByName(String name)
+* getRandomIngredient()
+
+Ingredient-luokka kuvaa yksittäistä ainesta. Potion-luokka kuvaa yksittäistä rohtoa. Magic-luokka tarjoaa rohdolle tyypin (esimerkiksi tee, rasva, tahna) ja taianomaisen efektin (esim. kauneus, terveys, kirous).
 
 Luokkakaavio:
-![Arkkitehtuuri](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/classes.jpg)
+![Arkkitehtuuri]()
 
 
 ## Pysyväistalletus
 
-IngredientLibraryn ainekset ovat tallessa ingredients.txt-tiedostossa. Tiedoston lukemis- ja kirjoittamisoperaatiot sijaitsevat vielä tällä hetkellä ingredientLibraryssa, mutta potionLibraryn kasvaessa tarkoitus on eriyttää tiedosto-operaatiot omaksi luokakseen. Muutokset ainestietoihin tallennetaan tiedostoon VAIN päävalikon exit-nappulaa klikattaessa. Siis ikkunan oikean yläkulman napista sulkeminen ei tallenna muutoksia.
-Ainekset ovat tallennettuna ingredients.txt-tiedostoon muodossa aineennimi;yksikkö.
+Sovelluksen tiedostojen nimet määritellään juurikansiossa olevassa config.properties -tiedostossa.
+
+IngredientLibraryn ainekset ovat tallessa ingredients.txt-tiedostossa ja potionLibraryn rohdot sijaitsevat potions.txt-tiedostossa. Tiedostojen lukeminen tapahtuu PotionsHandler- ja IngredientsHandler -luokissa (nykyhetkellä osa tapahtuu potionLibraryssa ja ingredientLibraryssa.) Muutokset tiedostoihin tallennetaan VAIN päävalikon exit-nappulaa klikatessa. Siis ikkunan oikean yläkulman napista sulkeminen ei tallenna muutoksia.
+
+
+Ainekset ovat tallennettuna muodossa aineennimi;yksikkö.
+Rohdot ovat tallennettuna rohdonnimi;
 
 
 ## Päätoiminnallisuudet
 
 Sekvenssikaavio aineksen lisäämisestä rohtoon:
 ![Sekvenssi Add Ingredient To Potion](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/addingredientsequence.jpg)
+
+
 Käyttäjä on aluksi Create A Potion -näkymässä. Tässä näkymässä hän klikkaa Add Ingredient (ingredient library) -nappia, joka ohjaa hänet ingredientLibrary-näkymään. 
+
 
 Tämän jälkeen käyttäjä klikkaa jotakin ingredientLibraryn listassa olevista aineksista ja painaa sitten Add To Potion -nappia. Tämän jälkeen aukeaa addIngredientToPotion-näkymä, jossa käyttäjältä kysytään kuinka paljon ainetta kuuluu reseptiin, esim. 7 ml, 3 kpl. Tässä näkymässä käytetään käyttäjän mukavuudeksi tekstiä, josta tulee ilmi aineksen yksikkö. Tätä varten kutsutaan ingredientLibrarysta ainesta nimellä, ja saadaan takaisin aineksen mittayksikkö, esimerkiksi "g". 
 
+
 Käyttäjä antaa halutun arvon amount-kenttään ja painaa confirm-nappulaa. AppLogicin metodia addToTempPotion kutsutaan. 
+
 
 AppLogic ensin pyytää ingredient-olion ingredientLibrarylta ja sitten antaa tämän aineksen parametrinä tempPotionin metodille addToPotion. Tämä metodi palauttaa merkkijonon, joka kertoo operaation onnistuneen. (Epäonnistuminen palauttaa merkkijonon riippuen epäonnistumisen syystä.) Käyttäjän näkymään ilmestyy status-teksti, joka varmistaa käyttäjälle operaation onnistuneen: "Ingredient added."
 
@@ -54,3 +87,10 @@ AppLogic ensin pyytää ingredient-olion ingredientLibrarylta ja sitten antaa t�
 ### Käyttöliittymä
 
 Näkymät ovat omissa metodeissaan, mutta nämä metodit silti sijaitsevat yhdessä samassa luokassa, joka on aivan massiivinen.
+
+
+Stage-olion heitteleminen metodien välillä tuntuu huonolta menetelmältä.
+
+### Rakenne
+
+Jokaisella Potion-luokalla on oma Magic-luokka jossa toistuvat samat listat. Lienee järkevämpää ja etenkin jatkokehitysmielessä mielekkäämpää, että magic-luokka olisi myös omanlainen kirjastonsa, johon voi lisätä uusia taikoja ja tyyppejä.

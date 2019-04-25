@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package rohtoappi.domain.components;
 
 import java.util.ArrayList;
 
 /**
- *
- * @author xilxilx
+ * Luokka kuvastaa rohtoa.
+ * 
  */
 public class Potion {
     
@@ -28,6 +24,11 @@ public class Potion {
         return ingredients;
     }
     
+    /**
+     * 
+     * @param name haetun
+     * @return 
+     */
     public Ingredient getIngredientByName(String name) {
         for (Ingredient ingredient : ingredients) {
             if (ingredient.getName().equals(name)) {
@@ -37,6 +38,11 @@ public class Potion {
         return null;
     }
     
+    /**
+     * Lisää annetun aineksen rohtoon.
+     * @param ingredient Annettu ingredient-olio.
+     * @return Palauttaa ingredientPresent jos rohdossa on jo annettu aines, muutoin palauttaa clear.
+     */
     public String addToPotion(Ingredient ingredient) {                
         String retVal = "ingredientPresent";
         
@@ -46,7 +52,11 @@ public class Potion {
         }           
         return retVal;
     }
-    
+    /**
+     * Poistaa rohdosta aineksen nimen perusteella.
+     * @param name Aineksen nimi
+     * @return Palauttaa notInPotion jos ainetta ei ole rohdossa, clear jos aines poistetaan onnistuneesti ja invalidValue jos annettu nimi on tyhjä.
+     */
     public String removeFromPotion(String name) {
         if (!name.isEmpty()) {            
             Ingredient ingredient = getIngredientByName(name);
@@ -59,14 +69,10 @@ public class Potion {
         return "invalidValue";                
     }
     
-    public boolean emptyPotion() {
-        ingredients.clear();
-        if (ingredients.isEmpty()) {
-            return true;
-        }
-        return false;
-    }
-    
+    /**
+     * Pyytää magic-oliolta taulukon, jossa on nimi, tyyppi ja efekti.
+     * Asettaa nämä pyydetyt arvot rohdon tyypiksi, efektiksi ja nimeksi.
+     */
     public void generateMagic() {
         String[] array = magic.generate();        
         setType(array[0]);

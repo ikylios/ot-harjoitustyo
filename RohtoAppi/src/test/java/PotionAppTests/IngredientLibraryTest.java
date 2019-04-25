@@ -1,12 +1,5 @@
 package PotionAppTests;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 import java.util.HashMap;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -21,18 +14,17 @@ import rohtoappi.domain.components.Ingredient;
  *
  * @author xilxilx
  */
-public class IngredientLibraryTest {
-    
+public class IngredientLibraryTest {        
+
     AppLogic logic = new AppLogic();
     Ingredient ingredient;
     HashMap<String, Ingredient> map;
     
-    public IngredientLibraryTest() {        
+    public IngredientLibraryTest() {     
     }
     
     @BeforeClass
     public static void setUpClass() {
-        
     }
     
     @AfterClass
@@ -40,14 +32,16 @@ public class IngredientLibraryTest {
     }
     
     @Before
-    public void setUp() {        
-        ingredient = logic.ingredientLibrary.getRandomIngredient();
-        map = logic.ingredientLibrary.getIngredients();
+    public void setUp() {
+        logic.ingredientLibrary.addIngredient("fairy dust", "g");
+        logic.ingredientLibrary.addIngredient("sparrow feather", "pieces");
+        logic.ingredientLibrary.addIngredient("octopus ink", "ml");
+        logic.ingredientLibrary.addIngredient("troll ear", "pieces");
+        ingredient = logic.ingredientLibrary.getRandomIngredient();        
     }
     
     @After
-    public void tearDown() {
-        logic.ingredientLibrary.writeToFile(map);
+    public void tearDown() {        
     }
 
     @Test

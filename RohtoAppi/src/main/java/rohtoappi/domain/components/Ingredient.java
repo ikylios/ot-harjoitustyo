@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package rohtoappi.domain.components;
 
 /**
- *
- * @author xilxilx
+ * Luokka kuvaa ainesta, jonka voi laittaa rohtoon.
+ * Aineksella on nimi, mittayksikkö ja mahdollisesti asetettu määrä.
+ * 
  */
 public class Ingredient {
     
@@ -20,6 +17,11 @@ public class Ingredient {
         this.measuringUnit = measuringUnit;        
         this.amount = 0;
     }
+
+    public Ingredient() {
+        
+    }
+        
 
     public String getName() {
         return name;

@@ -9,18 +9,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import rohtoappi.domain.components.Ingredient;
 
 public class UIBuilder {
     
-    public Insets padding;
+    public Insets padding = new Insets(0, 10, 10, 0);
+    public String buttonStyle = "-fx-background-color: #8872a5; -fx-text-fill: #ffffff; -fx-border-color: #ffffff; -fx-border-width: 2px;";
     
     public Label createSceneTitle(String title) {
         Label titleLabel = new Label(title);
         titleLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
-        titleLabel.setPadding(new Insets(0, 10, 10, 0));
+        titleLabel.setTextFill(Color.WHITE);
+        titleLabel.setPadding(padding);
         return titleLabel;
     }
     
@@ -38,9 +41,13 @@ public class UIBuilder {
         int row = 0;        
         for (Ingredient ingredient : ingredients) {
             int column = 0;
-            grid.add(new Label(ingredient.getName()), column, row);
+            Label labelName = new Label(ingredient.getName());
+            labelName.setTextFill(Color.WHITE);
+            grid.add(labelName, column, row);
             column++;
-            grid.add(new Label("\t\t" + ingredient.getAmount()+ " " + ingredient.getMeasuringUnit()), column, row);
+            Label numberLabel = new Label("\t\t" + ingredient.getAmount()+ " " + ingredient.getMeasuringUnit());
+            numberLabel.setTextFill(Color.WHITE);
+            grid.add(numberLabel, column, row);
             row++;
         }
         grid.setVgap(10);
@@ -52,14 +59,20 @@ public class UIBuilder {
     public GridPane createIngredientGrid(ArrayList<Ingredient> ingredients) {
         GridPane ingredientGrid = new GridPane(); 
         if (ingredients.isEmpty()) {
-            ingredientGrid.add(new Label("No ingredients. Empty. Nada."), 0, 0);
+            Label emptyLabel = new Label("No ingredients. Empty. Nada.");
+            emptyLabel.setTextFill(Color.WHITE);
+            ingredientGrid.add(emptyLabel, 0, 0);
         } else {
             int row = 0;        
             for (Ingredient ingredient : ingredients) {
                 int column = 0;
-                ingredientGrid.add(new Label(ingredient.getName() + "\t\t"), column, row);
+                Label nameLabel = new Label(ingredient.getName() + "\t\t");
+                nameLabel.setTextFill(Color.WHITE);
+                ingredientGrid.add(nameLabel, column, row);
                 column++;
-                ingredientGrid.add(new Label("" + ingredient.getAmount() + " " + ingredient.getMeasuringUnit()), column, row);
+                Label numbersLabel = new Label("" + ingredient.getAmount() + " " + ingredient.getMeasuringUnit());
+                numbersLabel.setTextFill(Color.WHITE);
+                ingredientGrid.add(numbersLabel, column, row);
                 column++;
 //                Button addButton = new Button("+");
 //                ingredientGrid.add(new Button("+"), column, row);

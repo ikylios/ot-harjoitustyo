@@ -28,5 +28,10 @@
 |     |2 | Lisättiin PotionLibraryn näkymä ja runkotoiminnallisuutta. Rohtoja voi nyt tallentaa rohdot potionLibraryyn, mutta ei pysyväismuistiin (vielä). Lisättiin PotionLibrarylle testejä. Lisäksi muita pienempiä fiksejä, kuten clear-nappula joka tyhjentää työn alla olevan rohdon kaikista aineksista. Rohto ei enää myöskään häviä, jos palaa päävalikkoon Create A Potionista.
 |     |1 | Lisättiin rivikattavuutta nostavia testejä.
 |16.4.|2 | Arkkitehtuurikuvaus kuntoon.
+|22.4.|2 | Muutettiin ingredient-tiedostosta lukeminen ja tiedostoon kirjoittaminen hyödyntämään properties-oliota.
+|     |2 | Työstettiin rohtojen pysyväismuistitallennusta
+|23.4.|3 | Toteutettiin rohtojen tallennustoiminnallisuus.
+|24.4.|2 | JavaDocin kirjoittamista.
+|     |1 | Lisättiin toiminnallisuus, jossa voidaan poistaa rohtoja potionLibrarysta. Lisättiin kivempi ulkoasu käyttöliittymään.
 
-Summa: 36
+Summa: 60

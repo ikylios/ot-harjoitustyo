@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package PotionAppTests;
 
 import org.junit.After;
@@ -21,6 +17,7 @@ import rohtoappi.domain.components.Ingredient;
 public class PotionLibraryTest {
     
     AppLogic logic = new AppLogic();
+    Ingredient ingredient;
     
     public PotionLibraryTest() {
         
@@ -36,6 +33,11 @@ public class PotionLibraryTest {
     
     @Before
     public void setUp() {
+        logic.ingredientLibrary.addIngredient("fairy dust", "g");
+        logic.ingredientLibrary.addIngredient("sparrow feather", "pieces");
+        logic.ingredientLibrary.addIngredient("octopus ink", "ml");
+        logic.ingredientLibrary.addIngredient("troll ear", "pieces");
+        ingredient = logic.ingredientLibrary.getRandomIngredient();
     }
     
     @After
@@ -44,7 +46,6 @@ public class PotionLibraryTest {
 
     @Test
     public void addsPotion() {
-        Ingredient ingredient = logic.ingredientLibrary.getRandomIngredient();
         logic.tempPotion.addToPotion(ingredient);
         logic.tempPotion.generateMagic();
         logic.addPotionToLibrary();
@@ -54,7 +55,7 @@ public class PotionLibraryTest {
     
     @Test
     public void addsMultiplePotions() {
-        Ingredient ingredient = logic.ingredientLibrary.getRandomIngredient();
+        ingredient = logic.ingredientLibrary.getRandomIngredient();
         logic.tempPotion.addToPotion(ingredient);
         logic.tempPotion.generateMagic();
         logic.addPotionToLibrary();
@@ -72,7 +73,7 @@ public class PotionLibraryTest {
     
     @Test
     public void noDuplicates() {
-        Ingredient ingredient = logic.ingredientLibrary.getRandomIngredient();
+        ingredient = logic.ingredientLibrary.getRandomIngredient();
         logic.tempPotion.addToPotion(ingredient);
         logic.tempPotion.setName("kryptonite");
         logic.addPotionToLibrary();
