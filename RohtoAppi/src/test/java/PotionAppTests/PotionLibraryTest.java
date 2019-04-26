@@ -7,8 +7,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import rohtoappi.dao.PotionsHandler;
 import rohtoappi.domain.AppLogic;
+import rohtoappi.domain.PotionLibrary;
 import rohtoappi.domain.components.Ingredient;
+import rohtoappi.domain.components.Potion;
 
 /**
  *
@@ -50,7 +53,22 @@ public class PotionLibraryTest {
         logic.tempPotion.generateMagic();
         logic.addPotionToLibrary();
         assertEquals(1, logic.potionLibrary.getPotions().size());
-//        assertEquals(true, logic.potionLibrary.getPotionsNames().contains(ingredient.getName()));
+    }
+    
+    @Test
+    public void deletesPotion() {
+        logic.tempPotion.addToPotion(ingredient);
+        logic.tempPotion.generateMagic();
+        String name = logic.tempPotion.getName();
+        logic.addPotionToLibrary();
+        assertEquals(1, logic.potionLibrary.getPotions().size());
+        logic.potionLibrary.deletePotion(name);
+        assertEquals(true, logic.potionLibrary.getPotions().isEmpty());
+    }
+    
+    @Test
+    public void doesntDeleteUnexistingPotion() {        
+        assertEquals("error", logic.potionLibrary.deletePotion("power juice"));          
     }
     
     @Test
@@ -77,11 +95,29 @@ public class PotionLibraryTest {
         logic.tempPotion.addToPotion(ingredient);
         logic.tempPotion.setName("kryptonite");
         logic.addPotionToLibrary();
-        logic.addPotionToLibrary();
-        
+        logic.addPotionToLibrary();        
         assertEquals(1, logic.potionLibrary.getPotions().size());
     }
     
+    @Test
+    public void fetchesByName() {
+        ingredient = logic.ingredientLibrary.getRandomIngredient();
+        logic.tempPotion.addToPotion(ingredient);
+        logic.tempPotion.setName("kryptonite");
+        Potion potion = logic.tempPotion;
+        logic.addPotionToLibrary();        
+        assertEquals(potion, logic.potionLibrary.getPotionByName("kryptonite"));
+    }
     
+    @Test
+    public void constructWithHandler() {
+        PotionsHandler ph = new PotionsHandler("tied");
+        PotionLibrary pl = new PotionLibrary(ph);
+        
+        assertEquals(true, pl.potionsNames.isEmpty());
+        assertEquals(true, pl.potions.isEmpty());
+    }
+    
+//    
     
 }

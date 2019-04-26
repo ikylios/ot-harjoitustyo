@@ -14,7 +14,7 @@ Sovellus taianomaisten taikarohtojen luomiseen ja tallentamiseen.
 [Työaikakirjanpito](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/tyotunnit.md)
 
 ## Releaset
-[Viikko 5] ()
+[Viikko 5] (https://github.com/ikylios/ot-harjoitustyo/releases)
 
 ## Komentorivitoiminnot
 
@@ -26,3 +26,5 @@ Testikattavuusraportti luodaan komennolla `mvn jacoco:report`.
 Checkstyleraportti tehdään komennolla `mvn jxr:jxr checkstyle:checkstyle`
 
 Suoritettavan jar-tiedoston luominen tehdään komennolla `mvn package`. Paketin nimi on RohtoAppi-1.0-SNAPSHOT.jar.
+
+JavaDoc generoidaan komennolla `mvn javadoc:javadoc`.

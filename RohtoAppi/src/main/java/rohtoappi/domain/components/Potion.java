@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class Potion {
     
     public ArrayList<Ingredient> ingredients;    
+    public ArrayList<String> ingredientsString;
     public String name;
     public String effect;
     public String type;
@@ -17,6 +18,7 @@ public class Potion {
 
     public Potion() {
         this.ingredients = new ArrayList<>();
+        this.ingredientsString = new ArrayList<>();
         magic = new Magic();
     }
     
@@ -24,9 +26,13 @@ public class Potion {
         return ingredients;
     }
     
+    public ArrayList<String> getIngredientsString() {
+        return ingredientsString;
+    }
+    
     /**
-     * 
-     * @param name haetun
+     * Hakee aineksen nimen perusteella ingredients-listasta.
+     * @param name Haetun aineksen nimi
      * @return 
      */
     public Ingredient getIngredientByName(String name) {
@@ -47,7 +53,8 @@ public class Potion {
         String retVal = "ingredientPresent";
         
         if (!ingredients.contains(ingredient)) {            
-            ingredients.add(ingredient);            
+            ingredients.add(ingredient);   
+            ingredientsString.add(ingredient.toString());
             retVal = "clear";            
         }           
         return retVal;
@@ -63,10 +70,53 @@ public class Potion {
             if (ingredient == null) {
                 return "notInPotion";
             }
-            ingredients.remove(ingredient);            
+            int index = ingredients.indexOf(ingredient);
+            ingredientsString.remove(index);
+            ingredients.remove(index);           
             return "clear";
         }        
         return "invalidValue";                
+    }
+    
+    /**
+     * Muokkaa annetun aineksen nimen perusteella aineksen määrää. Korvaa ingredients- ja ingredientsString-listoista vanhat ainekset uusilla.
+     * @param name Aineksen nimi
+     * @param amount Uusi aineksen määrä
+     * @return Palauttaa clear jos toimitus suoritetaan onnistuneesti, NotValid jos annettu arvo ei ole sallittu luku.
+     */
+    public String editAmount(String name, String amount) {
+        String retVal = "NotValid";
+        if (checkDigits(amount)) {
+                int valueAmount = Integer.valueOf(amount);
+                Ingredient ingredient = getIngredientByName(name);
+                if (ingredient != null) {
+                    int index = ingredients.indexOf(ingredient);
+                    String old = ingredient.toString();
+
+                    ingredient.setAmount(valueAmount);                
+                    ingredients.add(ingredient);                
+                    ingredients.remove(index);
+                    ingredientsString.add(ingredient.toString());
+                    ingredientsString.remove(old);                
+                    retVal = "clear"; 
+                }                  
+            }                        
+        
+        return retVal;
+    }
+    
+    /**
+     * Apumetodi tarkistamaan, että annettu arvo on sallittu eli arvo on luku sekä positiivinen luku.
+     * @param amount Annettu arvo
+     * @return Palauttaa true jos arvo on luku ja positiivinen luku, muutoin false.
+     */
+    private boolean checkDigits(String amount) {
+        if (amount.matches("\\d+")) {
+            if (Integer.valueOf(amount) > 0) {
+                return true;
+            }
+        }                
+        return false;
     }
     
     /**

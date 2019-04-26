@@ -5,23 +5,3 @@ octopus ink
 3
 ml
 
-Potion of Rampage
-Potion
-Rampage
-moss
-200
-g
-fungus
-4
-pieces
-
-Broth of Confusion
-Broth
-Confusion
-unicorn horn
-5
-mg
-octopus ink
-888
-ml
-

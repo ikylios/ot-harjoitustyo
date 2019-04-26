@@ -3,7 +3,9 @@ package rohtoappi.ui;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -98,14 +100,20 @@ public class AppUI extends Application {
         Label titleLabel = uiBuilder.createSceneTitle("Create A Potion");                
         createComponents.setTop(titleLabel);
                 
-        GridPane ingredientGrid = uiBuilder.createIngredientGrid(logic.tempPotion.getIngredients());
-        ingredientGrid.setAlignment(Pos.TOP_CENTER);
-       
-        
-//        addButton.setOnAction((event) -> {
-//            logic.ingredientLibrary.getIngredientByName();            
-//            
-//        });
+        ListView<String> listView = new ListView();
+        ObservableList<String> ingredientList = FXCollections.observableArrayList(logic.tempPotion.getIngredientsString());
+        if (!ingredientList.isEmpty()) {                    
+            listView.setItems(ingredientList);            
+            listView.setMaxWidth(350.0);
+            listView.setMaxHeight(300.00);
+            listView.setFixedCellSize(30.0);
+            createComponents.setCenter(listView);            
+        } else {
+            Label ingredientEmpty = new Label("No ingredients. Empty.");
+            ingredientEmpty.setTextFill(Color.WHITE);
+            ingredientEmpty.setAlignment(Pos.TOP_CENTER);
+            createComponents.setCenter(ingredientEmpty);
+        }                                
                 
         HBox createButtons = new HBox();
         createButtons.setSpacing(10);        
@@ -129,9 +137,10 @@ public class AppUI extends Application {
         addIngredient.setStyle(buttonStyle);
         Button removeIngredient = new Button("Remove ingredient");
         removeIngredient.setStyle(buttonStyle);
-        ingredientButtons.getChildren().addAll(addIngredient, removeIngredient);
-        
-        createComponents.setCenter(ingredientGrid);
+        Button editIngredient = new Button("Edit amount");
+        editIngredient.setStyle(buttonStyle);
+        ingredientButtons.getChildren().addAll(addIngredient, removeIngredient, editIngredient);
+         
         createComponents.setBottom(createButtons);
         createComponents.setRight(ingredientButtons);        
         createComponents.setPadding(padding);
@@ -147,58 +156,67 @@ public class AppUI extends Application {
         });
         
         randomisePotion.setOnAction((event) -> {
-
-        });
-        randomisePotion.setDisable(true);
+            logic.randomisePotion();
+            createAPotion(window);
+        });        
                 
         addIngredient.setOnAction((event) -> {            
             ingredientLibrary(window);
         });
         
         removeIngredient.setOnAction((event) -> {
-            removeFromPotion(window);
+            String selected = listView.getSelectionModel().getSelectedItem();
+            if (selected != null) {
+                String[] selectedPieces = selected.split("\t\t");
+                logic.tempPotion.removeFromPotion(selectedPieces[0]);                
+                createAPotion(window);
+            }                        
+        });
+        
+        editIngredient.setOnAction((event) -> {
+            String selected = listView.getSelectionModel().getSelectedItem();
+            if (selected != null) {
+                String[] selectedPieces = selected.split("\t\t");          
+                editIngredient(window, selectedPieces[0]);
+            }            
         });
         
         clearPotion.setOnAction((event) -> {
             logic.clearTempPotion();
             createAPotion(window);
-        });
-        
-        if (logic.tempPotion.ingredients.isEmpty()) {
-            removeIngredient.setDisable(false);
-        }
+        });                
         
         Scene createAPotion = new Scene(createComponents);
         window.setScene(createAPotion);
         
-        window.show();       
-        
+        window.show();               
     }       
     
     public void addIngredientToPotion(Stage window, String name) {
         BorderPane components = new BorderPane();
                                              
-        TextField amountField = new TextField();
-        amountField.setStyle(buttonStyle);
+        Label addingLabel = new Label("Adding ingredient ");
+        addingLabel.setTextFill(Color.WHITE);
+        Label nameLabel = new Label(name + ".");
+        nameLabel.setTextFill(Color.WHITE);
+        nameLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
+                
+        HBox nameFields = new HBox();
+        nameFields.getChildren().addAll(addingLabel, nameLabel);    
+        nameFields.setAlignment(Pos.CENTER);
+        
         Label amountLabel = new Label("Amount: ");
         amountLabel.setTextFill(Color.WHITE);
+        TextField amountField = new TextField();
+        amountField.setStyle(buttonStyle);        
         String unit = logic.ingredientLibrary.getIngredientByName(name).getMeasuringUnit();
         Label unitLabel = new Label(" " + unit);
         unitLabel.setTextFill(Color.WHITE);
         
         HBox amountFields = new HBox();
         amountFields.getChildren().addAll(amountLabel, amountField, unitLabel);
-        amountFields.setSpacing(5);        
-//        amountFields.setAlignment(Pos.BOTTOM_LEFT);
-        
-        Label addingLabel = new Label("Adding ingredient ");
-        addingLabel.setTextFill(Color.WHITE);
-        Label nameLabel = new Label(name);
-        nameLabel.setTextFill(Color.WHITE);
-        nameLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 13));        
-        
-        HBox nameFields = new HBox();
-        nameFields.getChildren().addAll(addingLabel, nameLabel);        
+        amountFields.setSpacing(5);    
+        amountFields.setAlignment(Pos.CENTER);        
         
         VBox fields = new VBox();
         fields.getChildren().addAll(nameFields, amountFields);
@@ -219,7 +237,8 @@ public class AppUI extends Application {
         VBox buttonsAndStatus = new VBox();
         Label status = new Label();
         status.setTextFill(Color.WHITE);
-        buttonsAndStatus.setSpacing(10);        
+        buttonsAndStatus.setSpacing(10);
+        buttonsAndStatus.setAlignment(Pos.CENTER);
         buttonsAndStatus.getChildren().addAll(status, buttons);  
         
         components.setBottom(buttonsAndStatus);
@@ -252,27 +271,44 @@ public class AppUI extends Application {
         window.setScene(addIngredientScene);
         
         window.show();        
-    }
+    }        
     
-    public void removeFromPotion(Stage window) {
+    public void editIngredient(Stage window, String name) {
         BorderPane components = new BorderPane();
+        components.setBackground(background);
+        components.setPadding(padding);                
         
         HBox fields = new HBox();                              
-        TextField nameField = new TextField();        
-        Label nameLabel = new Label("Name:");        
-        fields.getChildren().addAll(nameLabel, nameField);        
+        TextField amountField = new TextField();      
+        amountField.setStyle(buttonStyle);        
+        Label amountLabel = new Label("New amount:");        
+        amountLabel.setTextFill(Color.WHITE);
+        fields.getChildren().addAll(amountLabel, amountField);  
+        fields.setSpacing(5);
+        fields.setAlignment(Pos.CENTER);
         
-        components.setCenter(fields);
+        VBox infoAndField = new VBox();
+        Label currentAmount = new Label("Ingredient " + name + " is currently " + 
+                logic.tempPotion.getIngredientByName(name).getAmount() + " " + logic.tempPotion.getIngredientByName(name).getMeasuringUnit() + ".");
+        currentAmount.setTextFill(Color.WHITE);
+        infoAndField.setSpacing(20);
+        infoAndField.getChildren().addAll(currentAmount, fields);
+        infoAndField.setAlignment(Pos.CENTER);
+        
+        components.setCenter(infoAndField);
         
         HBox buttons = new HBox();        
         Button confirm = new Button("Confirm");
+        confirm.setStyle(buttonStyle);
         Button cancel = new Button("Back To Create A Potion");
+        cancel.setStyle(buttonStyle);
         buttons.getChildren().addAll(confirm, cancel);
         buttons.setSpacing(20);
         buttons.setAlignment(Pos.CENTER);
         
         VBox buttonsAndStatus = new VBox();
         Label status = new Label();
+        status.setTextFill(Color.WHITE);
         buttonsAndStatus.setSpacing(10);
         buttonsAndStatus.setAlignment(Pos.CENTER);        
         buttonsAndStatus.getChildren().addAll(status, buttons);
@@ -284,15 +320,13 @@ public class AppUI extends Application {
         });
         
         confirm.setOnAction((event) -> {
-            String ingredientName = nameField.getText();            
+            String newAmount = amountField.getText();            
             String response = "Unknown Error.";            
-            String retVal = logic.tempPotion.removeFromPotion(ingredientName);            
+            String retVal = logic.tempPotion.editAmount(name, newAmount);
             if (retVal.equals("clear")) {
-                nameField.clear();
-                response = "Ingredient deleted.";
-            } else if (retVal.equals("notInPotion")) {
-                response = "Ingredient is not in Potion.";
-            } else if (retVal.equals("invalidValue")) {
+                amountField.clear();
+                createAPotion(window);
+            } else {
                 response = "Not a valid value.";
             }
             
@@ -337,6 +371,7 @@ public class AppUI extends Application {
         
         VBox buttonsAndStatus = new VBox();
         Label status = new Label();
+        status.setTextFill(Color.WHITE);
         buttonsAndStatus.setSpacing(10);
         buttonsAndStatus.setAlignment(Pos.CENTER);        
         buttonsAndStatus.getChildren().addAll(status, buttons);

@@ -18,8 +18,7 @@ public class Ingredient {
         this.amount = 0;
     }
 
-    public Ingredient() {
-        
+    public Ingredient() {        
     }
         
 
@@ -43,13 +42,9 @@ public class Ingredient {
         return amount;
     }                
     
-    public boolean setAmount(int amount) {
-        if (amount > 0) {
-            this.amount = amount;
-            return true;
-        }        
-        return false;
-    }
+    public void setAmount(int amount) {        
+        this.amount = amount;            
+    }    
 
     @Override
     public boolean equals(Object o) {

@@ -70,6 +70,7 @@ public class CreateAPotionTest {
     @Test
     public void noDuplicatesAdded() {        
         logic.addToTempPotion(ingredient.getName(), "5");
+        System.out.println(ingredient.getAmount());
         logic.addToTempPotion(ingredient.getName(), "10");
         assertEquals(1, logic.tempPotion.getIngredients().size());
     }
@@ -92,5 +93,26 @@ public class CreateAPotionTest {
     public void doesntRemoveUnexistingIngredient() {    
         assertEquals("notInPotion", logic.tempPotion.removeFromPotion("chuck norris"));        
     }        
+    
+//    @Test
+//    public void editsAmount() {                
+//        logic.addToTempPotion(ingredient.getName(), "5");
+//        logic.tempPotion.editAmount(ingredient.getName(), "30");
+//        assertEquals(30, ingredient.getAmount());
+//    }
+//    
+//    @Test
+//    public void doesntEditAmountNeg() {        
+//        logic.addToTempPotion(ingredient.getName(), "5");        
+//        logic.tempPotion.editAmount(ingredient.getName(), "-4");
+//        assertEquals(5, ingredient.getAmount());
+//    }
+//    
+//    @Test
+//    public void doesntEditAmountZero() {                
+//        logic.addToTempPotion(ingredient.getName(), "5");
+//        logic.tempPotion.editAmount(ingredient.getName(), "0");
+//        assertEquals(5, ingredient.getAmount());
+//    }
     
 }

@@ -48,7 +48,6 @@ IngredientLibraryn metodeja ovat mm.
 
 Ingredient-luokka kuvaa yksittäistä ainesta. Potion-luokka kuvaa yksittäistä rohtoa. Magic-luokka tarjoaa rohdolle tyypin (esimerkiksi tee, rasva, tahna) ja taianomaisen efektin (esim. kauneus, terveys, kirous).
 
-Luokkakaavio:
 ![Luokkakaavio](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/luokkakaavio.png)
 
 
@@ -61,6 +60,7 @@ IngredientLibraryn ainekset ovat tallessa ingredients.txt-tiedostossa ja potionL
 
 Ainekset ovat tallennettuna muodossa aineennimi;yksikkö.
 Rohdot ovat tallennettuna rohdonnimi;
+
 
 
 ## Päätoiminnallisuudet

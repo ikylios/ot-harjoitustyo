@@ -29,9 +29,12 @@
 |     |1 | Lisättiin rivikattavuutta nostavia testejä.
 |16.4.|2 | Arkkitehtuurikuvaus kuntoon.
 |22.4.|2 | Muutettiin ingredient-tiedostosta lukeminen ja tiedostoon kirjoittaminen hyödyntämään properties-oliota.
-|     |2 | Työstettiin rohtojen pysyväismuistitallennusta
-|23.4.|3 | Toteutettiin rohtojen tallennustoiminnallisuus.
+|     |2 | Työstettiin rohtojen pysyväismuistitallennusta.
+|23.4.|3 | Toteutettiin toiminnallisuus rohtojen pysyväistallentamiseen.
 |24.4.|2 | JavaDocin kirjoittamista.
 |     |1 | Lisättiin toiminnallisuus, jossa voidaan poistaa rohtoja potionLibrarysta. Lisättiin kivempi ulkoasu käyttöliittymään.
+|25.4.|4 | Arkkitehtuurikuvauksen kirjoittamista ja muokkaamista. Luotiin uudet kuvat. Lisättiin myös toiminnallisuus, joka sattumanvaraisesti luo rohdon.
+|     |2 | Muokattiin createAPotion käyttämään listView:ta kätevyyden takia.
+|26.4.|4 | Muokattiin createAPotionin remove ingredient yhteensopivaksi listView:n kanssa. Lisättiin createAPotioniin toiminnallisuus jossa voi muuttaa jo lisätyn aineksen määrää.
 
-Summa: 60
+Summa: 70
