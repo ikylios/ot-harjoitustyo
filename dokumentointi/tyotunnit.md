@@ -36,5 +36,6 @@
 |25.4.|4 | Arkkitehtuurikuvauksen kirjoittamista ja muokkaamista. Luotiin uudet kuvat. Lisättiin myös toiminnallisuus, joka sattumanvaraisesti luo rohdon.
 |     |2 | Muokattiin createAPotion käyttämään listView:ta kätevyyden takia.
 |26.4.|4 | Muokattiin createAPotionin remove ingredient yhteensopivaksi listView:n kanssa. Lisättiin createAPotioniin toiminnallisuus jossa voi muuttaa jo lisätyn aineksen määrää.
+|     |1 | Työstettiin testejä.
 
-Summa: 70
+Summa: 71
