@@ -14,7 +14,7 @@ Sovellus taianomaisten taikarohtojen luomiseen ja tallentamiseen.
 [Työaikakirjanpito](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/tyotunnit.md)
 
 ## Releaset
-[Viikko 5] (https://github.com/ikylios/ot-harjoitustyo/releases)
+[Viikko 5](https://github.com/ikylios/ot-harjoitustyo/releases)
 
 ## Komentorivitoiminnot
 
