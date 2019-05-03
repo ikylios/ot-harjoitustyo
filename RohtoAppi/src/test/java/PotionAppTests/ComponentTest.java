@@ -8,6 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import rohtoappi.domain.components.Ingredient;
+import rohtoappi.domain.components.Magic;
 import rohtoappi.domain.components.Potion;
 
 /**
@@ -62,7 +63,7 @@ public class ComponentTest {
         assertEquals(ingredient.getName() + "\t\t" + " " + ingredient.getMeasuringUnit(), ingredient.toString());
         ingredient.setAmount(10);
         assertEquals(ingredient.getName() + "\t\t" + ingredient.getAmount() + " " + ingredient.getMeasuringUnit(), ingredient.toString());        
-    }
+    }        
     
     @Test
     public void potionInitCorrectly() {
@@ -74,18 +75,86 @@ public class ComponentTest {
     }
     
     @Test
+    public void getIngredientsAsString() {
+        Ingredient i1 = new Ingredient("honey", 40, "ml");
+        Ingredient i2 = new Ingredient("snot", 30, "ml");
+        Potion potion = new Potion();
+        potion.addToPotion(i1);
+        potion.addToPotion(i2);
+        assertEquals(2, potion.getIngredientsString().size());
+    }
+    
+    @Test
+    public void editsAmount() {
+        Ingredient ingredient = new Ingredient("knife", 14, "pieces");
+        Potion potion = new Potion();
+        potion.addToPotion(ingredient);        
+        assertEquals("clear", potion.editAmount("knife", "4000"));
+    }
+    
+    @Test
+    public void doesntAcceptZeroAsEdit() {
+        Ingredient ingredient = new Ingredient("knife", 14, "pieces");
+        Potion potion = new Potion();
+        potion.addToPotion(ingredient);
+        potion.editAmount("knife", "0");
+        assertEquals("NotValid", potion.editAmount("knife", "0"));
+    }
+    
+    @Test
+    public void doesntAcceptNegativeAsEdit() {
+        Ingredient ingredient = new Ingredient("knife", 14, "pieces");
+        Potion potion = new Potion();
+        potion.addToPotion(ingredient);        
+        assertEquals("NotValid", potion.editAmount("knife", "-20"));
+    }
+    
+    @Test
+    public void doesntAcceptLetterAsEdit() {
+        Ingredient ingredient = new Ingredient("knife", 14, "pieces");
+        Potion potion = new Potion();
+        potion.addToPotion(ingredient);
+        potion.editAmount("knife", "-4");
+        assertEquals("NotValid", potion.editAmount("knife", "yksi"));
+    }
+    
+    @Test
     public void removesFromPotion() {
         Potion potion = new Potion();
         potion.addToPotion(new Ingredient("carrot", "g"));
         potion.addToPotion(new Ingredient("umbrella handle", "pieces"));                
         assertEquals("clear", potion.removeFromPotion("carrot"));
-    }
+    }        
     
     @Test
     public void doesntRemoveUnexisting() {
         Potion potion = new Potion();
         potion.addToPotion(new Ingredient("carrot", "g"));        
         assertEquals("invalidValue", potion.removeFromPotion(""));
-    }        
+    }
+    
+    @Test
+    public void magicInitCorrectly() {
+        Magic magic = new Magic();
+        String[] pieces = magic.generate();
+        String piece = pieces[0];
+        assertEquals(false, pieces[0].isEmpty());
+        piece = pieces[1];
+        assertEquals(false, pieces[1].isEmpty());
+        piece = pieces[2];
+        assertEquals(false, pieces[2].isEmpty());
+    }
+    
+    @Test
+    public void magicGeneratesCorrectly() {
+        Magic magic = new Magic();
+        String[] pieces = magic.generate();
+        String string1 = pieces[0];
+        pieces = magic.generate();
+        pieces = magic.generate();
+        pieces = magic.generate();
+        String string2 = pieces[0];
+        assertEquals(false, string1.equals(string2));        
+    }    
     
 }

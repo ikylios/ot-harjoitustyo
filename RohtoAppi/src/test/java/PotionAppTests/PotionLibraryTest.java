@@ -1,4 +1,3 @@
-
 package PotionAppTests;
 
 import org.junit.After;
@@ -7,9 +6,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import rohtoappi.dao.PotionsHandler;
 import rohtoappi.domain.AppLogic;
-import rohtoappi.domain.PotionLibrary;
 import rohtoappi.domain.components.Ingredient;
 import rohtoappi.domain.components.Potion;
 
@@ -18,22 +15,22 @@ import rohtoappi.domain.components.Potion;
  * @author xilxilx
  */
 public class PotionLibraryTest {
-    
+
     AppLogic logic = new AppLogic();
     Ingredient ingredient;
-    
+
     public PotionLibraryTest() {
-        
+
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         logic.ingredientLibrary.addIngredient("fairy dust", "g");
@@ -42,7 +39,7 @@ public class PotionLibraryTest {
         logic.ingredientLibrary.addIngredient("troll ear", "pieces");
         ingredient = logic.ingredientLibrary.getRandomIngredient();
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -54,7 +51,7 @@ public class PotionLibraryTest {
         logic.addPotionToLibrary();
         assertEquals(1, logic.potionLibrary.getPotions().size());
     }
-    
+
     @Test
     public void deletesPotion() {
         logic.tempPotion.addToPotion(ingredient);
@@ -65,12 +62,12 @@ public class PotionLibraryTest {
         logic.potionLibrary.deletePotion(name);
         assertEquals(true, logic.potionLibrary.getPotions().isEmpty());
     }
-    
+
     @Test
-    public void doesntDeleteUnexistingPotion() {        
-        assertEquals("error", logic.potionLibrary.deletePotion("power juice"));          
+    public void doesntDeleteUnexistingPotion() {
+        assertEquals("error", logic.potionLibrary.deletePotion("power juice"));
     }
-    
+
     @Test
     public void addsMultiplePotions() {
         ingredient = logic.ingredientLibrary.getRandomIngredient();
@@ -78,8 +75,8 @@ public class PotionLibraryTest {
         logic.tempPotion.generateMagic();
         logic.addPotionToLibrary();
         assertEquals(1, logic.potionLibrary.getPotions().size());
-        
-        logic.clearTempPotion();        
+
+        logic.clearTempPotion();
         logic.tempPotion.addToPotion(ingredient);
         logic.tempPotion.generateMagic();
         while (logic.potionLibrary.getPotionsNames().contains(logic.tempPotion.getName())) {
@@ -88,36 +85,25 @@ public class PotionLibraryTest {
         logic.addPotionToLibrary();
         assertEquals(2, logic.potionLibrary.getPotions().size());
     }
-    
+
     @Test
     public void noDuplicates() {
         ingredient = logic.ingredientLibrary.getRandomIngredient();
         logic.tempPotion.addToPotion(ingredient);
         logic.tempPotion.setName("kryptonite");
         logic.addPotionToLibrary();
-        logic.addPotionToLibrary();        
+        logic.addPotionToLibrary();
         assertEquals(1, logic.potionLibrary.getPotions().size());
     }
-    
+
     @Test
     public void fetchesByName() {
         ingredient = logic.ingredientLibrary.getRandomIngredient();
         logic.tempPotion.addToPotion(ingredient);
         logic.tempPotion.setName("kryptonite");
         Potion potion = logic.tempPotion;
-        logic.addPotionToLibrary();        
+        logic.addPotionToLibrary();
         assertEquals(potion, logic.potionLibrary.getPotionByName("kryptonite"));
     }
-    
-    @Test
-    public void constructWithHandler() {
-        PotionsHandler ph = new PotionsHandler("tied");
-        PotionLibrary pl = new PotionLibrary(ph);
-        
-        assertEquals(true, pl.potionsNames.isEmpty());
-        assertEquals(true, pl.potions.isEmpty());
-    }
-    
-//    
-    
+
 }

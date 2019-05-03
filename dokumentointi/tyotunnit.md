@@ -40,7 +40,8 @@
 |30.4.|1 | Jaettiin ingredientLibrary kahteen näkymään, jossa toisessa hallinnoidaan ingredientLibraryn aineksia (pääsy päävalikosta) ja toinen jossa valitaan listasta aineksia rohtoon. Hieman ulkoasun hiomista.
 |     |3 | Korjattiin bugi, jossa randomise-nappulan luoman rohdon viimeinen aines oli eri arvo listassa kuin "oikeasti". Siistittiin removeIngredientin koodia samoin kuin editIngrentin koodia.
 |     |1 | Lisättiin näkymä, jossa käyttäjä voi asettaa rohdolle nimen.
-|3.5.|2 | Korjattiin bugi jossa rohtoon pystyi lisäämään aines, jonka määrä on 0. Siistittiin potioneita koskevia readPotionsFile() ja writeToFile()-metodeja.
+|3.5.|2 | Korjattiin bugi jossa rohtoon pystyi lisäämään aineksen, jonka määrä on 0. Siistittiin tiedostonlukemista koskevia metodeja.
+|    |6 | Työstettiin tiedostonlukemisen testejä ja paranneltiin muita testejä.
 
 
-Summa: 77
+Summa: 83

@@ -1,4 +1,3 @@
-
 package rohtoappi.dao;
 
 import java.io.File;
@@ -9,7 +8,7 @@ import java.util.Scanner;
 
 /**
  * Käsittelee potions.txt-tiedostosta lukemisen ja tiedostoon kirjoittamisen.
- * 
+ *
  */
 public class PotionsHandler implements FileHandler {
 
@@ -17,14 +16,14 @@ public class PotionsHandler implements FileHandler {
 
     public PotionsHandler(String file) {
         this.file = file;
-    }        
-    
+    }
+
     @Override
     public List readFile() {
         List lines = new ArrayList<>();
-        
+
         try (Scanner scanner = new Scanner(new File(file))) {
-            while (scanner.hasNextLine()) {           
+            while (scanner.hasNextLine()) {
                 lines.add(scanner.nextLine());
             }
             return lines;
@@ -35,17 +34,17 @@ public class PotionsHandler implements FileHandler {
     }
 
     @Override
-    public boolean writeFile(List<String> potions) {        
-    try (FileWriter writer = new FileWriter(new File(file), false)) {
-            for (String line : potions) {                            
+    public boolean writeFile(List<String> potions) {
+        try (FileWriter writer = new FileWriter(new File(file), false)) {
+            for (String line : potions) {
                 writer.write(line);
-            }            
+            }
             writer.close();
             return true;
-        } catch (Exception e) {  
-            
+        } catch (Exception e) {
+
         }
-    return false;
+        return false;
     }
-    
+
 }

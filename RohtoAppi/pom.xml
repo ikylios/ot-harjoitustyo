@@ -29,6 +29,7 @@
 	<configuration>
           <excludes>
             <exclude>rohtoappi/ui/*</exclude>
+	    <exclude>rohtoappi/domain/Main</exclude>
           </excludes>
        </configuration>
                 <executions>

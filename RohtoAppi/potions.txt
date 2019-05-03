@@ -1,2 +1,4 @@
+Frost Perfume;Perfume;Frost;sparrow feather;37;pieces;octopus ink;23;ml;ivy leaf;9;pieces;fairy dust;15;g
 Healing Potion;Potion;Healing;sparrow feather;17;pieces;fairy dust;36;g
-Charm Lotion;Lotion;Charm;sparrow feather;14;pieces;octopus ink;19;ml;fungus;10;pieces
+Broth of Endurance;Broth;Endurance;dragon scale;19;mg;bay leaf;24;pieces
+Sneak Broth;Broth;Sneak;ivy leaf;9;pieces;crocodile tooth;9;pieces

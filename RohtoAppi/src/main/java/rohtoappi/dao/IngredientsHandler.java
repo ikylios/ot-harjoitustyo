@@ -1,4 +1,3 @@
-
 package rohtoappi.dao;
 
 import java.io.File;
@@ -10,22 +9,22 @@ import rohtoappi.domain.components.Ingredient;
 
 /**
  * Käsittelee ingredient.txt-tiedostosta lukemisen ja tiedostoon kirjoittamisen.
- * 
+ *
  */
 public class IngredientsHandler implements FileHandler {
 
-    private String file;
+    final String file;
 
     public IngredientsHandler(String file) {
         this.file = file;
-    }        
-    
+    }
+
     @Override
     public List readFile() {
         List lines = new ArrayList<>();
-        
+
         try (Scanner scanner = new Scanner(new File(file))) {
-            while (scanner.hasNextLine()) {                
+            while (scanner.hasNextLine()) {
                 lines.add(scanner.nextLine());
             }
             return lines;
@@ -36,17 +35,17 @@ public class IngredientsHandler implements FileHandler {
     }
 
     @Override
-    public boolean writeFile(List<String> ingredients) {        
-    try (FileWriter writer = new FileWriter(new File(file), false)) {
-            for (String line : ingredients) {                            
+    public boolean writeFile(List<String> ingredients) {
+        try (FileWriter writer = new FileWriter(new File(file), false)) {
+            for (String line : ingredients) {
                 writer.write(line);
-            }            
+            }
             writer.close();
             return true;
-        } catch (Exception e) {  
-            
+        } catch (Exception e) {
+
         }
-    return false;
+        return false;
     }
-    
+
 }

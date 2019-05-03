@@ -1,5 +1,13 @@
-moss;g
+crocodile tooth;pieces
 fairy dust;g
-fungus;pieces
+forget-me-not petal;pieces
+holy water;mg
+ice fairy nail;pieces
 sparrow feather;pieces
+troll ear;pieces
+moss;g
+frog leg;pieces
+ivy leaf;pieces
+dragon scale;mg
+bay leaf;pieces
 octopus ink;ml
