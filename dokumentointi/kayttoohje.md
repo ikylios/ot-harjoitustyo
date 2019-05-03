@@ -1,7 +1,7 @@
 # Käyttöohje
 
 ## Sovelluksen päävalikko
-![Main Menu]()
+![Main Menu](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/mainMenu.png)
 
 Tarjoaa pääsyn uuden rohdon luomisnäkymään, tallennettujen rohtojen näkymään ja sovelluksen sulkemisnapin.
 
