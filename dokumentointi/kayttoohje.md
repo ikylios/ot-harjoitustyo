@@ -22,6 +22,8 @@ Kun rohtoon halutut ainesosat ovat lisätty, rohtoon generoidaan "taikaa" painam
 ![Aineslista](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/ingredientList.png)
 
 
+Rohtoon lisätään aines klikkaamalla ainesta listasta ja painamalla Add to Potion -nappia.
+
 ## Generated Potion
 ![GeneratedPotion](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/generatedPotion.png)
 
@@ -31,19 +33,19 @@ Menemällä takaisin Create A Potion -näkymään rohdon sisältöä voi vielä 
 
 
 
-## IngredientLibrary
+## Ingredient Library
 ![IngredientLibrary](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/ingredientLibrary.png)
 
-Ingredient Library listaa rohtoon lisättävät ainekset. Rohtoon lisätään aines klikkaamalla listan ainesta ja klikkaamalla Add to Potion -nappia.
+Ingredient Library listaa rohtoihin lisättävät ainekset.
 
-Käyttäjä voi myös itse lisätä uusia aineksia New Ingredient -napilla. Tällöin avautuu uusi näkymä, jossa annetaan aineksen nimi sekä mittayksikkö (grams/g, milligrams/mg, pieces, jne). On käyttäjän vastuulla pitää mittayksiköt ovat samassa muodossa: sovellus ei hajoa jos eri aineksilla on yksiköt mg ja milligrams, mutta rasittanee käyttäjää.
+Käyttäjä voi itse lisätä uusia aineksia New Ingredient -napilla. Tällöin avautuu uusi näkymä, jossa annetaan aineksen nimi sekä mittayksikkö (grams/g, milligrams/mg, pieces, jne). On käyttäjän vastuulla pitää mittayksiköt ovat samassa muodossa: sovellus ei hajoa jos eri aineksilla on yksiköt mg ja milligrams, mutta rasittanee käyttäjää.
 
 Tallennettuja aineksia voi poistaa kirjastosta Remove Ingredient from Library -napilla.
 
-## PotionLibrary
-![PotionLibrary](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/potionLibrary.png)
+## Potion Library
+![Potion Library](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/potionLibrary.png)
 
-PotionLibrary listaa kaikki talletetut rohdot. Tallennettuja rohtoja voidaan tarkastella View Potion -nappulalla ja poistaa Delete Potion -nappulalla.
+Potion Library listaa kaikki talletetut rohdot. Tallennettuja rohtoja voidaan tarkastella View Potion -nappulalla ja poistaa Delete Potion -nappulalla.
 
 
 ## Yleisiä huomioita:
