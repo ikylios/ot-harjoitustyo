@@ -8,12 +8,12 @@ UI-paketti sisältää käyttöliittymän luokat, domain sisältää sovelluslog
 
 ## Käyttöliittymä
 
-Käyttöliittymässä on 6 näkymää ja lisäksi 3 niinsanottua apunäkymää, jotka sisältävät esim. tekstikentän. Sovelluksen kehittyessä joistakin apunäkymistä voidaan luopua.
+Käyttöliittymässä on 7 päänäkymää ja lisäksi 2 niinsanottua apunäkymää, jotka sisältävät vain esim. tekstikentän.
 
 * Main Menu
 * Create A Potion
+* Ingredient List
 * Add Ingredient to Potion (apunäkymä)
-* Remove from Potion (apunäkymä)
 * Generated Potion
 * Ingredient Library
 * New Ingredient (apunäkymä)
@@ -46,7 +46,11 @@ IngredientLibraryn metodeja ovat mm.
 * getIngredientByName(String name)
 * getRandomIngredient()
 
-Ingredient-luokka kuvaa yksittäistä ainesta. Potion-luokka kuvaa yksittäistä rohtoa. Magic-luokka tarjoaa rohdolle tyypin (esimerkiksi tee, rasva, tahna) ja taianomaisen efektin (esim. kauneus, terveys, kirous).
+Ingredient-luokka kuvaa yksittäistä ainesta. Potion-luokka kuvaa yksittäistä rohtoa. 
+
+
+Magic-luokka tarjoaa rohdolle tyypin (esimerkiksi tee, rasva, tahna) ja taianomaisen efektin (esim. kauneus, terveys, kirous).
+Luokka sisältää kaksi listaa ja metodin joka valitsee satunnaisesti molemmista listoista yhden objektin.
 
 ![Luokkakaavio](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/luokkakaavio.png)
 
@@ -58,8 +62,8 @@ Sovelluksen tiedostojen nimet määritellään juurikansiossa olevassa config.pr
 IngredientLibraryn ainekset ovat tallessa ingredients.txt-tiedostossa ja potionLibraryn rohdot sijaitsevat potions.txt-tiedostossa. Tiedostojen lukeminen tapahtuu PotionsHandler- ja IngredientsHandler -luokissa (nykyhetkellä osa tapahtuu potionLibraryssa ja ingredientLibraryssa.) Muutokset tiedostoihin tallennetaan VAIN päävalikon exit-nappulaa klikatessa. Siis ikkunan oikean yläkulman napista sulkeminen ei tallenna muutoksia.
 
 
-Ainekset ovat tallennettuna muodossa aineennimi;yksikkö.
-Rohdot ovat tallennettuna rohdonnimi;
+Ainekset ovat tallennettuna muodossa aineeNimi;Yksikkö.
+Rohdot ovat tallennettuna rohdonNimi;rohdonTyyppi;rohdonEfekti;aineksenNimi;aineksenMäärä;aineksenMittayksikkö;aineksenNimi;aineksenMäärä jne jokaisen aineksen mukaan.
 
 
 

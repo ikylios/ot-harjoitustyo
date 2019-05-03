@@ -4,8 +4,7 @@
 Sovellus toimii käyttäjän sähköisenä taikarohtoreseptikirjana ja -hakemistona. Sovelluksen avulla luodaan, talletetaan ja muokataan rohtoja. Lisäksi voidaan generoida uusia ja uniikkeja rohtoja.
 
 ## Käyttäjät
-Alkuvaiheessa vain yksi käyttäjä, myöhemmin saatetaan lisätä enemmillä oikeuksilla varustettu pääkäyttäjä.
-
+Vain yksi käyttäjä.
 
 
 ## Perusversion tarjoama toiminnallisuus
@@ -16,13 +15,10 @@ Alkuvaiheessa vain yksi käyttäjä, myöhemmin saatetaan lisätä enemmillä oi
 ### Rohtohakemisto
 * listaa kaikki talletetut rohdot
 * rohtoja pääsee tarkastelemaan ja poistamaan
-![Potion Library](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/potionLibrary.jpeg)
 
 ## Rohdon tarkastelunäkymä
 * listaa rohdon ainekset
 * kertoo rohdon kuvauksen (nimi, käyttötarkoitus, käyttötapa)
-* sisältää muokkausnappulan, josta pääsee rohdon muokkausnäkymään
-* alkeellinen kuva rohdosta
 
 ### Muokkausnäkymä
 * käyttäjä voi muokata kaikkia rohdon ominaisuuksia, jotka ovat tarkastelunäkymässä
@@ -38,14 +34,15 @@ Alkuvaiheessa vain yksi käyttäjä, myöhemmin saatetaan lisätä enemmillä oi
 * tallennettujen rohtojen muokkaustoiminnallisuus
 * taikaefektien syöttäminen eli jonkinlainen efektikirjasto
 * rohtotyyppien syöttäminen eli jonkinlainen tyyppikirjasto
+* alkeellinen kuva rohdosta generated potion -näkymässä
+
 
 * rohtojen arvostelutoiminnallisuus, esim. 1-5 tähteä, kommentteja...
-* rohtojen listaaminen hakemistossa muussa kuin luomisjärjestyksessä
-* rohdon generoidun kuvan parempi vastaavuus reseptin ainesosien kanssa, esim. sammakonkoivet ovat näkyviä
+* rohtojen listaaminen hakemistossa muussa kuin aakkosjärjestyksessä
 * muiden käyttäjien lisääminen sovellukseen
 * rohtojen etsiminen yhden ainesosan tai monen ainesosan perusteella
 * rohtojen etsiminen käyttötarkoituksen perusteella
 * rohdon arvioidun hinnan laskeminen
 * erillinen ainesostoslista
-* sovelluksella on parempi ymmärrys siitä, että kalliimmat ja harvinaisemmat ainesosat tuottavat kalliimpia ja harvinaisempia rohtoja
-* mahdollisuus itse valita rohdon taikaefekti ja rohtotyyppi
+* sovelluksella on hienompi ymmärrys aineksista ja taioista; harvinaisemmat ainekset randomisoitaisiin pienemmillä annoksilla kuin yleisemmät ainekset, yksinkertaiset ainesosat luovat yksinkertaista taikaa, yms.
+* mahdollisuus itse valita rohdon taikaefekti, rohtotyyppi ja nimi (eikä pelkästään tilanteessa jossa on jo aiemmin samalla nimellä tallennettu rohto)
