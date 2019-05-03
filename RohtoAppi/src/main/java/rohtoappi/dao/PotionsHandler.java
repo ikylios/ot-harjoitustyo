@@ -24,7 +24,7 @@ public class PotionsHandler implements FileHandler {
         List lines = new ArrayList<>();
         
         try (Scanner scanner = new Scanner(new File(file))) {
-            while (scanner.hasNextLine()) {                
+            while (scanner.hasNextLine()) {           
                 lines.add(scanner.nextLine());
             }
             return lines;

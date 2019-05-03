@@ -1,4 +1,5 @@
 moss;g
 fairy dust;g
+fungus;pieces
 sparrow feather;pieces
 octopus ink;ml

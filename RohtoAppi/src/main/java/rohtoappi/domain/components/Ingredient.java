@@ -6,7 +6,7 @@ package rohtoappi.domain.components;
  * Aineksella on nimi, mittayksikkö ja mahdollisesti asetettu määrä.
  * 
  */
-public class Ingredient {
+public class Ingredient implements Comparable<Ingredient>{
     
     private String name;    
     private String measuringUnit;
@@ -16,6 +16,12 @@ public class Ingredient {
         this.name = name;
         this.measuringUnit = measuringUnit;        
         this.amount = 0;
+    }
+    
+    public Ingredient(String name, int amount, String measuringUnit) {
+        this.name = name;
+        this.measuringUnit = measuringUnit;        
+        this.amount = amount;
     }
 
     public Ingredient() {        
@@ -67,7 +73,11 @@ public class Ingredient {
         }
         return name + "\t\t" + " " + this.measuringUnit;
     }
-    
+
+    @Override
+    public int compareTo(Ingredient t) {
+        return t.getName().compareToIgnoreCase(this.getName());    
+    }    
     
     
 }

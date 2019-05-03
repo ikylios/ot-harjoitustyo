@@ -2,6 +2,7 @@
 package rohtoappi.domain.components;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Luokka kuvastaa rohtoa.
@@ -52,11 +53,12 @@ public class Potion {
     public String addToPotion(Ingredient ingredient) {                
         String retVal = "ingredientPresent";
         
-        if (!ingredients.contains(ingredient)) {            
+        if (!ingredients.contains(ingredient)) {                
             ingredients.add(ingredient);   
             ingredientsString.add(ingredient.toString());
             retVal = "clear";            
-        }           
+        }
+        sort();
         return retVal;
     }
     /**
@@ -65,17 +67,15 @@ public class Potion {
      * @return Palauttaa notInPotion jos ainetta ei ole rohdossa, clear jos aines poistetaan onnistuneesti ja invalidValue jos annettu nimi on tyhjä.
      */
     public String removeFromPotion(String name) {
+        String retVal = "invalidValue";
         if (!name.isEmpty()) {            
-            Ingredient ingredient = getIngredientByName(name);
-            if (ingredient == null) {
-                return "notInPotion";
-            }
-            int index = ingredients.indexOf(ingredient);
-            ingredientsString.remove(index);
-            ingredients.remove(index);           
-            return "clear";
+            Ingredient ingredient = getIngredientByName(name); 
+            ingredientsString.remove(ingredient.toString());
+            ingredients.remove(ingredient);
+            sort();
+            retVal = "clear";
         }        
-        return "invalidValue";                
+        return retVal;                
     }
     
     /**
@@ -87,21 +87,14 @@ public class Potion {
     public String editAmount(String name, String amount) {
         String retVal = "NotValid";
         if (checkDigits(amount)) {
-                int valueAmount = Integer.valueOf(amount);
-                Ingredient ingredient = getIngredientByName(name);
-                if (ingredient != null) {
-                    int index = ingredients.indexOf(ingredient);
-                    String old = ingredient.toString();
-
-                    ingredient.setAmount(valueAmount);                
-                    ingredients.add(ingredient);                
-                    ingredients.remove(index);
-                    ingredientsString.add(ingredient.toString());
-                    ingredientsString.remove(old);                
-                    retVal = "clear"; 
-                }                  
-            }                        
-        
+            int valueAmount = Integer.valueOf(amount);
+            Ingredient ingredient = getIngredientByName(name);
+            ingredientsString.remove(ingredient.toString());
+            ingredient.setAmount(valueAmount);              
+            ingredientsString.add(ingredient.toString());
+            sort();
+            retVal = "clear"; 
+        }                                                              
         return retVal;
     }
     
@@ -117,6 +110,11 @@ public class Potion {
             }
         }                
         return false;
+    }
+    
+    private void sort() {
+        Collections.sort(ingredients);
+        Collections.sort(ingredientsString);
     }
     
     /**

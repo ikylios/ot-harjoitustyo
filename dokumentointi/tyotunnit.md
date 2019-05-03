@@ -37,5 +37,10 @@
 |     |2 | Muokattiin createAPotion käyttämään listView:ta kätevyyden takia.
 |26.4.|4 | Muokattiin createAPotionin remove ingredient yhteensopivaksi listView:n kanssa. Lisättiin createAPotioniin toiminnallisuus jossa voi muuttaa jo lisätyn aineksen määrää.
 |     |1 | Työstettiin testejä.
+|30.4.|1 | Jaettiin ingredientLibrary kahteen näkymään, jossa toisessa hallinnoidaan ingredientLibraryn aineksia (pääsy päävalikosta) ja toinen jossa valitaan listasta aineksia rohtoon. Hieman ulkoasun hiomista.
+|     |3 | Korjattiin bugi, jossa randomise-nappulan luoman rohdon viimeinen aines oli eri arvo listassa kuin "oikeasti". Siistittiin removeIngredientin koodia samoin kuin editIngrentin koodia.
+|     |1 | Lisättiin näkymä, jossa käyttäjä voi asettaa rohdolle nimen.
+|3.5.|2 | Korjattiin bugi jossa rohtoon pystyi lisäämään aines, jonka määrä on 0. Siistittiin potioneita koskevia readPotionsFile() ja writeToFile()-metodeja.
 
-Summa: 71
+
+Summa: 77

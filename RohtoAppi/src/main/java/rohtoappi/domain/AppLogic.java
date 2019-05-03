@@ -39,14 +39,14 @@ public class AppLogic {
      * @return Palauttaa amountIsNotInteger jos amount ei ole luku, muuten palauttaa tempPotion.addToPotionin palautusarvon.
      */     
     public String addToTempPotion(String name, String amount) {
-        String retVal = "amountIsNotInteger";
+        String retVal = "invalidValue";
         
         Ingredient fromLibrary = ingredientLibrary.ingredients.get(name.trim().toLowerCase());
         Ingredient ingredient = new Ingredient(fromLibrary.getName(), fromLibrary.getMeasuringUnit());                                                 
                     
-        if (amount.matches("\\d+")) {  
+        if (amount.matches("\\d+") && Integer.valueOf(amount) > 0) {  
             if (amount.length() > 9) {
-                retVal = "limit";
+                retVal = "limit";            
             } else {
                 ingredient.setAmount(Integer.valueOf(amount));                
                 retVal = tempPotion.addToPotion(ingredient);   
@@ -62,16 +62,27 @@ public class AppLogic {
         tempPotion = new Potion();        
     }
     
+    /**
+     * Arpoo rohdolle satunnaisen sisällön. Tyhjentää nykyisen rohdon. Arpoo enintään niin monta ainesta kun ingredientLibraryssa on. Aineksien määrät ovat väliltä 1-40.
+     */
     public void randomisePotion() {
         Random random = new Random();
         tempPotion = new Potion();
         
-        int amountOfIngredients = random.nextInt(6)+1;        
+        int amountOfIngredients = random.nextInt(8)+1;     
         
-        for (int i = 0; i < amountOfIngredients; i++) {
+        if (amountOfIngredients > ingredientLibrary.ingredients.size()) {
+            amountOfIngredients = ingredientLibrary.ingredients.size()-1;
+        }
+        
+        int i = 0;
+        while (i < amountOfIngredients) {
             Ingredient ingredient = ingredientLibrary.getRandomIngredient();
-            ingredient.setAmount(random.nextInt(39)+1);
-            tempPotion.addToPotion(ingredient);
+            if (!tempPotion.ingredients.contains(ingredient)) {
+                ingredient.setAmount(random.nextInt(39)+1);
+                tempPotion.addToPotion(ingredient);
+                i++;
+            }               
         }
     }
     

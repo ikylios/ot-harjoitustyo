@@ -5,18 +5,28 @@
  */
 package PotionAppTests;
 
+import java.io.File;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Rule;
+import org.junit.rules.TemporaryFolder;
+import rohtoappi.dao.IngredientsHandler;
 
 /**
  *
  * @author xilxilx
  */
 public class HandlerTest {
+    
+    @Rule
+    public TemporaryFolder tf = new TemporaryFolder();
+    
+    File ingredientsFile;
+    File potionsFile;
     
     public HandlerTest() {
     }
@@ -30,16 +40,16 @@ public class HandlerTest {
     }
     
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
+        ingredientsFile = tf.newFile("testfile_ingredients.txt");
+        potionsFile = tf.newFile("testfile_potions.txt");
+        
+//        IngredientsHandler ih = new IngredientsHandler(ingredientsFile);
     }
     
     @After
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    
 }

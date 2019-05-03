@@ -1,7 +1,2 @@
-Healing Salve
-Salve
-Healing
-octopus ink
-3
-ml
-
+Healing Potion;Potion;Healing;sparrow feather;17;pieces;fairy dust;36;g
+Charm Lotion;Lotion;Charm;sparrow feather;14;pieces;octopus ink;19;ml;fungus;10;pieces
