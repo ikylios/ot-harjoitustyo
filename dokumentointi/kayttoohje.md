@@ -6,7 +6,7 @@
 Tarjoaa pääsyn uuden rohdon luomisnäkymään, tallennettujen rohtojen näkymään ja sovelluksen sulkemisnapin.
 
 ## Create A Potion
-![Create A Potion]()
+![Create A Potion](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/createAPotion.png)
 
 Create A Potionissa luodaan rohto. Aineslista on aluksi tyhjä, mutta aineksia voidaan lisätä Add ingredient -nappulalla, joka johtaa näkymään, jossa on listattuna kaikki ingredientLibraryn ainekset. Aineksia voidaan poistaa Remove ingredient -napilla. Käyttäjä syöttää aineksen määrän sovellukselle lisänäkymässä. Sovellus ei hyväksy negatiivisia lukuja tai nollaa. Korkeintaan yhdeksän merkkiä pitkät luvut hyväksytään.
 
@@ -19,11 +19,11 @@ Clear Potion -nappi tyhjentää rohdon kaikista aineksista.
 Kun rohtoon halutut ainesosat ovat lisätty, rohtoon generoidaan "taikaa" painamalla Confirm potion -nappulaa. Tämä vie käyttäjän uuteen Generated Potion -näkymään.
 
 
-![Aineslista]()
+![Aineslista](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/ingredientList.png)
 
 
 ## Generated Potion
-![GeneratedPotion]()
+![GeneratedPotion](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/generatedPotion.png)
 
 Näkymässä näkyy valmis rohto aineksineen. Rohdolle on satunnaisesti generoitu nimi, eli tyyppi ja vaikutus. Generoidun rohdon voi tallentaa rohtokirjastoon.
 
@@ -32,7 +32,7 @@ Menemällä takaisin Create A Potion -näkymään rohdon sisältöä voi vielä 
 
 
 ## IngredientLibrary
-![IngredientLibrary]()
+![IngredientLibrary](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/ingredientLibrary.png)
 
 Ingredient Library listaa rohtoon lisättävät ainekset. Rohtoon lisätään aines klikkaamalla listan ainesta ja klikkaamalla Add to Potion -nappia.
 
@@ -41,7 +41,7 @@ Käyttäjä voi myös itse lisätä uusia aineksia New Ingredient -napilla. Täl
 Tallennettuja aineksia voi poistaa kirjastosta Remove Ingredient from Library -napilla.
 
 ## PotionLibrary
-![PotionLibrary]()
+![PotionLibrary](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/potionLibrary.png)
 
 PotionLibrary listaa kaikki talletetut rohdot. Tallennettuja rohtoja voidaan tarkastella View Potion -nappulalla ja poistaa Delete Potion -nappulalla.
 
