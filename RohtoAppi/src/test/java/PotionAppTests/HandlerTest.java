@@ -7,6 +7,7 @@ package PotionAppTests;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -115,7 +116,7 @@ public class HandlerTest {
     }
 
     @Test
-    public void writesToIngredientFile() {
+    public void writesToIngredientFile() throws Exception {
         List<String> lines = new ArrayList<>();
         lines.add("carrot;g\n");
         lines.add("ink;mg\n");
@@ -127,7 +128,7 @@ public class HandlerTest {
     }
 
     @Test
-    public void writesToPotionFile() {
+    public void writesToPotionFile() throws Exception {
         List<String> lines = new ArrayList<>();
         lines.add("Sneak Broth;Broth;Sneak;ivy leaf;9;pieces;crocodile tooth;9;pieces\n");
         lines.add("Broth of Endurance;Broth;Endurance;dragon scale;19;mg;bay leaf;24;pieces\n");

@@ -42,6 +42,6 @@
 |     |1 | Lisättiin näkymä, jossa käyttäjä voi asettaa rohdolle nimen jos potion libraryssa on samanniminen rohto.
 |3.5.|2 | Korjattiin bugi jossa rohtoon pystyi lisäämään aineksen, jonka määrä on 0. Siistittiin tiedostonlukemista koskevia metodeja.
 |    |6 | Työstettiin tiedostonlukemisen testejä ja paranneltiin muita testejä. Aloiteltiin testausdokumenttia.
+|4.5.|2 | Korjattiin jar-paketti toimimaan. Toivottavasti.
 
-
-Summa: 83
+Summa: 85

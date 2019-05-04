@@ -2,6 +2,7 @@ package rohtoappi.dao;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,14 +13,14 @@ import java.util.Scanner;
  */
 public class PotionsHandler implements FileHandler {
 
-    private String file;
+    final String file;
 
     public PotionsHandler(String file) {
         this.file = file;
     }
 
     @Override
-    public List readFile() {
+    public List readFile() throws Exception {
         List lines = new ArrayList<>();
 
         try (Scanner scanner = new Scanner(new File(file))) {
@@ -28,7 +29,8 @@ public class PotionsHandler implements FileHandler {
             }
             return lines;
         } catch (Exception e) {
-
+            FileWriter writer = new FileWriter(new File(file));
+            writer.close();
         }
         return null;
     }

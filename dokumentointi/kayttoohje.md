@@ -52,4 +52,28 @@ Potion Library listaa kaikki talletetut rohdot. Tallennettuja rohtoja voidaan ta
 Vaikka käyttäjä vaihtaisi näkymäänsä Create A Potionista muihin näkymiin, työn alla oleva rohto ei häviä. Vain painamalla Clear potion -nappia kaikki ainekset häviävät ja käyttäjä aloittaa puhtaalta pöydältä. Rohto häviää myös jos sovellus suljetaan.
 
 
-Jotta uudet ainekset ja rohdot tallentuvat Ingredient Libraryyn ja Potion Libraryyn, sovellus **täytyy** sulkea päävalikon Exit-nappulasta. Muutokset eivät muuten tallennu tiedostoon.
+Jotta uudet ainekset ja rohdot tallentuvat Ingredient Libraryyn ja Potion Libraryyn, sovellus **täytyy** sulkea päävalikon Exit-nappulasta. Muutokset eivät muuten tallennu tiedostoihin.
+
+
+# Asennus
+
+Lataa tiedosto [rohtoappi.jar]()
+
+## Konfigurointi
+
+Lataamisen jälkeen luo tiedosto nimeltä *config.properties*. Kopioi tiedoston sisällöksi
+
+```
+ingredientFile=ingredients.txt
+potionsFile=potions.txt
+```
+
+Sijoita *config.properties* samaan kansioon (tai muuhun ympäristöön) kuin missä rohtoappi.jar on.
+Sovellus käyttää näitä tiedostoja aineksien ja rohtojen tallentamiseen. Tiedostot ingredients.txt ja potions.txt luodaan kun ohjelma havaitsee, ettei näitä tiedostoja ole vielä olemassa. Sovellus luo nämä tiedostot.
+
+
+## Ohjelman käynnistäminen
+Ohjelma käynnistetään komennolla
+```
+java -jar rohtoappi.jar
+```

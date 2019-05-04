@@ -2,6 +2,7 @@ package rohtoappi.dao;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -20,7 +21,7 @@ public class IngredientsHandler implements FileHandler {
     }
 
     @Override
-    public List readFile() {
+    public List readFile() throws Exception {
         List lines = new ArrayList<>();
 
         try (Scanner scanner = new Scanner(new File(file))) {
@@ -29,7 +30,8 @@ public class IngredientsHandler implements FileHandler {
             }
             return lines;
         } catch (Exception e) {
-
+            FileWriter writer = new FileWriter(new File(file));
+            writer.close();
         }
         return null;
     }

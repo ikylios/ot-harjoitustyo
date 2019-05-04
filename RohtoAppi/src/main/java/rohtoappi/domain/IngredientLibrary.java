@@ -1,5 +1,6 @@
 package rohtoappi.domain;
 
+import java.io.IOException;
 import rohtoappi.domain.components.Ingredient;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,7 +20,7 @@ public class IngredientLibrary {
     private Random random;
     private IngredientsHandler ingredientsHandler;
 
-    public IngredientLibrary(IngredientsHandler ingredientsHandler) {
+    public IngredientLibrary(IngredientsHandler ingredientsHandler) throws Exception {
         this.ingredients = new HashMap<>();
         this.ingredientsNames = new ArrayList<>();
         this.random = new Random();
@@ -39,7 +40,7 @@ public class IngredientLibrary {
      *
      * @return
      */
-    final boolean readIngredientsFile() {
+    final boolean readIngredientsFile() throws Exception {
         List<String> lines = ingredientsHandler.readFile();
         for (String line : lines) {
             String[] pieces = line.split(";");
