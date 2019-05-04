@@ -17,7 +17,7 @@ public class AppLogic {
     public Potion tempPotion;
     private Random random;
 
-    public AppLogic(IngredientsHandler ingredientsHandler, PotionsHandler potionsHandler) {
+    public AppLogic(IngredientsHandler ingredientsHandler, PotionsHandler potionsHandler) throws Exception {
         this.ingredientLibrary = new IngredientLibrary(ingredientsHandler);
         this.potionLibrary = new PotionLibrary(potionsHandler);
         this.tempPotion = new Potion();

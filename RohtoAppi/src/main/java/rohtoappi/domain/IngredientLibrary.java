@@ -1,6 +1,5 @@
 package rohtoappi.domain;
 
-import java.io.IOException;
 import rohtoappi.domain.components.Ingredient;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,10 +41,13 @@ public class IngredientLibrary {
      */
     final boolean readIngredientsFile() throws Exception {
         List<String> lines = ingredientsHandler.readFile();
-        for (String line : lines) {
-            String[] pieces = line.split(";");
-            addIngredient(pieces[0], pieces[1]);
+        if (!lines.isEmpty()) {
+            for (String line : lines) {
+                String[] pieces = line.split(";");
+                addIngredient(pieces[0], pieces[1]);
+            }
         }
+
         return true;
     }
 

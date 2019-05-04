@@ -41,7 +41,7 @@ public class AppUI extends Application {
     public void giveLogic(AppLogic logic) {
         this.logic = logic;
         padding = new Insets(20, 20, 20, 20);
-        background = new Background(new BackgroundFill(Color.rgb(70, 35, 97), CornerRadii.EMPTY, Insets.EMPTY));
+        background = new Background(new BackgroundFill(Color.rgb(71, 35, 97), CornerRadii.EMPTY, Insets.EMPTY));
         buttonStyle = "-fx-background-color: #8872a5; -fx-text-fill: #ffffff; -fx-border-color: #ffffff; -fx-border-width: 2px;";
         uiBuilder = new UIBuilder();
     }

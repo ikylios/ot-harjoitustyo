@@ -1,6 +1,5 @@
 package rohtoappi.domain;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,21 +38,24 @@ public class PotionLibrary {
     final boolean readPotionsFile() throws Exception {
         List<String> lines = potionsHandler.readFile();
 
-        for (String line : lines) {
-            Potion potion = new Potion();
+        if (!lines.isEmpty()) {
 
-            String[] linePieces = line.split(";");
-            potion.setName(linePieces[0]);
-            potion.setType(linePieces[1]);
-            potion.setEffect(linePieces[2]);
+            for (String line : lines) {
+                Potion potion = new Potion();
 
-            int i = 3;
-            while (i < linePieces.length) {
-                Ingredient ingredient = new Ingredient(linePieces[i], Integer.valueOf(linePieces[i + 1]), linePieces[i + 2]);
-                i += 3;
-                potion.addToPotion(ingredient);
+                String[] linePieces = line.split(";");
+                potion.setName(linePieces[0]);
+                potion.setType(linePieces[1]);
+                potion.setEffect(linePieces[2]);
+
+                int i = 3;
+                while (i < linePieces.length) {
+                    Ingredient ingredient = new Ingredient(linePieces[i], Integer.valueOf(linePieces[i + 1]), linePieces[i + 2]);
+                    i += 3;
+                    potion.addToPotion(ingredient);
+                }
+                addPotion(potion);
             }
-            addPotion(potion);
         }
         return true;
     }

@@ -5,18 +5,13 @@
  */
 package PotionAppTests;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import rohtoappi.dao.IngredientsHandler;
-import rohtoappi.dao.PotionsHandler;
 import rohtoappi.domain.AppLogic;
-import rohtoappi.domain.components.Ingredient;
 
 /**
  *
