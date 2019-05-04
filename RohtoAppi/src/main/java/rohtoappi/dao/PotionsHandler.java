@@ -30,6 +30,14 @@ public class PotionsHandler implements FileHandler {
         } catch (Exception e) {
             FileWriter writer = new FileWriter(new File(file));
             writer.close();
+            try (Scanner scanner = new Scanner(new File(file))) {
+                while (scanner.hasNextLine()) {
+                    lines.add(scanner.nextLine());
+                }
+                return lines;
+            } catch (Exception e2) {
+
+            }
         }
         return null;
     }
