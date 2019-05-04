@@ -167,7 +167,7 @@ public class AppUI extends Application {
         });
 
         addIngredient.setOnAction((event) -> {
-            addToPotionList(window);
+            ingredientList(window);
         });
 
         removeIngredient.setOnAction((event) -> {
@@ -198,7 +198,7 @@ public class AppUI extends Application {
         window.show();
     }
 
-    public void addToPotionList(Stage window) {
+    public void ingredientList(Stage window) {
         BorderPane ingredientComponents = new BorderPane();
 
         Label titleLabel = uiBuilder.createSceneTitle("Ingredients");
@@ -296,7 +296,7 @@ public class AppUI extends Application {
         components.setBackground(background);
 
         cancel.setOnAction((event) -> {
-            addToPotionList(window);
+            ingredientList(window);
         });
 
         confirm.setOnAction((event) -> {
@@ -311,7 +311,7 @@ public class AppUI extends Application {
                     response = "Please limit the amount to 9 digits or less.";
                 } else {
                     amountField.clear();
-                    addToPotionList(window);
+                    ingredientList(window);
                 }
                 status.setText(response);
             }
