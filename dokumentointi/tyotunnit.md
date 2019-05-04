@@ -26,7 +26,7 @@
 |15.4.|2 | CreateAPotionTest-luokan korjaamista. Kirjoitettiin lisää testejä.
 |     |1 | Maven-testien kanssa sekoilua. Päivitettiin työkone java 8:aan.
 |     |2 | Lisättiin PotionLibraryn näkymä ja runkotoiminnallisuutta. Rohtoja voi nyt tallentaa rohdot potionLibraryyn, mutta ei pysyväismuistiin (vielä). Lisättiin PotionLibrarylle testejä. Lisäksi muita pienempiä fiksejä, kuten clear-nappula joka tyhjentää työn alla olevan rohdon kaikista aineksista. Rohto ei enää myöskään häviä, jos palaa päävalikkoon Create A Potionista.
-|     |1 | Lisättiin rivikattavuutta nostavia testejä.
+|     |1 | Lisättiin testejä.
 |16.4.|2 | Arkkitehtuurikuvaus kuntoon.
 |22.4.|2 | Muutettiin ingredient-tiedostosta lukeminen ja tiedostoon kirjoittaminen hyödyntämään properties-oliota.
 |     |2 | Työstettiin rohtojen pysyväismuistitallennusta.
@@ -39,9 +39,9 @@
 |     |1 | Työstettiin testejä.
 |30.4.|1 | Jaettiin ingredientLibrary kahteen näkymään, jossa toisessa hallinnoidaan ingredientLibraryn aineksia (pääsy päävalikosta) ja toinen jossa valitaan listasta aineksia rohtoon. Hieman ulkoasun hiomista.
 |     |3 | Korjattiin bugi, jossa randomise-nappulan luoman rohdon viimeinen aines oli eri arvo listassa kuin "oikeasti". Siistittiin removeIngredientin koodia samoin kuin editIngrentin koodia.
-|     |1 | Lisättiin näkymä, jossa käyttäjä voi asettaa rohdolle nimen.
+|     |1 | Lisättiin näkymä, jossa käyttäjä voi asettaa rohdolle nimen jos potion libraryssa on samanniminen rohto.
 |3.5.|2 | Korjattiin bugi jossa rohtoon pystyi lisäämään aineksen, jonka määrä on 0. Siistittiin tiedostonlukemista koskevia metodeja.
-|    |6 | Työstettiin tiedostonlukemisen testejä ja paranneltiin muita testejä.
+|    |6 | Työstettiin tiedostonlukemisen testejä ja paranneltiin muita testejä. Aloiteltiin testausdokumenttia.
 
 
 Summa: 83

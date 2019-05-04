@@ -11,6 +11,8 @@ Sovellus taianomaisten taikarohtojen luomiseen ja tallentamiseen.
 
 [Arkkitehtuurikuvaus](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md)
 
+[Testausdokumentti](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/testausdokumentti.md)
+
 [Työaikakirjanpito](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/tyotunnit.md)
 
 ## Releaset
