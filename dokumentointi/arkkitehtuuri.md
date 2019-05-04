@@ -70,7 +70,7 @@ Rohdot ovat tallennettuna rohdonNimi;rohdonTyyppi;rohdonEfekti;aineksenNimi;aine
 ## Päätoiminnallisuudet
 
 Sekvenssikaavio aineksen lisäämisestä rohtoon:
-![Sekvenssi Add Ingredient To Potion](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/addingredientsequence.jpg)
+![Sekvenssi Add Ingredient To Potion](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/addingredientsequencenew.jpg)
 
 
 Käyttäjä on aluksi Create A Potion -näkymässä. Tässä näkymässä hän klikkaa Add Ingredient (ingredient library) -nappia, joka ohjaa hänet ingredientLibrary-näkymään. 
