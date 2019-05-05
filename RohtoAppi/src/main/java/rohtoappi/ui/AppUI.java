@@ -122,7 +122,7 @@ public class AppUI extends Application {
         createButtons.setSpacing(10);
         Button confirmPotion = new Button("Confirm Potion");
         confirmPotion.setStyle(buttonStyle);
-        Button backToMenu = new Button("Back To Main Menu");
+        Button backToMenu = new Button("Back");
         backToMenu.setStyle(buttonStyle);
         Button randomisePotion = new Button("Randomize");
         randomisePotion.setStyle(buttonStyle);
@@ -413,7 +413,7 @@ public class AppUI extends Application {
         confirm.setStyle(buttonStyle);
         Button toLibrary = new Button("Go To Potion Library");
         toLibrary.setStyle(buttonStyle);
-        Button cancel = new Button("Back To Create A Potion");
+        Button cancel = new Button("Back");
         cancel.setStyle(buttonStyle);
         buttons.getChildren().addAll(confirm, toLibrary, cancel);
         buttons.setSpacing(20);
@@ -608,7 +608,7 @@ public class AppUI extends Application {
         HBox buttons = new HBox();
         Button confirm = new Button("Confirm");
         confirm.setStyle(buttonStyle);
-        Button cancel = new Button("Back To Ingredient Library");
+        Button cancel = new Button("Cancel");
         cancel.setStyle(buttonStyle);
         buttons.getChildren().addAll(confirm, cancel);
         buttons.setSpacing(20);
@@ -666,7 +666,7 @@ public class AppUI extends Application {
         HBox buttons = new HBox();
         Button viewPotion = new Button("View Potion");
         viewPotion.setStyle(buttonStyle);
-        Button cancel = new Button("Back To Main Menu");
+        Button cancel = new Button("Back");
         cancel.setStyle(buttonStyle);
         Button delete = new Button("Delete Potion");
         delete.setStyle(buttonStyle);
@@ -725,7 +725,7 @@ public class AppUI extends Application {
 
         HBox createButtons = new HBox();
         createButtons.setSpacing(20);
-        Button backToPotionLib = new Button("Back To Potion Library");
+        Button backToPotionLib = new Button("Back");
         backToPotionLib.setStyle(buttonStyle);
         createButtons.getChildren().addAll(backToPotionLib);
         createButtons.setAlignment(Pos.CENTER);

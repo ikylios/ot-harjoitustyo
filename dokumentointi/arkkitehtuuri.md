@@ -4,7 +4,7 @@
 
 ![Rakenne](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/pakkausrakenne.png)
 
-UI-paketti sisältää käyttöliittymän luokat, domain sisältää sovelluslogiikan ja muut toiminnallisuuden luokat, dao-paketti sisältää pysyväistalletuksen luokat.
+rohtoappi.ui-paketti sisältää käyttöliittymän luokat, rohtoappi.domain sisältää sovelluslogiikan ja muut toiminnallisuuden luokat, rohtoappi.dao-paketti sisältää pysyväistalletuksen luokat.
 
 ## Käyttöliittymä
 
@@ -59,31 +59,40 @@ Luokka sisältää kaksi listaa ja metodin joka valitsee satunnaisesti molemmist
 
 Sovelluksen tiedostojen nimet määritellään juurikansiossa olevassa config.properties -tiedostossa.
 
-IngredientLibraryn ainekset ovat tallessa ingredients.txt-tiedostossa ja potionLibraryn rohdot sijaitsevat potions.txt-tiedostossa. Tiedostojen lukeminen tapahtuu PotionsHandler- ja IngredientsHandler -luokissa (nykyhetkellä osa tapahtuu potionLibraryssa ja ingredientLibraryssa.) Muutokset tiedostoihin tallennetaan VAIN päävalikon exit-nappulaa klikatessa. Siis ikkunan oikean yläkulman napista sulkeminen ei tallenna muutoksia.
+IngredientLibraryn ainekset ovat tallessa ingredients.txt-tiedostossa ja potionLibraryn rohdot sijaitsevat potions.txt-tiedostossa. Tiedostojen lukeminen tapahtuu PotionsHandler- ja IngredientsHandler -luokissa, jotka antavat IngredientLibrary- ja PotionLibrary-olioille tiedostojen rivit ArrayListinä. Kirjastot muuntavat nämä rivit sitten aineksiksi ja rohdoiksi. Tiedostot luetaan sovelluksen käynnistyshetkellä ja muutokset tallennetaan sovelluksen sulkemishetkellä.
 
 
-Ainekset ovat tallennettuna muodossa aineeNimi;Yksikkö.
+Ainekset ovat tallennettuna muodossa aineenNimi;Yksikkö.
+```
+carrot;g
+coal;kg
+dragon scale; mg
+```
+
+
 Rohdot ovat tallennettuna rohdonNimi;rohdonTyyppi;rohdonEfekti;aineksenNimi;aineksenMäärä;aineksenMittayksikkö;aineksenNimi;aineksenMäärä jne jokaisen aineksen mukaan.
 
+```
+Healing Potion;Potion;Healing;carrot;20;g;coal;10;kg
+Tea of Deep Doubt;Tea;Deep Doubt;ivy leaf;10;g
+```
 
-
-## Päätoiminnallisuudet
+## Päätoiminnallisuuksista
 
 Sekvenssikaavio aineksen lisäämisestä rohtoon:
 ![Sekvenssi Add Ingredient To Potion](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/addingredientsequence.jpg)
 
 
-Käyttäjä on aluksi Create A Potion -näkymässä. Tässä näkymässä hän klikkaa Add Ingredient (ingredient library) -nappia, joka ohjaa hänet ingredientLibrary-näkymään. 
+Käyttäjä on aluksi Create A Potion -näkymässä. Tässä näkymässä hän klikkaa Add Ingredient -nappia, joka ohjaa hänet ingredientList-näkymään. 
 
 
-Tämän jälkeen käyttäjä klikkaa jotakin ingredientLibraryn listassa olevista aineksista ja painaa sitten Add To Potion -nappia. Tämän jälkeen aukeaa addIngredientToPotion-näkymä, jossa käyttäjältä kysytään kuinka paljon ainetta kuuluu reseptiin, esim. 7 ml, 3 kpl. Tässä näkymässä käytetään käyttäjän mukavuudeksi tekstiä, josta tulee ilmi aineksen yksikkö. Tätä varten kutsutaan ingredientLibrarysta ainesta nimellä, ja saadaan takaisin aineksen mittayksikkö, esimerkiksi "g". 
+Tämän jälkeen käyttäjä klikkaa jotakin ingredientListin aineksista ja painaa sitten Add To Potion -nappia. Tämän jälkeen aukeaa addIngredientToPotion-näkymä, jossa käyttäjältä kysytään kuinka paljon ainetta kuuluu reseptiin, esim. 7 g. Tässä näkymässä käytetään käyttäjän mukavuudeksi tekstiä, josta tulee ilmi aineksen yksikkö. Tätä varten kutsutaan ingredientLibrarysta ainesta nimellä, ja saadaan takaisin aineksen mittayksikkö, esimerkiksi "g". 
 
 
-Käyttäjä antaa halutun arvon amount-kenttään ja painaa confirm-nappulaa. AppLogicin metodia addToTempPotion kutsutaan. 
+Käyttäjä antaa halutun arvon amount-kenttään ja painaa confirm-nappulaa. AppLogicin metodia addToTempPotion kutsutaan. AppLogic pyytää ensin ingredient-olion ingredientLibrarylta nimen perusteella ja sitten antaa tämän aineksen parametrinä tempPotionin metodille addToPotion. Tämä metodi palauttaa merkkijonon, joka kertoo, onnistuiko operaatio. Käyttäjän näkymään ilmestyy status-teksti, joka varmistaa käyttäjälle operaation onnistuneen tai epäonnistuneen. Onnistumisen yhteydessä status saa tekstikseen "Ingredient added."
 
 
-AppLogic ensin pyytää ingredient-olion ingredientLibrarylta ja sitten antaa tämän aineksen parametrinä tempPotionin metodille addToPotion. Tämä metodi palauttaa merkkijonon, joka kertoo operaation onnistuneen. (Epäonnistuminen palauttaa merkkijonon riippuen epäonnistumisen syystä.) Käyttäjän näkymään ilmestyy status-teksti, joka varmistaa käyttäjälle operaation onnistuneen: "Ingredient added."
-
+Muiden toiminnallisuuksien toiminta noudattelee samaa periaatetta: sovelluslogiikka kutsuu ingredientLibrarya tai potionLibrarya tarvittavan toiminnallisuuden suorittamiseksi, ja käyttöliittymä välittää käyttäjälle tiedon operaation tuloksesta.
 
 ## Ohjelman rakenteeseen jääneet heikkoudet
 
@@ -97,4 +106,7 @@ Stage-olion heitteleminen metodien välillä tuntuu huonolta menetelmältä.
 
 ### Rakenne
 
-Jokaisella Potion-luokalla on oma Magic-luokka jossa toistuvat samat listat. Lienee järkevämpää ja etenkin jatkokehitysmielessä mielekkäämpää, että magic-luokka olisi myös omanlainen kirjastonsa, johon voi lisätä uusia taikoja ja tyyppejä.
+Jokaisella Potion-luokalla on oma Magic-luokka jossa toistuvat samat listat. Lienee järkevämpää ja etenkin jatkokehitysmielessä mielekkäämpää, että Magic-luokka olisi myös omanlainen kirjastonsa, johon voi lisätä uusia taikoja ja tyyppejä.
+
+
+Rohtotiedostoon tallennetaan aineksen yksikkö. Hienompaa olisi, jos yksikön voisi hakea aineskirjastosta turhan toiston välttämiseksi.

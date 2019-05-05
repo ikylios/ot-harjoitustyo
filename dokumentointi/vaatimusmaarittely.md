@@ -1,4 +1,4 @@
-# Rohtosovelluksen vaatimusmäärittely
+# Vaatimusmäärittely
 
 ## Sovelluksen tarkoitus
 Sovellus toimii käyttäjän sähköisenä taikarohtoreseptikirjana ja -hakemistona. Sovelluksen avulla luodaan, talletetaan ja muokataan rohtoja. Lisäksi voidaan generoida uusia ja uniikkeja rohtoja.
@@ -9,10 +9,11 @@ Vain yksi käyttäjä.
 
 ## Perusversion tarjoama toiminnallisuus
 ### Päävalikko
-* pääsy rohdonluomisnäkymään (tyhjä rohdonmuokkausnäkymä.)
+* pääsy rohdonluomisnäkymään (tyhjä rohdonmuokkausnäkymä)
 * pääsy rohtojenselaamisnäkymään
+* pääsy aineskirjastoon
 
-### Rohtohakemisto
+### Rohtohakemisto (Potion Library)
 * listaa kaikki talletetut rohdot
 * rohtoja pääsee tarkastelemaan ja poistamaan
 
@@ -21,28 +22,26 @@ Vain yksi käyttäjä.
 * kertoo rohdon kuvauksen (nimi, käyttötarkoitus, käyttötapa)
 
 ### Muokkausnäkymä
-* käyttäjä voi muokata kaikkia rohdon ominaisuuksia, jotka ovat tarkastelunäkymässä
 * voidaan lisätä tai poistaa aineksia rohdosta
-* nappula josta generoida satunnaiset ainekset rohtoon
+* nappi, josta generoida satunnaiset ainekset rohtoon
+
+
+Alustava luonnos:
 ![Muokkaus ja luonti](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/createApotion.jpeg)
 
-## Aineskirjasto (ingredientLibrary)
-* sisältää kaikki ainekset, joita rohtoon voidaan laittaa.
-* käyttäjä voi luoda uusia aineksia tai poistaa olemassa olevia aineksia (tämä poistaa kaikki rohdot, joissa ainesta on.)
+## Aineskirjasto (Ingredient Library)
+* sisältää kaikki ainekset, joita rohtoon voidaan laittaa
+* käyttäjä voi luoda uusia aineksia tai poistaa olemassa olevia aineksia
 
 ## Jatkokehitysideoita
 * tallennettujen rohtojen muokkaustoiminnallisuus
 * taikaefektien syöttäminen eli jonkinlainen efektikirjasto
 * rohtotyyppien syöttäminen eli jonkinlainen tyyppikirjasto
 * alkeellinen kuva rohdosta generated potion -näkymässä
-
-
-* rohtojen arvostelutoiminnallisuus, esim. 1-5 tähteä, kommentteja...
 * rohtojen listaaminen hakemistossa muussa kuin aakkosjärjestyksessä
-* muiden käyttäjien lisääminen sovellukseen
 * rohtojen etsiminen yhden ainesosan tai monen ainesosan perusteella
 * rohtojen etsiminen käyttötarkoituksen perusteella
 * rohdon arvioidun hinnan laskeminen
 * erillinen ainesostoslista
 * sovelluksella on hienompi ymmärrys aineksista ja taioista; harvinaisemmat ainekset randomisoitaisiin pienemmillä annoksilla kuin yleisemmät ainekset, yksinkertaiset ainesosat luovat yksinkertaista taikaa, yms.
-* mahdollisuus itse valita rohdon taikaefekti, rohtotyyppi ja nimi (eikä pelkästään tilanteessa jossa on jo aiemmin samalla nimellä tallennettu rohto)
+* mahdollisuus itse valita rohdon taikaefekti, rohtotyyppi

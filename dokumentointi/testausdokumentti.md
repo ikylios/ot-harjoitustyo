@@ -15,7 +15,7 @@ HandlerTest-luokka testaa tiedostosta lukemista sekä pysyväistalletusta käytt
 
 ### Testauskattavuus
 
-Sovelluksen testauksen rivikattavuus on 87% ja haarautumakattavuus 79%. Testauksessa ei oteta huomioon käyttöliittymäluokkia.
+Sovelluksen testauksen rivikattavuus on 87% ja haarautumakattavuus 79%. Testauksessa ei oteta huomioon käyttöliittymäluokkia. En osannut erottaa main-luokkaa testauksesta.
 
 ![JacocoReport](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/jacocoresults.png)
 

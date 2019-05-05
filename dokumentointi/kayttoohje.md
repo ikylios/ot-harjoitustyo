@@ -8,15 +8,15 @@ Tarjoaa pääsyn uuden rohdon luomisnäkymään, tallennettujen rohtojen näkym�
 ## Create A Potion
 ![Create A Potion](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/createAPotion.png)
 
-Create A Potionissa luodaan rohto. Aineslista on aluksi tyhjä, mutta aineksia voidaan lisätä Add ingredient -nappulalla, joka johtaa näkymään, jossa on listattuna kaikki ingredientLibraryn ainekset. Aineksia voidaan poistaa Remove ingredient -napilla. Käyttäjä syöttää aineksen määrän sovellukselle lisänäkymässä. Sovellus ei hyväksy negatiivisia lukuja tai nollaa. Korkeintaan yhdeksän merkkiä pitkät luvut hyväksytään.
+Create A Potionissa luodaan rohto. Aineslista on aluksi tyhjä, mutta aineksia voidaan lisätä Add Ingredient -nappulalla, joka johtaa näkymään, jossa on listattuna kaikki Ingredient Libraryn ainekset. Käyttäjä syöttää aineksen määrän sovellukselle lisänäkymässä. Sovellus ei hyväksy negatiivisia lukuja tai nollaa. Korkeintaan yhdeksän merkkiä pitkät luvut hyväksytään.
 
-Käyttäjä voi poistaa aineksen rohdosta lisäyksen jälkeen valitsemalla aineksen listasta ja klikkaamalla Remove ingredient -nappia. Käyttäjä voi muokata aineen määrää Edit amount -napilla. Ohjelma hyväksyy jälleen vain positiiviset, korkeintaan yhdeksän merkkiä pitkät luvut.
+Käyttäjä voi poistaa aineksen rohdosta lisäyksen jälkeen valitsemalla aineksen listasta ja klikkaamalla Remove Ingredient -nappia. Käyttäjä voi muokata aineen määrää Edit Amount -napilla. Ohjelma hyväksyy jälleen vain positiiviset, korkeintaan yhdeksän merkkiä pitkät luvut.
 
 Randomize-nappi arpoo satunnaiset ainesosat ja näille satunnaiset määrät.
 
 Clear Potion -nappi tyhjentää rohdon kaikista aineksista.
 
-Kun rohtoon halutut ainesosat ovat lisätty, rohtoon generoidaan "taikaa" painamalla Confirm potion -nappulaa. Tämä vie käyttäjän uuteen Generated Potion -näkymään.
+Kun rohtoon halutut ainesosat ovat lisätty, rohtoon generoidaan "taikaa" painamalla Confirm Potion -nappulaa. Tämä vie käyttäjän uuteen Generated Potion -näkymään.
 
 
 ![Aineslista](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/ingredientList.png)
