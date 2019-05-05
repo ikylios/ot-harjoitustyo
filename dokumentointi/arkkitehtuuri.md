@@ -92,6 +92,8 @@ Tämän jälkeen käyttäjä klikkaa jotakin ingredientListin aineksista ja pain
 Käyttäjä antaa halutun arvon amount-kenttään ja painaa confirm-nappulaa. AppLogicin metodia addToTempPotion kutsutaan. AppLogic pyytää ensin ingredient-olion ingredientLibrarylta nimen perusteella ja sitten antaa tämän aineksen parametrinä tempPotionin metodille addToPotion. Tämä metodi palauttaa merkkijonon, joka kertoo, onnistuiko operaatio. Käyttäjän näkymään ilmestyy status-teksti, joka varmistaa käyttäjälle operaation onnistuneen tai epäonnistuneen. Onnistumisen yhteydessä status saa tekstikseen "Ingredient added."
 
 
+
+
 Sekvenssikaavio rohdon generoimisesta:
 ![RandomisePotion](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/randomisePotionSequence.jpg)
 
