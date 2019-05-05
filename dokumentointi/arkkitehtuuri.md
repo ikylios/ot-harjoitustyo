@@ -107,6 +107,9 @@ AppLogic hakee Ingredient Librarylta tiedon kuinka monta ainesta kirjastossa on.
 Silmukassa AppLogic kutsuu Ingredient Libraryn getRandomIngredient()-metodia, joka palauttaa satunnaisesti aineksen AppLogicille. AppLogic tarkistaa tempPotionilta, onko arvottua ainesta rohdossa jo. Jos ei, ainekselle arvotaan ainekselle määrä välillä 1-40, aines lisätään rohtoon ja silmukan laskuri kasvaa yhdellä. Jos rohdossa on ainesta, ainesta ei lisätä ja laskuri ei kasva. Arvotaan seuraava aines Ingredient Librarysta.
 
 
+Lopuksi AppUI kutsuu createAPotion()-metodia, jossa näkymä luodaan uudestaan eli päivittyy. Käyttäjälle näkyy generoitu lista rohdon sisällöstä.
+
+
 Muiden toiminnallisuuksien toiminta noudattelee samaa periaatetta: sovelluslogiikka kutsuu ingredientLibrarya tai potionLibrarya tarvittavan toiminnallisuuden suorittamiseksi, ja käyttöliittymä välittää käyttäjälle tiedon operaation tuloksesta.
 
 ## Ohjelman rakenteeseen jääneet heikkoudet
