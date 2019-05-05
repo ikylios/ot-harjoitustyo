@@ -43,5 +43,6 @@
 |3.5.|2 | Korjattiin bugi jossa rohtoon pystyi lisäämään aineksen, jonka määrä on 0. Siistittiin tiedostonlukemista koskevia metodeja.
 |    |6 | Työstettiin tiedostonlukemisen testejä ja paranneltiin muita testejä. Aloiteltiin testausdokumenttia.
 |4.5.|4 | Korjattiin jar-paketti toimimaan. Toivottavasti.
+|    |1 | Dokumentaatiota.
 
-Summa: 87
+Summa: 88

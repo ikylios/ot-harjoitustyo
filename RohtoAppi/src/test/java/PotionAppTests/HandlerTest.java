@@ -20,8 +20,11 @@ import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
 import rohtoappi.dao.IngredientsHandler;
 import rohtoappi.dao.PotionsHandler;
+import rohtoappi.domain.AppLogic;
 import rohtoappi.domain.IngredientLibrary;
 import rohtoappi.domain.PotionLibrary;
+import rohtoappi.domain.components.Ingredient;
+import rohtoappi.domain.components.Potion;
 
 public class HandlerTest {
 
@@ -36,6 +39,8 @@ public class HandlerTest {
 
     IngredientLibrary ingLib;
     PotionLibrary poLib;
+
+    AppLogic logic;
 
     public HandlerTest() {
     }
@@ -135,4 +140,36 @@ public class HandlerTest {
         lines = ph.readFile();
         assertEquals(2, lines.size());
     }
+
+    @Test
+    public void writesThroughIngLib() throws Exception {
+        ingLib.addIngredient("carrot", "g");
+        ingLib.addIngredient("ink", "mg");
+        ingLib.addIngredient("chuckian norrian", "ng");
+        ingLib.writeToFile();
+        IngredientLibrary ingLibNew = new IngredientLibrary(ih);
+        assertEquals(6, ingLibNew.ingredients.size());
+    }
+
+    @Test
+    public void writesThroughPotionLib() throws Exception {
+        Potion potion = new Potion();
+        Ingredient ingredient = ingLib.getRandomIngredient();
+        ingredient.setAmount(20);
+        potion.addToPotion(ingredient);
+        potion.setName("testpotion1");
+        poLib.addPotion(potion);
+        potion = new Potion();
+        ingredient = ingLib.getRandomIngredient();
+        ingredient.setAmount(30);
+        potion.addToPotion(ingredient);
+        potion.setName("testpotion2");
+        poLib.addPotion(potion);
+
+        poLib.writeToFile();
+
+        PotionLibrary poLibNew = new PotionLibrary(ph);
+        assertEquals(4, poLibNew.potions.size());
+    }
+
 }
