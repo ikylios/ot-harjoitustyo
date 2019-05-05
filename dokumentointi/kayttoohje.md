@@ -57,18 +57,18 @@ Jotta uudet ainekset ja rohdot tallentuvat Ingredient Libraryyn ja Potion Librar
 
 # Asennus
 
-Lataa tiedosto [rohtoappi.jar]()
+Lataa tiedosto *rohtoappi.jar*. Luo uusi hakemisto, johon sijoitat rohtoappi.jar:in.
 
 ## Konfigurointi
 
-Lataamisen jälkeen luo tiedosto nimeltä *config.properties*. Kopioi tiedoston sisällöksi
+Luo tiedosto nimeltä *config.properties*. Kopioi tiedoston sisällöksi
 
 ```
 ingredientFile=ingredients.txt
 potionsFile=potions.txt
 ```
 
-Sijoita *config.properties* samaan kansioon (tai muuhun ympäristöön) kuin missä rohtoappi.jar on.
+Sijoita *config.properties* samaan hakemistoon kuin missä rohtoappi.jar on.
 Sovellus käyttää näitä tiedostoja aineksien ja rohtojen tallentamiseen. Tiedostot ingredients.txt ja potions.txt luodaan kun ohjelma havaitsee, ettei näitä tiedostoja ole vielä olemassa. Sovellus luo nämä tiedostot.
 
 
@@ -77,3 +77,4 @@ Ohjelma käynnistetään komennolla
 ```
 java -jar rohtoappi.jar
 ```
+suoritushakemistossa.
