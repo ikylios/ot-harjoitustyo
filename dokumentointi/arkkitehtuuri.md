@@ -116,3 +116,6 @@ Koodikatselmoinnissa mainittu switch ja enumit -toteutus operaatioiden onnistumi
 
 
 Monet oliomuuttujista ja metodeista ovat jätetty publiceiksi testauksen helpottamiseksi.
+
+
+FXML-toteutus on vieras, mutta projektia tehdessä tähän törmäsi usein. Vaikuttaa siltä, että tämä toteutus olisi erittäin kätevä sovellukseen.

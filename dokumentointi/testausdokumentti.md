@@ -24,7 +24,7 @@ Sovelluksen testauksen rivikattavuus on 87% ja haarautumakattavuus 79%. Testauks
 
 ## Asennus ja konfigurointi
 
-Sovellus on ladattu ja testattu käyttöohjeiden mukaisesti Linux-ympäristössä.
+Sovellus on ladattu ja testattu käyttöohjeiden mukaisesti Linux-ympäristössä. Sovellusta on kokeiltu pintapuolisesti Windows-ympäristössä.
 
 ## Toiminnallisuudet
 
