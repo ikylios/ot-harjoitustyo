@@ -33,9 +33,8 @@ public class PotionLibrary {
      * Vastaanottaa potionsHandlerilta listan rohdoista ja sijoittaa ne
      * potions-tauluun ja potionsNames-listaan.
      *
-     * @return Palauttaa true jos lukeminen onnistuu, muuten false.
      */
-    final boolean readPotionsFile() throws Exception {
+    final void readPotionsFile() throws Exception {
         List<String> lines = potionsHandler.readFile();
 
         if (!lines.isEmpty()) {
@@ -57,7 +56,6 @@ public class PotionLibrary {
                 addPotion(potion);
             }
         }
-        return true;
     }
 
     /**

@@ -37,9 +37,8 @@ public class IngredientLibrary {
      * Vastaanottaa IngredientsHandlerilta listan aineksista ja sijoittaa ne
      * ingredients-tauluun ja nimilistaan hyödyntäen addIngredient-metodia.
      *
-     * @return
      */
-    final boolean readIngredientsFile() throws Exception {
+    final void readIngredientsFile() throws Exception {
         List<String> lines = ingredientsHandler.readFile();
         if (!lines.isEmpty()) {
             for (String line : lines) {
@@ -47,10 +46,14 @@ public class IngredientLibrary {
                 addIngredient(pieces[0], pieces[1]);
             }
         }
-
-        return true;
     }
 
+    /**
+     * Muuntaa ainekset merkkijonoiksi, jotka tallennetaan ArrayListiin.
+     * ArrayList annetaan eteenpäin ingredientsHandlerille, joka tekee
+     * varsinaisen tiedostoonkirjoittamisen.
+     *
+     */
     public void writeToFile() {
         List<String> ingredientsList = new ArrayList<>();
         for (Ingredient ingredient : ingredients.values()) {

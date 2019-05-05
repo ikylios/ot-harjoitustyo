@@ -18,6 +18,8 @@ Sovellus taianomaisten taikarohtojen luomiseen ja tallentamiseen.
 ## Releaset
 [Viikko 5](https://github.com/ikylios/ot-harjoitustyo/releases)
 
+[Loppupalautus](https://github.com/ikylios/ot-harjoitustyo/releases)
+
 ## Komentorivitoiminnot
 
 ### Testaus

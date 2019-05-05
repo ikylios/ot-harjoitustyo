@@ -18,9 +18,17 @@ public class PotionsHandler implements FileHandler {
         this.file = file;
     }
 
+    /**
+     * Lukee oliomuuttujassa määritellyn tiedoston ja lisää rivit listaan.
+     *
+     * @return Palauttaa ArrayListin, joka voi olla tyhjä tai sisältää
+     * merkkijonoja.
+     * @throws Exception Jos ei löydä tiedostoa, eli heittää keskeytyksen, luo
+     * uuden tiedoston oliomuuttujan mukaan.
+     */
     @Override
     public List readFile() throws Exception {
-        List lines = new ArrayList<>();
+        List<String> lines = new ArrayList<>();
 
         try (Scanner scanner = new Scanner(new File(file))) {
             while (scanner.hasNextLine()) {
@@ -34,6 +42,12 @@ public class PotionsHandler implements FileHandler {
         return lines;
     }
 
+    /**
+     * Kirjoittaa saadut rivit tiedostoon.
+     *
+     * @param potions Lista rohdoista.
+     * @return Palauttaa true jos kirjoittaminen onnistui, muuten false.
+     */
     @Override
     public boolean writeFile(List<String> potions) {
         try (FileWriter writer = new FileWriter(new File(file), false)) {
