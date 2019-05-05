@@ -51,7 +51,7 @@ public class IngredientLibrary {
         return true;
     }
 
-    public boolean writeToFile() {
+    public void writeToFile() {
         List<String> ingredientsList = new ArrayList<>();
         for (Ingredient ingredient : ingredients.values()) {
             String line = ingredient.getName() + ";" + ingredient.getMeasuringUnit() + "\n";
@@ -59,7 +59,6 @@ public class IngredientLibrary {
         }
 
         ingredientsHandler.writeFile(ingredientsList);
-        return true;
     }
 
     /**

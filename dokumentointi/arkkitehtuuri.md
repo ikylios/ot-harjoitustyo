@@ -110,3 +110,9 @@ Jokaisella Potion-luokalla on oma Magic-luokka jossa toistuvat samat listat. Lie
 
 
 Rohtotiedostoon tallennetaan aineksen yksikkö. Hienompaa olisi, jos yksikön voisi hakea aineskirjastosta turhan toiston välttämiseksi.
+
+
+Koodikatselmoinnissa mainittu switch ja enumit -toteutus operaatioiden onnistumiselle on kiintoisa. Perusversiota varten sitä ei valitettavasti ehditty toteuttaa.
+
+
+Monet oliomuuttujista ja metodeista ovat jätetty publiceiksi testauksen helpottamiseksi.

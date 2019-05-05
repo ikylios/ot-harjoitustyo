@@ -60,7 +60,13 @@ public class PotionLibrary {
         return true;
     }
 
-    public boolean writeToFile() {
+    /**
+     * Muuntaa rohdot ja niiden ainekset merkkijonoiksi, jotka tallennetaan
+     * ArrayListiin. ArrayList annetaan eteenpäin potionsHandlerille, joka tekee
+     * varsinaisen tiedostoonkirjoittamisen.
+     *
+     */
+    public void writeToFile() {
         List<String> potionsList = new ArrayList<>();
         for (Potion potion : potions.values()) {
             String line = potion.getName() + ";" + potion.getType() + ";" + potion.getEffect() + ";";
@@ -80,7 +86,6 @@ public class PotionLibrary {
         }
 
         potionsHandler.writeFile(potionsList);
-        return true;
     }
 
     public HashMap getPotions() {

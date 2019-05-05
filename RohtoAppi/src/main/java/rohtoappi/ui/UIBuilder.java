@@ -3,10 +3,7 @@ package rohtoappi.ui;
 import java.util.ArrayList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -45,37 +42,6 @@ public class UIBuilder {
         grid.setHgap(10);
         grid.setAlignment(Pos.CENTER);
         return grid;
-    }
-
-    public GridPane createIngredientGrid(ArrayList<Ingredient> ingredients) {
-        GridPane ingredientGrid = new GridPane();
-        if (ingredients.isEmpty()) {
-            Label emptyLabel = new Label("No ingredients. Empty. Nada.");
-            emptyLabel.setTextFill(Color.WHITE);
-            ingredientGrid.add(emptyLabel, 0, 0);
-        } else {
-            int row = 0;
-            for (Ingredient ingredient : ingredients) {
-                int column = 0;
-                Label nameLabel = new Label(ingredient.getName() + "\t\t");
-                nameLabel.setTextFill(Color.WHITE);
-                ingredientGrid.add(nameLabel, column, row);
-                column++;
-                Label numbersLabel = new Label("" + ingredient.getAmount() + " " + ingredient.getMeasuringUnit());
-                numbersLabel.setTextFill(Color.WHITE);
-                ingredientGrid.add(numbersLabel, column, row);
-                column++;
-//                Button addButton = new Button("+");
-//                ingredientGrid.add(new Button("+"), column, row);
-//                column++;                
-//                ingredientGrid.add(new Button(" - "), column, row);
-                row++;
-            }
-        }
-        ingredientGrid.setAlignment(Pos.TOP_CENTER);
-        ingredientGrid.setHgap(10);
-        ingredientGrid.setVgap(10);
-        return ingredientGrid;
     }
 
 }

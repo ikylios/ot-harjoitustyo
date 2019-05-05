@@ -9,10 +9,6 @@ import static org.junit.Assert.*;
 import rohtoappi.domain.AppLogic;
 import rohtoappi.domain.components.Ingredient;
 
-/**
- *
- * @author xilxilx
- */
 public class CreateAPotionTest {
 
     AppLogic logic = new AppLogic();

@@ -93,7 +93,9 @@ public class AppLogic {
      * Lisää työn alla olevan rohdon potionLibraryyn. Kutsuu potionLibraryn
      * addPotion-metodia ja laittaa parametriksi työn alla olevan rohdon.
      *
-     * @return
+     * @return Palauttaa noSpace jos rohtokirjastossa ei ole tilaa uudelle
+     * rohdolle, sameName jos rohtokirjastossa on valmiiksi samanniminen rohto
+     * ja muutoin clear.
      */
     public String addPotionToLibrary() {
         return potionLibrary.addPotion(tempPotion);

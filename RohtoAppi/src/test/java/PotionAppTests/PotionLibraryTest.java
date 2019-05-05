@@ -10,10 +10,6 @@ import rohtoappi.domain.AppLogic;
 import rohtoappi.domain.components.Ingredient;
 import rohtoappi.domain.components.Potion;
 
-/**
- *
- * @author xilxilx
- */
 public class PotionLibraryTest {
 
     AppLogic logic = new AppLogic();
