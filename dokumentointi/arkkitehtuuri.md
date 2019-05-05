@@ -92,6 +92,19 @@ Tämän jälkeen käyttäjä klikkaa jotakin ingredientListin aineksista ja pain
 Käyttäjä antaa halutun arvon amount-kenttään ja painaa confirm-nappulaa. AppLogicin metodia addToTempPotion kutsutaan. AppLogic pyytää ensin ingredient-olion ingredientLibrarylta nimen perusteella ja sitten antaa tämän aineksen parametrinä tempPotionin metodille addToPotion. Tämä metodi palauttaa merkkijonon, joka kertoo, onnistuiko operaatio. Käyttäjän näkymään ilmestyy status-teksti, joka varmistaa käyttäjälle operaation onnistuneen tai epäonnistuneen. Onnistumisen yhteydessä status saa tekstikseen "Ingredient added."
 
 
+Sekvenssikaavio rohdon generoimisesta:
+![RandomisePotion](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/randomisePotionSequence.jpg)
+
+
+Käyttäjä klikkaa Randomise Potion -nappia. AppLogic pyytää Random-oliolta satunnaista lukua 1-9 välillä (ei kuvattu). Tämä määrä kertoo kuinka monta ainesta on tarkoitus lisätä rohtoon. 
+
+
+AppLogic hakee Ingredient Librarylta tiedon kuinka monta ainesta kirjastossa on. Jos aiemmin arvottu luku on suurempi kuin mitä aineksia kirjastossa on, ainesten määräksi asetetaan kirjastossa olevien aineksien määrä. Tämän jälkeen alkaa silmukka (kuvassa rajattu alue), jota toistetaan kunnes ainekset rohtoon on valittu.
+
+
+Silmukassa AppLogic kutsuu Ingredient Libraryn getRandomIngredient()-metodia, joka palauttaa satunnaisesti aineksen AppLogicille. AppLogic tarkistaa tempPotionilta, onko arvottua ainesta rohdossa jo. Jos ei, ainekselle arvotaan ainekselle määrä välillä 1-40, aines lisätään rohtoon ja silmukan laskuri kasvaa yhdellä. Jos rohdossa on ainesta, ainesta ei lisätä ja laskuri ei kasva. Arvotaan seuraava aines Ingredient Librarysta.
+
+
 Muiden toiminnallisuuksien toiminta noudattelee samaa periaatetta: sovelluslogiikka kutsuu ingredientLibrarya tai potionLibrarya tarvittavan toiminnallisuuden suorittamiseksi, ja käyttöliittymä välittää käyttäjälle tiedon operaation tuloksesta.
 
 ## Ohjelman rakenteeseen jääneet heikkoudet

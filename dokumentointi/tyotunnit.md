@@ -44,6 +44,6 @@
 |    |6 | Työstettiin tiedostonlukemisen testejä ja paranneltiin muita testejä. Aloiteltiin testausdokumenttia.
 |4.5.|4 | Korjattiin jar-paketti toimimaan. Toivottavasti.
 |    |1 | Dokumentaatiota.
-|5.5.|3 | Koodin siivoamista ja dokumentaatiota.
+|5.5.|4 | Koodin siivoamista ja dokumentaatiota.
 
-Summa: 91
+Summa: 90
