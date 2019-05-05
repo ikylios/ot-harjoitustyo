@@ -1,4 +1,4 @@
-# Käyttöohje
+# Käyttöohje ja Asennus
 
 ## Sovelluksen päävalikko
 ![Main Menu](https://github.com/ikylios/ot-harjoitustyo/blob/master/dokumentointi/mainMenu.png)
@@ -57,9 +57,12 @@ Jotta uudet ainekset ja rohdot tallentuvat Ingredient Libraryyn ja Potion Librar
 
 # Asennus
 
-Lataa tiedosto *rohtoappi.jar*. Luo uusi hakemisto, johon sijoitat rohtoappi.jar:in.
+Lataa tiedosto *rohtoappi.jar*. Luo uusi hakemisto, johon sijoitat rohtoappi.jar:in. Releasen mukana tuleva config.properties-tiedosto tulee asettaa samaan hakemistoon.
 
 ## Konfigurointi
+
+Jos jostain syystä halu luoda config.properties-tiedosto on suuri, näin se tehdään.
+
 
 Luo tiedosto nimeltä *config.properties*. Kopioi tiedoston sisällöksi
 
